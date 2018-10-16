@@ -21,18 +21,25 @@ import model.vo.Produto;
 public class ProdutoDAO extends BaseDAO_Tables<Produto>{
 
     @Override
-    public void setValoresAtributosInsert(Produto entidade, PreparedStatement preparedStmt) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setValoresAtributosInsert(Produto entidade, PreparedStatement preparedStmt) throws SQLException  {
+        preparedStmt.setString(1, entidade.getNome());
+        preparedStmt.setString(2, entidade.getDescricao());
     }
 
     @Override
-    public void setValoresAtributosUpdate(Produto entidade, PreparedStatement stmt) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setValoresAtributosUpdate(Produto entidade, PreparedStatement stmt)throws SQLException  {
+        stmt.setInt(1, entidade.getIdProduto());
+        stmt.setString(2, entidade.getNome());
+        stmt.setString(3, entidade.getDescricao());
     }
 
     @Override
     public Produto construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Produto p =new Produto();
+        p.setIdProduto( resultado.getInt(1));
+	p.setNome( resultado.getString(2));
+        p.setDescricao( resultado.getString(3));
+        return p;
     }
     
 }
