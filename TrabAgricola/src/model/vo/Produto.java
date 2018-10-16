@@ -5,26 +5,36 @@
  */
 package model.vo;
 
+import java.util.List;
+
+import ca.odell.glazedlists.TextFilterable;
+
 /**
  *
  * @author vin3
  */
-public class Produto {
-   private int idProduto;
-   private String nome; 
-   private String descricao;
+public class Produto implements TextFilterable {
+	private int idProduto;
+	private String nome; 
+	private String descricao;
 
-    public int getIdProduto() {
-        return idProduto;
-    }
 
-    public void setIdProduto(int idProduto) {
-        this.idProduto = idProduto;
-    }
+	public void getFilterStrings(List baseList) {
+		baseList.add(nome);
+		baseList.add(descricao);
+	}
 
-    public String getNome() {
-        return nome;
-    }
+	public int getIdProduto() {
+		return idProduto;
+	}
+
+	public void setIdProduto(int idProduto) {
+		this.idProduto = idProduto;
+	}
+
+	public String getNome() {
+		return nome;
+	}
 
     public void setNome(String nome) {
         this.nome = nome;

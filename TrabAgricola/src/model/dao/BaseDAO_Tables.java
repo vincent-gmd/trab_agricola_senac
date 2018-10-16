@@ -183,7 +183,7 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 				stmt.setInt(i,(Integer) values.get(i));
 				break;
 			
-			case "BigDecimal ":
+			case "BigDecimal":
 				stmt.setBigDecimal(i,(BigDecimal) values.get(i));
 				break;
 				

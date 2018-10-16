@@ -19,6 +19,9 @@ import model.vo.Produto;
  * @author vin3
  */
 public class ProdutoDAO extends BaseDAO_Tables<Produto>{
+	public ProdutoDAO(){
+		this.table=new ProdutoTable();
+	}
 
     @Override
     public void setValoresAtributosInsert(Produto entidade, PreparedStatement preparedStmt) throws SQLException  {
