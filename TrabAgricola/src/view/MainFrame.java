@@ -9,10 +9,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class MainFrame extends JFrame {
 
 	private JPanel contentPane;
+	private JPanel cadastrarProduto=new CadastrarProduto();;
 
 	/**
 	 * Launch the application.
@@ -44,6 +47,13 @@ public class MainFrame extends JFrame {
 		menuBar.add(mnProduto);
 		
 		JMenuItem mntmCadastrar = new JMenuItem("cadastrar");
+		mntmCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setContentPane(cadastrarProduto);
+				cadastrarProduto.setVisible(true);
+				cadastrarProduto.updateUI();
+			}
+		});
 		mnProduto.add(mntmCadastrar);
 		
 		JMenuItem mntmAlterar = new JMenuItem("alterar");
