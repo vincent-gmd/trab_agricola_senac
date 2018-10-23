@@ -1,7 +1,7 @@
 /**
  * 
  */
-package model.dao;
+package model.dao.base;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

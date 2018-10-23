@@ -5,6 +5,9 @@
  */
 package model.dao;
 
+import model.dao.base.Colum;
+import model.dao.base.Table;
+
 /**
  *
  * @author vin3

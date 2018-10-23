@@ -1,4 +1,4 @@
-package model.dao;
+package model.dao.base;
 
 public class Colum {
 	private String type;

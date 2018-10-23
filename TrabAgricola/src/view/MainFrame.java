@@ -67,6 +67,12 @@ public class MainFrame extends JFrame {
 		
 		JMenuItem mntmListar = new JMenuItem("listar");
 		mnProduto.add(mntmListar);
+		
+		JMenu mnCultura = new JMenu("CULTURA");
+		menuBar.add(mnCultura);
+		
+		JMenuItem mntmPesquisar = new JMenuItem("pesquisar");
+		mnCultura.add(mntmPesquisar);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));

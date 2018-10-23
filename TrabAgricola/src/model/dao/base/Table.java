@@ -1,10 +1,10 @@
-package model.dao;
+package model.dao.base;
 
 import java.util.ArrayList;
 
 public class Table {
-	String name;
-	ArrayList<Colum> colums = new ArrayList<Colum>(); 
+	protected String name;
+	protected ArrayList<Colum> colums = new ArrayList<Colum>(); 
 	public Table() {
 		super();
 		

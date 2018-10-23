@@ -1,4 +1,4 @@
-package model.dao;
+package model.dao.base;
 
 import java.math.BigDecimal;
 import java.net.URL;

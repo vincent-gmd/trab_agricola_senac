@@ -4,7 +4,8 @@ package model.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import model.dao.BaseDAO_Tables;
+
+import model.dao.base.BaseDAO_Tables;
 import model.vo.Produto;
 
 
