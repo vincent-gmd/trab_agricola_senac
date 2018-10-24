@@ -1,4 +1,4 @@
-package view;
+package view.admin;
 
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;

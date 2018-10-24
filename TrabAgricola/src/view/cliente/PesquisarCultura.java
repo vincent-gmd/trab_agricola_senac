@@ -1,4 +1,4 @@
-package view;
+package view.cliente;
 
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;

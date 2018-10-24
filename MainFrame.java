@@ -17,7 +17,7 @@ public class MainFrame extends JFrame {
 			public void run() {
 				try {
 					MainFrame frame = new MainFrame();
-					frame.setVisible(true);
+					frame.setVisible(true;
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
