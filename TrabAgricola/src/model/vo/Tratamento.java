@@ -3,7 +3,6 @@ package model.vo;
 public class Tratamento {
 	private int idTratamento;
 	private String descricao;
-	//private String fotots;
 	private String nome;
 	public int getIdTratamento() {
 		return idTratamento;
