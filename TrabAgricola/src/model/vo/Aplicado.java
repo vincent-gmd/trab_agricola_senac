@@ -2,7 +2,7 @@ package model.vo;
 
 import java.sql.Date;
 
-public class aplicado {
+public class Aplicado {
 private int id;
 private Date data ;
 private int idPropriedade;
