@@ -51,7 +51,6 @@ public class PesquisarTratamentos extends JPanel {
 		add(txtrDescriaoProduto);
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
-		springLayout.putConstraint(SpringLayout.NORTH, scrollPane, 0, SpringLayout.NORTH, scrollPane_1);
 		springLayout.putConstraint(SpringLayout.EAST, scrollPane, -6, SpringLayout.WEST, scrollPane_1);
 		springLayout.putConstraint(SpringLayout.WEST, scrollPane_1, 405, SpringLayout.WEST, this);
 		springLayout.putConstraint(SpringLayout.SOUTH, scrollPane_1, -6, SpringLayout.NORTH, txtrDescriaoProduto);
@@ -75,6 +74,7 @@ public class PesquisarTratamentos extends JPanel {
 		add(lblProdutosUsadosNo);
 		
 		JLabel lblTratamentos = new JLabel("tratamentos");
+		springLayout.putConstraint(SpringLayout.NORTH, scrollPane, 13, SpringLayout.SOUTH, lblTratamentos);
 		springLayout.putConstraint(SpringLayout.NORTH, lblTratamentos, 0, SpringLayout.NORTH, lblProdutosUsadosNo);
 		springLayout.putConstraint(SpringLayout.WEST, lblTratamentos, 0, SpringLayout.WEST, txtrDescriaoTratamento);
 		add(lblTratamentos);

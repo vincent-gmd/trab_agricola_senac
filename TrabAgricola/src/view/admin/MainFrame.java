@@ -11,6 +11,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
 
 public class MainFrame extends JFrame {
 
@@ -26,6 +27,7 @@ public class MainFrame extends JFrame {
 				try {
 					MainFrame frame = new MainFrame();
 					frame.setVisible(true);
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,7 +45,7 @@ public class MainFrame extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnProduto = new JMenu("produto");
+		JMenu mnProduto = new JMenu("Produto");
 		menuBar.add(mnProduto);
 		
 		JMenuItem mntmCadastrar = new JMenuItem("cadastrar");
@@ -68,12 +70,19 @@ public class MainFrame extends JFrame {
 		JMenuItem mntmListar = new JMenuItem("listar");
 		mnProduto.add(mntmListar);
 		
-		JMenu mnCultura = new JMenu("CULTURA");
+		JMenu mnCultura = new JMenu("Cultura");
 		menuBar.add(mnCultura);
 		
 		JMenuItem mntmPesquisar = new JMenuItem("pesquisar");
 		mnCultura.add(mntmPesquisar);
+		
+		JMenu mnTratamento = new JMenu("Tratamento");
+		menuBar.add(mnTratamento);
+		
+		JMenuItem mntmCadastro = new JMenuItem("cadastro");
+		mnTratamento.add(mntmCadastro);
 		contentPane = new JPanel();
+		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);

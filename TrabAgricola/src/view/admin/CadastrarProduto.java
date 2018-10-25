@@ -13,9 +13,14 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.SystemColor;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class CadastrarProduto extends JPanel {
-	private JTextField textFieldNome;
+	private JTextField txtNome;
 	private JTextPane textPaneDescricao;
 	private ProdutoController controller=new ProdutoController();
 	private Produto produto;
@@ -24,40 +29,35 @@ public class CadastrarProduto extends JPanel {
 	 * Create the panel.
 	 */
 	public CadastrarProduto() {
-		SpringLayout springLayout = new SpringLayout();
-		setLayout(springLayout);
+		setBackground(SystemColor.activeCaption);
+		setLayout(null);
 		
 		textPaneDescricao = new JTextPane();
-		springLayout.putConstraint(SpringLayout.NORTH, textPaneDescricao, -66, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.WEST, textPaneDescricao, 10, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, textPaneDescricao, -10, SpringLayout.SOUTH, this);
-		springLayout.putConstraint(SpringLayout.EAST, textPaneDescricao, 440, SpringLayout.WEST, this);
+		textPaneDescricao.setBounds(36, 152, 415, 108);
 		add(textPaneDescricao);
 		
-		JLabel lblDescrio = new JLabel("descri\u00E7\u00E3o:");
-		springLayout.putConstraint(SpringLayout.WEST, lblDescrio, 10, SpringLayout.WEST, this);
-		springLayout.putConstraint(SpringLayout.SOUTH, lblDescrio, -6, SpringLayout.NORTH, textPaneDescricao);
-		add(lblDescrio);
+		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
+		lblDescricao.setBounds(208, 113, 73, 20);
+		lblDescricao.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		add(lblDescricao);
 		
-		JLabel lblNome = new JLabel("nome:");
-		springLayout.putConstraint(SpringLayout.SOUTH, lblNome, -6, SpringLayout.NORTH, lblDescrio);
-		springLayout.putConstraint(SpringLayout.EAST, lblNome, -395, SpringLayout.EAST, this);
+		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setBounds(122, 50, 48, 20);
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		add(lblNome);
 		
-		textFieldNome = new JTextField();
-		springLayout.putConstraint(SpringLayout.NORTH, textFieldNome, -3, SpringLayout.NORTH, lblNome);
-		springLayout.putConstraint(SpringLayout.WEST, textFieldNome, 6, SpringLayout.EAST, lblNome);
-		springLayout.putConstraint(SpringLayout.EAST, textFieldNome, 0, SpringLayout.EAST, textPaneDescricao);
-		add(textFieldNome);
-		textFieldNome.setColumns(10);
+		txtNome = new JTextField();
+		txtNome.setBounds(176, 52, 150, 20);
+		add(txtNome);
+		txtNome.setColumns(10);
 		
-		JButton btnCadastrar = new JButton("cadastrar");
-		springLayout.putConstraint(SpringLayout.SOUTH, btnCadastrar, -27, SpringLayout.NORTH, textFieldNome);
+		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setBounds(171, 285, 98, 28);
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(validar()) {
 					produto =new Produto();
-					produto.setNome( textFieldNome.getText());
+					produto.setNome( txtNome.getText());
 					produto.setDescricao(textPaneDescricao.getText());
 					controller.inserir(produto);
 				}else {
@@ -65,7 +65,6 @@ public class CadastrarProduto extends JPanel {
 				}
 			}
 		});
-		springLayout.putConstraint(SpringLayout.WEST, btnCadastrar, 0, SpringLayout.WEST, textPaneDescricao);
 		add(btnCadastrar);
 
 	}
@@ -79,7 +78,7 @@ public class CadastrarProduto extends JPanel {
 	}
 	protected boolean validar() {
 		prob = "";
-		prob = validarCampoString(textFieldNome.getText(),prob,"nome");
+		prob = validarCampoString(txtNome.getText(),prob,"nome");
 		prob = validarCampoString(textPaneDescricao.getText(),prob,"descrição");
 		if(prob.equals("")) {
 			return true;

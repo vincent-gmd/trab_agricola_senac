@@ -169,9 +169,9 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 			stmt.setString(i, values.get(i).toString());
 		}
 	}
-	public void setValoresAtributosWhere(ArrayList<Colum> colums ,ArrayList<Object> values,PreparedStatement stmt) throws SQLException{
+	public void setValoresAtributosWhere(ArrayList<Colum> columns ,ArrayList<Object> values,PreparedStatement stmt) throws SQLException{
 		for(int i =0;i<values.size();i++) {
-			switch (colums.get(i).getType()) {
+			switch (columns.get(i).getType()) {
 			case "String":
 			case "string":
 				stmt.setString(i, values.get(i).toString());
@@ -236,7 +236,7 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 				
 				
 			default:
-				System.out.println("Erro ao identificar tipo :"+colums.get(i).getType()+" de:"+ colums.get(i).getName()+" valor:"+values.get(i).toString());
+				System.out.println("Erro ao identificar tipo :"+columns.get(i).getType()+" de:"+ columns.get(i).getName()+" valor:"+values.get(i).toString());
 				break;
 			}
 			
