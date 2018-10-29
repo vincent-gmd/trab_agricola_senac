@@ -199,7 +199,7 @@ public abstract class BaseDAO<T> {
 	 * @param preparedStmt o objeto que detém a consulta SQL criada.
 	 * @throws SQLException 
 	 */
-	public abstract void setValoresAtributosInsert(T entidade, PreparedStatement preparedStmt) throws SQLException;
+	public abstract void setValoresAtributosInsert(T entidade, PreparedStatement stmt) throws SQLException;
 
 	/**
 	 * Constrói uma string com os pares chave-valor da clásula SET de um UPDATE, onde:

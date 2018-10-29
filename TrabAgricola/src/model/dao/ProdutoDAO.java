@@ -26,9 +26,9 @@ public class ProdutoDAO extends BaseDAO_Tables<Produto>{
 	}
 
     @Override
-    public void setValoresAtributosInsert(Produto entidade, PreparedStatement preparedStmt) throws SQLException  {
-        preparedStmt.setString(1, entidade.getNome());
-        preparedStmt.setString(2, entidade.getDescricao());
+    public void setValoresAtributosInsert(Produto entidade, PreparedStatement stmt) throws SQLException  {
+    	stmt.setString(1, entidade.getNome());
+    	stmt.setString(2, entidade.getDescricao());
     }
 
     @Override
