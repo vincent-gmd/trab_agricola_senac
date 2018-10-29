@@ -1,6 +1,8 @@
 package model.dao.base;
 
 import java.util.ArrayList;
+import model.dao.base.Colum;
+
 
 public class Table {
 	protected String name;

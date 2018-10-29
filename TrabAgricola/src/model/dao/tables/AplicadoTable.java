@@ -7,6 +7,7 @@ import model.dao.base.Table;
 
 public class AplicadoTable extends Table{
 	public AplicadoTable(){
+        name="aplicado";
 
         colums.add(new Colum("int","id"));
         colums.add(new Colum("Date","data"));
