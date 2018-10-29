@@ -1,10 +1,10 @@
-package model.dao;
+package model.dao.tables;
 
 import model.dao.base.Colum;
 import model.dao.base.Table;
 
 public class TratamentoTable extends Table{
-	TratamentoTable(){
+	public TratamentoTable(){
         name="tratamento";
         colums.add(new Colum("int","idtratamento"));
         colums.add(new Colum("String","descri"));

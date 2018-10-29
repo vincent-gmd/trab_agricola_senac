@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.dao;
+package model.dao.tables;
 
 import model.dao.base.Colum;
 import model.dao.base.Table;
@@ -13,7 +13,7 @@ import model.dao.base.Table;
  * @author vin3
  */
 public class ProdutoTable extends Table {
-    ProdutoTable(){
+    public ProdutoTable(){
         name="produto";
         colums.add(new Colum("int","idproduto"));
         colums.add(new Colum("String","nome"));
