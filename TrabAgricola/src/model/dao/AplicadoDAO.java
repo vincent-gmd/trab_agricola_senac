@@ -16,27 +16,30 @@ public class AplicadoDAO extends BaseDAO_Tables<Aplicado>{
 
     @Override
     public void setValoresAtributosInsert(Aplicado entidade, PreparedStatement stmt) throws SQLException  {
-    	stmt.setDate(1, entidade.getData());
-    	stmt.setInt(2, entidade.getIdPropriedade());
-    	stmt.setInt(3, entidade.getIdTratamento());
+    	int i=1;
+    	stmt.setDate(i++, entidade.getData());
+    	stmt.setInt(i++, entidade.getIdPropriedade());
+    	stmt.setInt(i++, entidade.getIdTratamento());
     }
 
     @Override
     public void setValoresAtributosUpdate(Aplicado entidade, PreparedStatement stmt)throws SQLException  {
-        stmt.setInt(1, entidade.getId());
-        stmt.setDate(2, entidade.getData());
-        stmt.setInt(3, entidade.getIdPropriedade());
-        stmt.setInt(4, entidade.getIdTratamento());
+    	int i=1;
+    	stmt.setInt(i++, entidade.getId());
+        stmt.setDate(i++, entidade.getData());
+        stmt.setInt(i++, entidade.getIdPropriedade());
+        stmt.setInt(i++, entidade.getIdTratamento());
 
     }
 
     @Override
     public Aplicado construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
     	Aplicado p =new Aplicado();
-        p.setId( resultado.getInt(1));
-        p.setData( resultado.getDate(2));
-        p.setIdPropriedade( resultado.getInt(3));
-        p.setIdTratamento( resultado.getInt(4));
+    	int i=1;
+        p.setId( resultado.getInt(i++));
+        p.setData( resultado.getDate(i++));
+        p.setIdPropriedade( resultado.getInt(i++));
+        p.setIdTratamento( resultado.getInt(i++));
 
         return p;
     }

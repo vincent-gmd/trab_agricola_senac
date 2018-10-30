@@ -6,7 +6,7 @@ public class Contamina {
 	private int id;
 	private Date dataFim;
 	private Date data;
-	private String fotos;
+	//private String fotos;
 	private int confirmacao;
 	private String descricao;
 	private int idPropriedade;
@@ -29,12 +29,7 @@ public class Contamina {
 	public void setData(Date data) {
 		this.data = data;
 	}
-	public String getFotos() {
-		return fotos;
-	}
-	public void setFotos(String fotos) {
-		this.fotos = fotos;
-	}
+
 	public int getConfirmacao() {
 		return confirmacao;
 	}

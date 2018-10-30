@@ -27,23 +27,26 @@ public class ProdutoDAO extends BaseDAO_Tables<Produto>{
 
     @Override
     public void setValoresAtributosInsert(Produto entidade, PreparedStatement stmt) throws SQLException  {
-    	stmt.setString(1, entidade.getNome());
-    	stmt.setString(2, entidade.getDescricao());
+    	int i=1;
+    	stmt.setString(i++, entidade.getNome());
+    	stmt.setString(i++, entidade.getDescricao());
     }
 
     @Override
     public void setValoresAtributosUpdate(Produto entidade, PreparedStatement stmt)throws SQLException  {
-        stmt.setInt(1, entidade.getIdProduto());
-        stmt.setString(2, entidade.getNome());
-        stmt.setString(3, entidade.getDescricao());
+    	int i=1;
+    	stmt.setInt(i++, entidade.getIdProduto());
+        stmt.setString(i++, entidade.getNome());
+        stmt.setString(i++, entidade.getDescricao());
     }
 
     @Override
     public Produto construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
         Produto p =new Produto();
-        p.setIdProduto( resultado.getInt(1));
-	p.setNome( resultado.getString(2));
-        p.setDescricao( resultado.getString(3));
+        int i=1;
+        p.setIdProduto( resultado.getInt(i++));
+        p.setNome( resultado.getString(i++));
+        p.setDescricao( resultado.getString(i++));
         return p;
     }
     
