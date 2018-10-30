@@ -5,9 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.dao.base.BaseDAO_Tables;
-import model.dao.tables.AplicadoTable;
 import model.dao.tables.ContaminaTable;
-import model.vo.Aplicado;
 import model.vo.Contamina;
 
 public class ContaminaDAO extends BaseDAO_Tables<Contamina>{
