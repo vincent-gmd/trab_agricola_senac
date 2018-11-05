@@ -4,7 +4,7 @@ public class Fornece {
 private int id;
 private int preco ;
 private int idFornecedor;
-private int idproduto;
+private int idProduto;
 
 public int getId() {
 	return id;
@@ -25,10 +25,10 @@ public void setIdFornecedor(int idFornecedor) {
 	this.idFornecedor = idFornecedor;
 }
 public int getIdproduto() {
-	return idproduto;
+	return idProduto;
 }
 public void setIdproduto(int idproduto) {
-	this.idproduto = idproduto;
+	this.idProduto = idproduto;
 }
 
 }
