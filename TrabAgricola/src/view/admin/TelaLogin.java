@@ -18,13 +18,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.SystemColor;
 
 public class TelaLogin extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
-	private CadastroCliente cadastroCliente;
 
 	/**
 	 * Launch the application.
@@ -50,7 +50,7 @@ public class TelaLogin extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 484, 341);
 		contentPane = new JPanel();
-		contentPane.setBackground(Color.WHITE);
+		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -82,10 +82,6 @@ public class TelaLogin extends JFrame {
 		JButton btnNewButton = new JButton("Criar Cadastro");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cadastroCliente = new CadastroCliente();
-				setContentPane(cadastroCliente);
-				cadastroCliente.setVisible(true);
-				cadastroCliente.updateUI();
 			}
 		});
 		btnNewButton.setBounds(187, 148, 121, 23);
