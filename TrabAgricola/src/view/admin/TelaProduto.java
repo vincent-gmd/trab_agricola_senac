@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.SystemColor;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JScrollPane;
@@ -16,6 +18,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaProduto extends JFrame {
 
@@ -72,28 +76,52 @@ public class TelaProduto extends JFrame {
 		scrollPane.setBounds(20, 87, 500, 200);
 		contentPane.add(scrollPane);
 		
-		tblProdutos = new JTable();
+		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNome.setBounds(25, 355, 52, 14);
+		contentPane.add(lblNome);
+		
+		tblProdutos = new JTable() {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
 		tblProdutos.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				
-			}
+			public void mouseClicked(MouseEvent evt) {
+				int linha = tblProdutos.getSelectedRow();
+				String celulaNome = (String) tblProdutos.getModel().getValueAt(linha, 0);
+				String celulaDescricao = (String) tblProdutos.getModel().getValueAt(linha, 1);
+			} 
 		});
 		tblProdutos.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"Nome", "Descrição"
+				"Nome", "Descri\u00E7\u00E3o"
 			}
 		));
+		tblProdutos.setCellSelectionEnabled(false);
+		tblProdutos.setRowSelectionAllowed(true);
 		scrollPane.setViewportView(tblProdutos);
 		
 		JButton btnNovoProduto = new JButton("Novo Produto");
+		btnNovoProduto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+			}
+		});
 		btnNovoProduto.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNovoProduto.setBounds(22, 298, 120, 30);
+		btnNovoProduto.setBounds(22, 298, 130, 30);
 		contentPane.add(btnNovoProduto);
 		
 		JButton btnEditar = new JButton("Editar");
+		btnEditar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtNome.setText((String) tblProdutos.getValueAt(0,0));
+				txtDescricao.setText((String) tblProdutos.getValueAt(0,1));
+			}
+		});
 		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnEditar.setBounds(211, 298, 100, 30);
 		contentPane.add(btnEditar);
@@ -103,10 +131,6 @@ public class TelaProduto extends JFrame {
 		btnRemover.setBounds(420, 298, 100, 30);
 		contentPane.add(btnRemover);
 		
-		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNome.setBounds(25, 355, 52, 14);
-		contentPane.add(lblNome);
 		
 		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o");
 		lblDescricao.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -125,7 +149,24 @@ public class TelaProduto extends JFrame {
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnSalvar.setBounds(211, 624, 100, 30);
+		btnSalvar.setBounds(110, 624, 100, 30);
 		contentPane.add(btnSalvar);
+		
+		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LimparTela();
+			}
+		});
+		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnLimpar.setBounds(348, 624, 100, 30);
+		contentPane.add(btnLimpar);
 	}
+	
+	private void LimparTela() {
+		txtNome.setText("");
+		txtDescricao.setText("");
+		
+	}
+		
 }
