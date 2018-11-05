@@ -1,13 +1,14 @@
 package model.vo;
 
-import java.awt.Point;
-import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
 
 public class Propriedade {
 	private int idPropriedade;
-	private Point localisacao;
+	private Double localizacaoX;
+	private Double localizacaoY;
 	private String documento;
-	private Date data_cadastro;
+	private Instant data_cadastro;
 	private String endereco;
 	private int idcliente;
 	public int getIdPropriedade() {
@@ -15,12 +16,17 @@ public class Propriedade {
 	}
 	public void setIdPropriedade(int idPropriedade) {
 		this.idPropriedade = idPropriedade;
+	}	public Double getLocalizacaoX() {
+		return localizacaoX;
 	}
-	public Point getLocalisacao() {
-		return localisacao;
+	public void setLocalizacaoX(Double localizacaoX) {
+		this.localizacaoX = localizacaoX;
 	}
-	public void setLocalisacao(Point localisacao) {
-		this.localisacao = localisacao;
+	public Double getLocalizacaoY() {
+		return localizacaoY;
+	}
+	public void setLocalizacaoY(Double localizacaoY) {
+		this.localizacaoY = localizacaoY;
 	}
 	public String getDocumento() {
 		return documento;
@@ -28,10 +34,10 @@ public class Propriedade {
 	public void setDocumento(String documento) {
 		this.documento = documento;
 	}
-	public Date getData_cadastro() {
+	public Instant getData_cadastro() {
 		return data_cadastro;
 	}
-	public void setData_cadastro(Date data_cadastro) {
+	public void setData_cadastro(Instant data_cadastro) {
 		this.data_cadastro = data_cadastro;
 	}
 	public String getEndereco() {

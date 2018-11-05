@@ -58,7 +58,11 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 	public String getInterrogacoesInsert() {
 		String s= "";
 		for(int i=1;i<getTable().getColums().size();i++) {
-			s= s+"?";
+			if(getTable().getColums().get(i).getType().equalsIgnoreCase("point")) {
+				s= s+"point (?,?)";
+			}else {
+				s= s+"?";
+			}
 			
 			if((i+1)<getTable().getColums().size()) {
 				s=s+",";
@@ -75,7 +79,14 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 		// TODO Auto-generated method stub
 		String clausulaSet = "";
 		for(int i=0;i<getTable().getColums().size();i++) {
-			clausulaSet += getTable().getColums().get(i).getName()+" =  ?";
+			if(getTable().getColums().get(i).getType().equalsIgnoreCase("point")) {
+				clausulaSet += getTable().getColums().get(i).getName()+" = point (?,?)";
+			}else {
+				clausulaSet += getTable().getColums().get(i).getName()+" =  ?";
+			}
+			
+			
+			
 					if((i+1)<getTable().getColums().size()) {
 						clausulaSet+=",";
 					}

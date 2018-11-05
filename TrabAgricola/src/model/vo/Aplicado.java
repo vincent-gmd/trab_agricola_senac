@@ -1,10 +1,10 @@
 package model.vo;
 
-import java.sql.Date;
+import java.time.Instant;
 
 public class Aplicado {
 private int id;
-private Date data ;
+private Instant data ;
 private int idPropriedade;
 private int idTratamento;
 public int getId() {
@@ -13,10 +13,10 @@ public int getId() {
 public void setId(int id) {
 	this.id = id;
 }
-public Date getData() {
+public Instant getData() {
 	return data;
 }
-public void setData(Date data) {
+public void setData(Instant data) {
 	this.data = data;
 }
 public int getIdPropriedade() {

@@ -1,11 +1,11 @@
 package model.vo;
 
-import java.sql.Date;
+import java.time.Instant;
 
 public class Contamina {
 	private int id;
-	private Date dataFim;
-	private Date data;
+	private Instant dataFim;
+	private Instant data;
 	//private String fotos;
 	private int confirmacao;
 	private String descricao;
@@ -17,16 +17,16 @@ public class Contamina {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Date getDataFim() {
+	public Instant getDataFim() {
 		return dataFim;
 	}
-	public void setDataFim(Date dataFim) {
+	public void setDataFim(Instant dataFim) {
 		this.dataFim = dataFim;
 	}
-	public Date getData() {
+	public Instant getData() {
 		return data;
 	}
-	public void setData(Date data) {
+	public void setData(Instant data) {
 		this.data = data;
 	}
 

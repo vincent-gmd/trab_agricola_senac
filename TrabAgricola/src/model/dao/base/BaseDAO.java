@@ -146,6 +146,8 @@ public abstract class BaseDAO<T> {
 			}
 		} catch (SQLException e){
 			System.out.println("Erro ao consultar todos os objetos da entidade " + this.getClass().toString());
+			System.out.println(e.getMessage());
+			
 		} finally {
 			Banco.closeResultSet(resultado);
 			Banco.closeStatement(stmt);

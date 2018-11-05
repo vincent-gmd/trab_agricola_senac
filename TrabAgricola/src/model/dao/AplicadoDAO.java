@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +18,7 @@ public class AplicadoDAO extends BaseDAO_Tables<Aplicado>{
     @Override
     public void setValoresAtributosInsert(Aplicado entidade, PreparedStatement stmt) throws SQLException  {
     	int i=1;
-    	stmt.setDate(i++, entidade.getData());
+    	stmt.setDate(i++, (Date)Date.from(entidade.getData()));
     	stmt.setInt(i++, entidade.getIdPropriedade());
     	stmt.setInt(i++, entidade.getIdTratamento());
     }
@@ -26,7 +27,7 @@ public class AplicadoDAO extends BaseDAO_Tables<Aplicado>{
     public void setValoresAtributosUpdate(Aplicado entidade, PreparedStatement stmt)throws SQLException  {
     	int i=1;
     	stmt.setInt(i++, entidade.getId());
-        stmt.setDate(i++, entidade.getData());
+        stmt.setDate(i++, (Date)Date.from(entidade.getData()));
         stmt.setInt(i++, entidade.getIdPropriedade());
         stmt.setInt(i++, entidade.getIdTratamento());
 
@@ -37,7 +38,7 @@ public class AplicadoDAO extends BaseDAO_Tables<Aplicado>{
     	Aplicado p =new Aplicado();
     	int i=1;
         p.setId( resultado.getInt(i++));
-        p.setData( resultado.getDate(i++));
+        p.setData( resultado.getDate(i++).toInstant());
         p.setIdPropriedade( resultado.getInt(i++));
         p.setIdTratamento( resultado.getInt(i++));
 

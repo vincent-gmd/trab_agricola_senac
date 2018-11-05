@@ -1,11 +1,11 @@
 package model.vo;
 
-import java.sql.Date;
+import java.time.Instant;
 
 public class Produz {
 private int id;
-private Date dataInicio;
-private Date DataFim;
+private Instant dataInicio;
+private Instant DataFim;
 private int idCultura;
 private int idPropriedade;
 public int getId() {
@@ -14,16 +14,16 @@ public int getId() {
 public void setId(int id) {
 	this.id = id;
 }
-public Date getDataInicio() {
+public Instant getDataInicio() {
 	return dataInicio;
 }
-public void setDataInicio(Date dataInicio) {
+public void setDataInicio(Instant dataInicio) {
 	this.dataInicio = dataInicio;
 }
-public Date getDataFim() {
+public Instant getDataFim() {
 	return DataFim;
 }
-public void setDataFim(Date dataFim) {
+public void setDataFim(Instant dataFim) {
 	DataFim = dataFim;
 }
 public int getIdCultura() {
