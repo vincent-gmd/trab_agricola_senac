@@ -1,8 +1,10 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import model.bo.ClienteBO;
+import model.dao.base.Colum;
 import model.vo.Cliente;
 
 public class ClienteController {
@@ -11,7 +13,12 @@ public class ClienteController {
 
 	public int inserir(Cliente entidade) {
 		int idRetorno = -1;
-		List<Cliente> listaClientes = bo.listarTodos();
+		ArrayList values=new ArrayList();
+		ArrayList<Colum> colums=new ArrayList<Colum>();
+		colums.add(new Colum());
+		values.add(entidade.getEmail())
+		
+		List<Cliente> listaClientes = bo.listarTodosWhere(colums, values);
 		for (int i = 0; i <= listaClientes.size(); i++) {
 			if (entidade.getEmail() != listaClientes.get(i).getEmail()) {
 				idRetorno = bo.inserir(entidade);

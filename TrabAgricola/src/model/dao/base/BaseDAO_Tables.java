@@ -175,12 +175,12 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 		}
 		return listaEntidades;
 	}
-	public void setValoresAtributosWhereStrings(ArrayList<Colum> colums ,ArrayList<String> values,PreparedStatement stmt) throws SQLException{
+	private void setValoresAtributosWhereStrings(ArrayList<Colum> colums ,ArrayList<String> values,PreparedStatement stmt) throws SQLException{
 		for(int i =0;i<values.size();i++) {
 			stmt.setString(i, values.get(i).toString());
 		}
 	}
-	public void setValoresAtributosWhere(ArrayList<Colum> columns ,ArrayList<Object> values,PreparedStatement stmt) throws SQLException{
+	private void setValoresAtributosWhere(ArrayList<Colum> columns ,ArrayList<Object> values,PreparedStatement stmt) throws SQLException{
 		for(int i =0;i<values.size();i++) {
 			switch (columns.get(i).getType()) {
 			case "String":

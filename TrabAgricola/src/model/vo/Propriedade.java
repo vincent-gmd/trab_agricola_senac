@@ -11,6 +11,18 @@ public class Propriedade {
 	private Instant data_cadastro;
 	private String endereco;
 	private Integer idcliente;
+	public Double getLat() {
+		return localizacaoX;
+	}
+	public void setLat(Double lat) {
+		this.localizacaoX = lat;
+	}
+	public Double getLon() {
+		return localizacaoY;
+	}
+	public void setLon(Double lon) {
+		this.localizacaoY = lon;
+	}
 	public Integer getIdPropriedade() {
 		return idPropriedade;
 	}
