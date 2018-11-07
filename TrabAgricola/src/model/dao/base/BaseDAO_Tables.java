@@ -29,18 +29,18 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 	}
 
 	@Override
-	public String getNomeTabela() {
+	protected String getNomeTabela() {
 		return getTable().getName();
 
 	}
 
 	@Override
-	public String getNomeColunaChavePrimaria() {
+	protected String getNomeColunaChavePrimaria() {
 		return getTable().getColums().get(0).getName();
 	}
 
 	@Override
-	public String getNomesColunasInsert() {
+	protected String getNomesColunasInsert() {
 		String s= "";
 		
 		for(int i=1;i<getTable().getColums().size();i++) {
@@ -55,7 +55,7 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 	}
 
 	@Override
-	public String getInterrogacoesInsert() {
+	protected String getInterrogacoesInsert() {
 		String s= "";
 		for(int i=1;i<getTable().getColums().size();i++) {
 			if(getTable().getColums().get(i).getType().equalsIgnoreCase("point")) {
@@ -75,7 +75,7 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 
 
 	@Override
-	public String getValoresClausulaSetUpdate() {
+	protected String getValoresClausulaSetUpdate() {
 		// TODO Auto-generated method stub
 		String clausulaSet = "";
 		for(int i=0;i<getTable().getColums().size();i++) {
@@ -93,7 +93,7 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 		}	
 		return clausulaSet;
 	}
-	public String getValoresClausulaWhere(ArrayList<Colum> colums) {
+	private String getValoresClausulaWhere(ArrayList<Colum> colums) {
 		// TODO Auto-generated method stub
                 if(!(colums.size()>0)){
                     return "";
@@ -108,7 +108,7 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 		}	
 		return clausulaSet;
 	}
-	public String getValoresClausulaWhereLike(ArrayList<Colum> colums) {
+	private String getValoresClausulaWhereLike(ArrayList<Colum> colums) {
 		// TODO Auto-generated method stub
                 if(!(colums.size()>0)){
                     return "";
