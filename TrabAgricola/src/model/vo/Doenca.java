@@ -1,5 +1,7 @@
 package model.vo;
 
+import java.util.List;
+
 public class Doenca {
 	private Integer idDoenca;
 	private String nome;
@@ -31,6 +33,12 @@ public class Doenca {
 		this.descricao = descricao;
 	}
 	
+	public void getFilterStrings(List baseList) {
+		baseList.add(nome);
+		baseList.add(descricao);
+		baseList.add(causador);
+
+	}
 	
 	
 	
