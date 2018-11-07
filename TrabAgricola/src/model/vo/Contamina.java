@@ -3,18 +3,18 @@ package model.vo;
 import java.time.Instant;
 
 public class Contamina {
-	private int id;
+	private Integer id;
 	private Instant dataFim;
 	private Instant data;
 	//private String fotos;
-	private int confirmacao;
+	private Integer confirmacao;
 	private String descricao;
-	private int idPropriedade;
-	private int idDoenca;
-	public int getId() {
+	private Integer idPropriedade;
+	private Integer idDoenca;
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public Instant getDataFim() {
@@ -30,10 +30,10 @@ public class Contamina {
 		this.data = data;
 	}
 
-	public int getConfirmacao() {
+	public Integer getConfirmacao() {
 		return confirmacao;
 	}
-	public void setConfirmacao(int confirmacao) {
+	public void setConfirmacao(Integer confirmacao) {
 		this.confirmacao = confirmacao;
 	}
 	public String getDescricao() {
@@ -42,16 +42,16 @@ public class Contamina {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public int getIdPropriedade() {
+	public Integer getIdPropriedade() {
 		return idPropriedade;
 	}
-	public void setIdPropriedade(int idPropriedade) {
+	public void setIdPropriedade(Integer idPropriedade) {
 		this.idPropriedade = idPropriedade;
 	}
-	public int getIdDoenca() {
+	public Integer getIdDoenca() {
 		return idDoenca;
 	}
-	public void setIdDoenca(int idDoenca) {
+	public void setIdDoenca(Integer idDoenca) {
 		this.idDoenca = idDoenca;
 	}
 	

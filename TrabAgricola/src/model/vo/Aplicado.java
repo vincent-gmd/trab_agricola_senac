@@ -3,14 +3,14 @@ package model.vo;
 import java.time.Instant;
 
 public class Aplicado {
-private int id;
+private Integer id;
 private Instant data ;
-private int idPropriedade;
-private int idTratamento;
-public int getId() {
+private Integer idPropriedade;
+private Integer idTratamento;
+public Integer getId() {
 	return id;
 }
-public void setId(int id) {
+public void setId(Integer id) {
 	this.id = id;
 }
 public Instant getData() {
@@ -19,16 +19,16 @@ public Instant getData() {
 public void setData(Instant data) {
 	this.data = data;
 }
-public int getIdPropriedade() {
+public Integer getIdPropriedade() {
 	return idPropriedade;
 }
-public void setIdPropriedade(int idPropriedade) {
+public void setIdPropriedade(Integer idPropriedade) {
 	this.idPropriedade = idPropriedade;
 }
-public int getIdTratamento() {
+public Integer getIdTratamento() {
 	return idTratamento;
 }
-public void setIdTratamento(int idTratamento) {
+public void setIdTratamento(Integer idTratamento) {
 	this.idTratamento = idTratamento;
 }
 

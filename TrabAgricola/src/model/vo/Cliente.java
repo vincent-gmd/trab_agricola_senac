@@ -1,15 +1,15 @@
 package model.vo;
 
 public class Cliente {
-	private int idCliente;
+	private Integer idCliente;
 	private String login;
 	private String senha;
 	private String nivelAcesso;
 	private String email;
-	public int getIdCliente() {
+	public Integer getIdCliente() {
 		return idCliente;
 	}
-	public void setIdCliente(int idCliente) {
+	public void setIdCliente(Integer idCliente) {
 		this.idCliente = idCliente;
 	}
 	public String getLogin() {

@@ -1,33 +1,33 @@
 package model.vo.conector;
 
 public class Fornece {
-private int id;
-private int preco ;
-private int idFornecedor;
-private int idProduto;
+private Integer id;
+private Integer preco ;
+private Integer idFornecedor;
+private Integer idProduto;
 
-public int getId() {
+public Integer getId() {
 	return id;
 }
-public void setId(int id) {
+public void setId(Integer id) {
 	this.id = id;
 }
-public int getPreco() {
+public Integer getPreco() {
 	return preco;
 }
-public void setPreco(int preco) {
+public void setPreco(Integer preco) {
 	this.preco = preco;
 }
-public int getIdFornecedor() {
+public Integer getIdFornecedor() {
 	return idFornecedor;
 }
-public void setIdFornecedor(int idFornecedor) {
+public void setIdFornecedor(Integer idFornecedor) {
 	this.idFornecedor = idFornecedor;
 }
-public int getIdproduto() {
+public Integer getIdproduto() {
 	return idProduto;
 }
-public void setIdproduto(int idproduto) {
+public void setIdproduto(Integer idproduto) {
 	this.idProduto = idproduto;
 }
 

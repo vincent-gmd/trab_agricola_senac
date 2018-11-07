@@ -1,25 +1,25 @@
 package model.vo.conector;
 
 public class Trata {
-	private int id;
-	private int idDoenca;
-	private int idTratamento;
-	public int getId() {
+	private Integer id;
+	private Integer idDoenca;
+	private Integer idTratamento;
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	public int getIdDoenca() {
+	public Integer getIdDoenca() {
 		return idDoenca;
 	}
-	public void setIdDoenca(int idDoenca) {
+	public void setIdDoenca(Integer idDoenca) {
 		this.idDoenca = idDoenca;
 	}
-	public int getIdTratamento() {
+	public Integer getIdTratamento() {
 		return idTratamento;
 	}
-	public void setIdTratamento(int idTratamento) {
+	public void setIdTratamento(Integer idTratamento) {
 		this.idTratamento = idTratamento;
 	}
 

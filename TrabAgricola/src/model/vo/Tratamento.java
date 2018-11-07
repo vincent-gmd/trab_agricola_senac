@@ -1,13 +1,13 @@
 package model.vo;
 
 public class Tratamento {
-	private int idTratamento;
+	private Integer idTratamento;
 	private String descricao;
 	private String nome;
-	public int getIdTratamento() {
+	public Integer getIdTratamento() {
 		return idTratamento;
 	}
-	public void setIdTratamento(int idTratamento) {
+	public void setIdTratamento(Integer idTratamento) {
 		this.idTratamento = idTratamento;
 	}
 	public String getDescricao() {

@@ -1,13 +1,13 @@
 package model.vo;
 
 public class Fornecedor {
-	private int idFornecedor;
+	private Integer idFornecedor;
 	private String nome;
 	private String descricao;
-	public int getIdFornecedor() {
+	public Integer getIdFornecedor() {
 		return idFornecedor;
 	}
-	public void setIdFornecedor(int idFornecedor) {
+	public void setIdFornecedor(Integer idFornecedor) {
 		this.idFornecedor = idFornecedor;
 	}
 	public String getNome() {

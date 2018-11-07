@@ -4,17 +4,17 @@ import java.time.Instant;
 import java.time.LocalDate;
 
 public class Propriedade {
-	private int idPropriedade;
+	private Integer idPropriedade;
 	private Double localizacaoX;
 	private Double localizacaoY;
 	private String documento;
 	private Instant data_cadastro;
 	private String endereco;
-	private int idcliente;
-	public int getIdPropriedade() {
+	private Integer idcliente;
+	public Integer getIdPropriedade() {
 		return idPropriedade;
 	}
-	public void setIdPropriedade(int idPropriedade) {
+	public void setIdPropriedade(Integer idPropriedade) {
 		this.idPropriedade = idPropriedade;
 	}	public Double getLocalizacaoX() {
 		return localizacaoX;
@@ -46,10 +46,10 @@ public class Propriedade {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	public int getIdcliente() {
+	public Integer getIdcliente() {
 		return idcliente;
 	}
-	public void setIdcliente(int idcliente) {
+	public void setIdcliente(Integer idcliente) {
 		this.idcliente = idcliente;
 	}
 	

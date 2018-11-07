@@ -14,7 +14,7 @@ import ca.odell.glazedlists.TextFilterable;
  * @author vin3
  */
 public class Produto implements TextFilterable {
-	private int idProduto;
+	private Integer idProduto;
 	private String nome; 
 	private String descricao;
 
@@ -24,11 +24,11 @@ public class Produto implements TextFilterable {
 		baseList.add(descricao);
 	}
 
-	public int getIdProduto() {
+	public Integer getIdProduto() {
 		return idProduto;
 	}
 
-	public void setIdProduto(int idProduto) {
+	public void setIdProduto(Integer idProduto) {
 		this.idProduto = idProduto;
 	}
 
