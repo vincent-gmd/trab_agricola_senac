@@ -3,8 +3,8 @@ package model.dao.tables;
 import model.dao.base.Colum;
 import model.dao.base.Table;
 
-public class TableFornece  extends Table{
-	public TableFornece(){
+public class ForneceTable  extends Table{
+	public ForneceTable(){
         name="fornece";
         colums.add(new Colum("int","id"));
         colums.add(new Colum("int","preco"));
