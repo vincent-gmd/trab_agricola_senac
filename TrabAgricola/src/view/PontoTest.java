@@ -7,7 +7,7 @@ import java.util.List;
 import com.mysql.cj.result.LocalDateValueFactory;
 
 import model.dao.PropriedadeDAO;
-import model.vo.Propriedade;
+import model.vo.conector.Propriedade;
 
 public class PontoTest {
 

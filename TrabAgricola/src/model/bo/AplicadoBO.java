@@ -3,7 +3,7 @@ package model.bo;
 import java.util.List;
 
 import model.dao.AplicadoDAO;
-import model.vo.Aplicado;
+import model.vo.conector.Aplicado;
 
 public class AplicadoBO {
 

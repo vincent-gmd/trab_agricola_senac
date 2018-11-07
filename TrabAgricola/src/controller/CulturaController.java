@@ -3,7 +3,7 @@ package controller;
 import java.util.List;
 
 import model.bo.CulturaBO;
-import model.vo.Cultura;
+import model.vo.conector.Cultura;
 
 public class CulturaController {
 

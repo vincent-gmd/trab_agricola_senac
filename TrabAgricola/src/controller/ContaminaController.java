@@ -3,7 +3,7 @@ package controller;
 import java.util.List;
 
 import model.bo.ContaminaBO;
-import model.vo.Contamina;
+import model.vo.conector.Contamina;
 
 public class ContaminaController {
 

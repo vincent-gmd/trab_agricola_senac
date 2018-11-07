@@ -15,8 +15,8 @@ import model.dao.tables.CulturaTable;
 import model.dao.tables.PropriedadeTable;
 import model.dao.util.Coordinate;
 import model.dao.util.PointParser;
-import model.vo.Cultura;
-import model.vo.Propriedade;
+import model.vo.conector.Cultura;
+import model.vo.conector.Propriedade;
 
 public class PropriedadeDAO extends BaseDAO_Tables< Propriedade>{
 	public  PropriedadeDAO(){

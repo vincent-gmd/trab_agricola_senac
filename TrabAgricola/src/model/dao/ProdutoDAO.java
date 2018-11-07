@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import model.dao.base.BaseDAO_Tables;
 import model.dao.tables.ProdutoTable;
-import model.vo.Produto;
+import model.vo.conector.Produto;
 
 
 /*

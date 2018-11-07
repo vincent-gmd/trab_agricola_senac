@@ -3,7 +3,7 @@ package controller;
 import java.util.List;
 
 import model.bo.ProdutoBO;
-import model.vo.Produto;
+import model.vo.conector.Produto;
 
 public class ProdutoController {
 	private ProdutoBO bo =new ProdutoBO();

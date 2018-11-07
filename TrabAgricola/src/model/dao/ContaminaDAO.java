@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import model.dao.base.BaseDAO_Tables;
 import model.dao.tables.ContaminaTable;
-import model.vo.Contamina;
+import model.vo.conector.Contamina;
 
 public class ContaminaDAO extends BaseDAO_Tables<Contamina>{
 

@@ -3,7 +3,7 @@ package model.bo;
 import java.util.List;
 
 import model.dao.CulturaDAO;
-import model.vo.Cultura;
+import model.vo.conector.Cultura;
 
 public class CulturaBO {
 	private CulturaDAO dao = new CulturaDAO();

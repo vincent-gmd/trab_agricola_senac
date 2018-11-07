@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import model.dao.base.BaseDAO_Tables;
 import model.dao.tables.AplicadoTable;
-import model.vo.Aplicado;
+import model.vo.conector.Aplicado;
 
 public class AplicadoDAO extends BaseDAO_Tables<Aplicado>{
 

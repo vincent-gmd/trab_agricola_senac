@@ -5,7 +5,7 @@ import java.util.List;
 
 import model.bo.ClienteBO;
 import model.dao.base.Colum;
-import model.vo.Cliente;
+import model.vo.conector.Cliente;
 
 public class ClienteController {
 

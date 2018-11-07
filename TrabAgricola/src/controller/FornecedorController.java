@@ -3,7 +3,7 @@ package controller;
 import java.util.List;
 
 import model.bo.FornecedorBO;
-import model.vo.Fornecedor;
+import model.vo.conector.Fornecedor;
 
 public class FornecedorController {
 	private FornecedorBO bo = new FornecedorBO();

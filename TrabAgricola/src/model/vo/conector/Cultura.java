@@ -1,4 +1,4 @@
-package model.vo;
+package model.vo.conector;
 
 public class Cultura {
 private Integer idCultura;

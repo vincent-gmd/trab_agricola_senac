@@ -3,7 +3,7 @@ package model.bo;
 import java.util.List;
 
 import model.dao.FornecedorDAO;
-import model.vo.Fornecedor;
+import model.vo.conector.Fornecedor;
 
 public class FornecedorBO {
 

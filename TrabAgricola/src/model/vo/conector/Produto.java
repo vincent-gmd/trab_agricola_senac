@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.vo;
+package model.vo.conector;
 
 import java.util.List;
 

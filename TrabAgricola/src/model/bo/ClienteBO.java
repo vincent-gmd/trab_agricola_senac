@@ -6,7 +6,7 @@ import java.util.List;
 
 import model.dao.ClienteDAO;
 import model.dao.base.Colum;
-import model.vo.Cliente;
+import model.vo.conector.Cliente;
 
 public class ClienteBO {
 

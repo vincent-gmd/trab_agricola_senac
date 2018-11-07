@@ -1,4 +1,4 @@
-package model.vo;
+package model.vo.conector;
 
 import java.util.List;
 

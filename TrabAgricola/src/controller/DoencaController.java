@@ -3,7 +3,7 @@ package controller;
 import java.util.List;
 
 import model.bo.DoencaBO;
-import model.vo.Doenca;
+import model.vo.conector.Doenca;
 
 public class DoencaController {
 

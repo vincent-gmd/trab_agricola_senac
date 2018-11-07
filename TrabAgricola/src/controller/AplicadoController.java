@@ -3,7 +3,7 @@ package controller;
 import java.util.List;
 
 import model.bo.AplicadoBO;
-import model.vo.Aplicado;
+import model.vo.conector.Aplicado;
 
 public class AplicadoController {
 

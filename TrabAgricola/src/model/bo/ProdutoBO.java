@@ -3,7 +3,7 @@ package model.bo;
 import java.util.List;
 
 import model.dao.ProdutoDAO;
-import model.vo.Produto;
+import model.vo.conector.Produto;
 
 public class ProdutoBO {
 	private ProdutoDAO dao =new ProdutoDAO();

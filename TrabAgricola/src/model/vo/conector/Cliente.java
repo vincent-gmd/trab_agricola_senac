@@ -1,4 +1,4 @@
-package model.vo;
+package model.vo.conector;
 
 public class Cliente {
 	private Integer idCliente;

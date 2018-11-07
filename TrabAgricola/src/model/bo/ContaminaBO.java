@@ -3,7 +3,7 @@ package model.bo;
 import java.util.List;
 
 import model.dao.ContaminaDAO;
-import model.vo.Contamina;
+import model.vo.conector.Contamina;
 
 public class ContaminaBO {
 

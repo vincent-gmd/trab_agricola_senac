@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import model.dao.base.BaseDAO_Tables;
 import model.dao.tables.FornecedorTable;
-import model.vo.Fornecedor;
+import model.vo.conector.Fornecedor;
 
 public class FornecedorDAO extends BaseDAO_Tables<Fornecedor>{
 	public FornecedorDAO(){
