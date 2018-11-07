@@ -1,15 +1,15 @@
-package model.vo;
+package model.vo.conector;
 
 public class Cultura {
-private int idCultura;
+private Integer idCultura;
 private String tipo;
 private String nome;
 //private String fotots;
 private String descricao;
-public int getIdCultura() {
+public Integer getIdCultura() {
 	return idCultura;
 }
-public void setIdCultura(int idCultura) {
+public void setIdCultura(Integer idCultura) {
 	this.idCultura = idCultura;
 }
 public String getTipo() {

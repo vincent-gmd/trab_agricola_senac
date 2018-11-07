@@ -1,13 +1,22 @@
-package model.vo;
+package model.vo.conector;
+
+import java.util.List;
 
 public class Tratamento {
-	private int idTratamento;
+	private Integer idTratamento;
 	private String descricao;
 	private String nome;
-	public int getIdTratamento() {
+	private List<Produto> listaProdutos;
+	public List<Produto> getListaProdutos() {
+		return listaProdutos;
+	}
+	public void setListaProdutos(List<Produto> listaProdutos) {
+		this.listaProdutos = listaProdutos;
+	}
+	public Integer getIdTratamento() {
 		return idTratamento;
 	}
-	public void setIdTratamento(int idTratamento) {
+	public void setIdTratamento(Integer idTratamento) {
 		this.idTratamento = idTratamento;
 	}
 	public String getDescricao() {

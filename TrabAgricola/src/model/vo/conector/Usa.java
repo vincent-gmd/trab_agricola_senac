@@ -1,25 +1,25 @@
 package model.vo.conector;
 
 public class Usa {
-	private int id;
-	private int idProduto;
-	private int idTratamento;
-	public int getId() {
+	private Integer id;
+	private Integer idProduto;
+	private Integer idTratamento;
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	public int getIdProduto() {
+	public Integer getIdProduto() {
 		return idProduto;
 	}
-	public void setIdProduto(int idProduto) {
+	public void setIdProduto(Integer idProduto) {
 		this.idProduto = idProduto;
 	}
-	public int getIdTratamento() {
+	public Integer getIdTratamento() {
 		return idTratamento;
 	}
-	public void setIdTratamento(int idTratamento) {
+	public void setIdTratamento(Integer idTratamento) {
 		this.idTratamento = idTratamento;
 	}
 

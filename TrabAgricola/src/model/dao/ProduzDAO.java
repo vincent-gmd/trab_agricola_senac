@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import model.dao.base.BaseDAO_Tables;
 import model.dao.tables.ContaminaTable;
 import model.dao.tables.ProduzTable;
-import model.vo.Contamina;
-import model.vo.Produz;
+import model.vo.conector.Contamina;
+import model.vo.conector.Produz;
 
 public class ProduzDAO extends BaseDAO_Tables<Produz>{
 

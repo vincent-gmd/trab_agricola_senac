@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import model.dao.base.BaseDAO_Tables;
 import model.dao.tables.CulturaTable;
 import model.dao.tables.DoencaTable;
-import model.vo.Cultura;
-import model.vo.Doenca;
+import model.vo.conector.Cultura;
+import model.vo.conector.Doenca;
 
 public class DoencaDAO extends BaseDAO_Tables<Doenca>{
 	public DoencaDAO(){

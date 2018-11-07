@@ -170,19 +170,19 @@ public abstract class BaseDAO<T> {
 	/**
 	 * @return String o nome da tabela criado no BD.
 	 */
-	public abstract String getNomeTabela();
+	protected abstract String getNomeTabela();
 
 	/**
 	 * @return String o nome da PK criada no BD.
 	 */
-	public abstract String getNomeColunaChavePrimaria();
+	protected abstract String getNomeColunaChavePrimaria();
 
 	/**
 	 * Constrói uma string formada pelos nomes das colunas (do BD) do INSERT separados por vírgula.
 	 * 
 	 * @return String os nomes das colunas separados por vírgula.
 	 */
-	public abstract String getNomesColunasInsert();
+	protected abstract String getNomesColunasInsert();
 
 	/**
 	 * Constrói uma string formada por pontos de interrogação separados por vírgula, onde cada 
@@ -190,7 +190,7 @@ public abstract class BaseDAO<T> {
 	 * 
 	 * @return String o texto com as interrogações separadas por vírgula.
 	 */ 
-	public abstract String getInterrogacoesInsert();
+	protected abstract String getInterrogacoesInsert();
 
 	/**
 	 * Preenche os valores das colunas do insert um a um.
@@ -201,7 +201,7 @@ public abstract class BaseDAO<T> {
 	 * @param preparedStmt o objeto que detém a consulta SQL criada.
 	 * @throws SQLException 
 	 */
-	public abstract void setValoresAtributosInsert(T entidade, PreparedStatement stmt) throws SQLException;
+	protected abstract void setValoresAtributosInsert(T entidade, PreparedStatement stmt) throws SQLException;
 
 	/**
 	 * Constrói uma string com os pares chave-valor da clásula SET de um UPDATE, onde:
@@ -213,9 +213,9 @@ public abstract class BaseDAO<T> {
 	 * 
 	 * @return String a clásula SET preenchida por completo.
 	 */
-	public abstract String getValoresClausulaSetUpdate();
+	protected abstract String getValoresClausulaSetUpdate();
 
-	public abstract void setValoresAtributosUpdate(T entidade, PreparedStatement stmt) throws SQLException;
+	protected abstract void setValoresAtributosUpdate(T entidade, PreparedStatement stmt) throws SQLException;
 
 	/**
 	 * Converte um resultSet para um objeto do tipo T.
@@ -227,7 +227,7 @@ public abstract class BaseDAO<T> {
 	 * oriundos do resultado.
 	 * @throws SQLException 
 	 */
-	public abstract T construirObjetoDoResultSet(ResultSet resultado) throws SQLException;
+	protected abstract T construirObjetoDoResultSet(ResultSet resultado) throws SQLException;
 
 	//TODO e como listar com filtros? Veremos mais à frente ;)
 

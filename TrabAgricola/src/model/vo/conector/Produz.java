@@ -1,17 +1,17 @@
-package model.vo;
+package model.vo.conector;
 
 import java.time.Instant;
 
 public class Produz {
-private int id;
+private Integer id;
 private Instant dataInicio;
 private Instant DataFim;
-private int idCultura;
-private int idPropriedade;
-public int getId() {
+private Integer idCultura;
+private Integer idPropriedade;
+public Integer getId() {
 	return id;
 }
-public void setId(int id) {
+public void setId(Integer id) {
 	this.id = id;
 }
 public Instant getDataInicio() {
@@ -26,16 +26,16 @@ public Instant getDataFim() {
 public void setDataFim(Instant dataFim) {
 	DataFim = dataFim;
 }
-public int getIdCultura() {
+public Integer getIdCultura() {
 	return idCultura;
 }
-public void setIdCultura(int idCultura) {
+public void setIdCultura(Integer idCultura) {
 	this.idCultura = idCultura;
 }
-public int getIdPropriedade() {
+public Integer getIdPropriedade() {
 	return idPropriedade;
 }
-public void setIdPropriedade(int idPropriedade) {
+public void setIdPropriedade(Integer idPropriedade) {
 	this.idPropriedade = idPropriedade;
 } 
 

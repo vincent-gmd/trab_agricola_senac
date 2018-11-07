@@ -1,25 +1,25 @@
 package model.vo.conector;
 
 public class Afeta {
-	private int id;
-	private int idCultura;
-	private int idDoenca;
-	public int getId() {
+	private Integer id;
+	private Integer idCultura;
+	private Integer idDoenca;
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	public int getIdCultura() {
+	public Integer getIdCultura() {
 		return idCultura;
 	}
-	public void setIdCultura(int idCultura) {
+	public void setIdCultura(Integer idCultura) {
 		this.idCultura = idCultura;
 	}
-	public int getIdDoenca() {
+	public Integer getIdDoenca() {
 		return idDoenca;
 	}
-	public void setIdDoenca(int idDoenca) {
+	public void setIdDoenca(Integer idDoenca) {
 		this.idDoenca = idDoenca;
 	}
 

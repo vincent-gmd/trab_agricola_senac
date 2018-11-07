@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import model.dao.base.BaseDAO_Tables;
 import model.dao.tables.ClienteTable;
-import model.vo.Cliente;
+import model.vo.conector.Cliente;
 
 public class ClienteDAO extends BaseDAO_Tables<Cliente>{
 	public ClienteDAO(){
