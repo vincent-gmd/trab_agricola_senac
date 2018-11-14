@@ -37,7 +37,6 @@ public class ClienteDAO extends BaseDAO_Tables<Cliente>{
     @Override
     public Cliente construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
     	Cliente p =new Cliente();
-    	int i=1;
         p.setIdCliente( resultado.getInt(i++));
         p.setLogin( resultado.getString(i++));
         p.setSenha( resultado.getString(i++));

@@ -40,7 +40,6 @@ public class ProduzDAO extends BaseDAO_Tables<Produz>{
     @Override
     public Produz construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
     	Produz p =new Produz();
-    	int i=1;
         p.setId( resultado.getInt(i++));
         p.setDataInicio( resultado.getDate(i++).toInstant());
         p.setDataFim( resultado.getDate(i++).toInstant());

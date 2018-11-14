@@ -36,7 +36,6 @@ public class AplicadoDAO extends BaseDAO_Tables<Aplicado>{
     @Override
     public Aplicado construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
     	Aplicado p =new Aplicado();
-    	int i=1;
         p.setId( resultado.getInt(i++));
         p.setData( resultado.getDate(i++).toInstant());
         p.setIdPropriedade( resultado.getInt(i++));

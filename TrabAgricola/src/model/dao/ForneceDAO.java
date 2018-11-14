@@ -36,7 +36,6 @@ public class ForneceDAO extends BaseDAO_Tables<Fornece>{
     @Override
     public Fornece construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
     	Fornece p =new Fornece();
-    	int i=1;
         p.setId( resultado.getInt(i++));
         p.setPreco( resultado.getInt(i++));
         p.setIdFornecedor( resultado.getInt(i++));

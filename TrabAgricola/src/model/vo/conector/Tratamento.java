@@ -6,13 +6,6 @@ public class Tratamento {
 	private Integer idTratamento;
 	private String descricao;
 	private String nome;
-	private List<Produto> listaProdutos;
-	public List<Produto> getListaProdutos() {
-		return listaProdutos;
-	}
-	public void setListaProdutos(List<Produto> listaProdutos) {
-		this.listaProdutos = listaProdutos;
-	}
 	public Integer getIdTratamento() {
 		return idTratamento;
 	}

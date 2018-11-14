@@ -35,7 +35,6 @@ public class CulturaDAO extends BaseDAO_Tables<Cultura>{
     @Override
     public Cultura construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
     	Cultura p =new Cultura();
-        int i=1;
         p.setIdCultura( resultado.getInt(i++));
         p.setTipo( resultado.getString(i++));
         p.setNome( resultado.getString(i++));

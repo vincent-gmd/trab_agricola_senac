@@ -34,7 +34,6 @@ public class TrataDAO extends BaseDAO_Tables<Trata>{
     @Override
     public Trata construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
     	Trata p =new Trata();
-    	int i=1;
         p.setId( resultado.getInt(i++));
         p.setIdDoenca( resultado.getInt(i++));
         p.setIdTratamento( resultado.getInt(i++));
