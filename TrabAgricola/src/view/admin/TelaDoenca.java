@@ -48,6 +48,7 @@ public class TelaDoenca extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaDoenca() {
+		setTitle("Doen\u00E7a");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 700);
 		contentPane = new JPanel();

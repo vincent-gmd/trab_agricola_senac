@@ -47,6 +47,7 @@ public class TelaCultura extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaCultura() {
+		setTitle("Cultura");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 546, 546);
 		contentPane = new JPanel();
