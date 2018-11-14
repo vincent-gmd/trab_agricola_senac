@@ -1,4 +1,4 @@
-package view.admin;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
@@ -23,8 +24,8 @@ import java.awt.SystemColor;
 public class TelaLogin extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtNome;
+	private JTextField txtSenha;
 
 	/**
 	 * Launch the application.
@@ -60,32 +61,47 @@ public class TelaLogin extends JFrame {
 		lblNome.setBounds(23, 17, 59, 34);
 		contentPane.add(lblNome);
 		
-		textField = new JTextField();
-		textField.setBounds(110, 26, 86, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtNome = new JTextField();
+		txtNome.setBounds(81, 26, 190, 20);
+		contentPane.add(txtNome);
+		txtNome.setColumns(10);
 		
 		JLabel lblSenha = new JLabel("Senha:");
 		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblSenha.setBounds(23, 81, 59, 14);
 		contentPane.add(lblSenha);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(110, 80, 86, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		txtSenha = new JTextField();
+		txtSenha.setBounds(81, 80, 190, 20);
+		contentPane.add(txtSenha);
+		txtSenha.setColumns(10);
 		
 		JButton btnEntrar = new JButton("Entrar");
-		btnEntrar.setBounds(37, 148, 89, 23);
+		btnEntrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ValidarCampos();
+			}
+		});
+		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnEntrar.setBounds(37, 148, 89, 34);
 		contentPane.add(btnEntrar);
 		
 		JButton btnNewButton = new JButton("Criar Cadastro");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton.setBounds(187, 148, 121, 23);
+		btnNewButton.setBounds(187, 148, 121, 34);
 		contentPane.add(btnNewButton);
+	}
+	
+	private void ValidarCampos() {
+		 if (txtNome.getText().isEmpty() || txtSenha.getText().isEmpty()) {
+			 JOptionPane.showMessageDialog(null,"Preencha todos os campos!");
+		 }else {
+			 JOptionPane.showMessageDialog(null,"Login efetuado com sucesso!");
+		 }	
 	}
 
 }

@@ -3,6 +3,8 @@ package view.cliente;
 import javax.swing.JPanel;
 import java.awt.SystemColor;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -29,6 +31,7 @@ public class TelaPropriedadesCliente extends JPanel {
 	private JTextField txtEndereco;
 	private JTextField txtLatitude;
 	private JTextField txtLongitude;
+	private JTextField txtHectar;
 
 	/**
 	 * Create the panel.
@@ -39,12 +42,12 @@ public class TelaPropriedadesCliente extends JPanel {
 		
 		final JPanel panelFiltro = new JPanel();
 		panelFiltro.setBackground(SystemColor.activeCaption);
-		panelFiltro.setBounds(0, -2, 856, 508);
+		panelFiltro.setBounds(0, -2, 904, 508);
 		add(panelFiltro);
 		panelFiltro.setLayout(null);
 		
 		final JPanel panelCadastro = new JPanel();
-		panelCadastro.setBounds(556, 79, 336, 310);
+		panelCadastro.setBounds(556, 79, 336, 355);
 		panelFiltro.add(panelCadastro);
 		panelCadastro.setBackground(SystemColor.activeCaption);
 		panelCadastro.setLayout(null);
@@ -102,13 +105,23 @@ public class TelaPropriedadesCliente extends JPanel {
 			}
 		});
 		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnCadastrar.setBounds(144, 230, 100, 30);
+		btnCadastrar.setBounds(144, 289, 100, 30);
 		panelCadastro.add(btnCadastrar);
 		
 		final JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnSalvar.setBounds(144, 230, 100, 30);
+		btnSalvar.setBounds(144, 289, 100, 30);
 		panelCadastro.add(btnSalvar);
+		
+		JLabel lblHecatar = new JLabel("Hectares");
+		lblHecatar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblHecatar.setBounds(10, 220, 62, 17);
+		panelCadastro.add(lblHecatar);
+		
+		txtHectar = new JTextField();
+		txtHectar.setBounds(95, 220, 190, 20);
+		panelCadastro.add(txtHectar);
+		txtHectar.setColumns(10);
 		panelCadastro.setVisible(false);
 		setVisible(false);
 		
@@ -140,7 +153,7 @@ public class TelaPropriedadesCliente extends JPanel {
 			new Object[][] {
 			},
 			new String[] {
-				"Latitude", "Longitude", "Documento", "Data de Cadastro", "Endereço"
+				"Documento", "Hecatres", "Endereço"
 			}
 		));
 		scrollPane.setViewportView(table);
@@ -185,6 +198,11 @@ public class TelaPropriedadesCliente extends JPanel {
 		btnRemover.setBounds(410, 290, 100, 30);
 		panelFiltro.add(btnRemover);
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JButton btnMinhasCulturas = new JButton("Minhas Culturas");
+		btnMinhasCulturas.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnMinhasCulturas.setBounds(10, 336, 150, 30);
+		panelFiltro.add(btnMinhasCulturas);
 
 	}
 	
@@ -195,5 +213,11 @@ public class TelaPropriedadesCliente extends JPanel {
 		txtLongitude.setText("");
 	}
 	
-	
+	private void ValidarCampos() {
+		if(txtDocumento.getText().isEmpty() || txtEndereco.getText().isEmpty() || txtLatitude.getText().isEmpty() || txtLongitude.getText().isEmpty() ||txtHectar.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null,"Preencha todos os campos!");
+		}else {
+			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamento");
+		}
+	}
 }
