@@ -10,6 +10,22 @@ import model.dao.PropriedadeDAO;
 import model.vo.conector.Propriedade;
 
 public class PontoTest {
+	/*
+	for(int i=0;i<getTableSource().getColums().size();i++) {
+		
+		if(getTableSource().getColums().get(i).getType().equalsIgnoreCase("point")) {
+			clausulaSet += getTableSource().getColums().get(i).getName()+"";
+		}else {
+			clausulaSet += getTableSource().getColums().get(i).getName()+"";
+		}
+		
+		
+		
+				if((i+1)<getTableSource().getColums().size()) {
+					clausulaSet+=",";
+				}
+	}	
+	*/
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

@@ -34,7 +34,6 @@ public class TratamentoDAO extends BaseDAO_Tables<Tratamento>{
     @Override
     public Tratamento construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
     	Tratamento p =new Tratamento();
-    	int i=1;
         p.setIdTratamento( resultado.getInt(i++));
         p.setDescricao( resultado.getString(i++));
         p.setNome( resultado.getString(i++));

@@ -43,7 +43,6 @@ public class ProdutoDAO extends BaseDAO_Tables<Produto>{
     @Override
     public Produto construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
         Produto p =new Produto();
-        int i=1;
         p.setIdProduto( resultado.getInt(i++));
         p.setNome( resultado.getString(i++));
         p.setDescricao( resultado.getString(i++));

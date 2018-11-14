@@ -35,7 +35,6 @@ public class DoencaDAO extends BaseDAO_Tables<Doenca>{
     @Override
     public Doenca construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
     	Doenca p =new Doenca();
-        int i=1;
         p.setIdDoenca( resultado.getInt(i++));
         p.setNome( resultado.getString(i++));
         p.setCausador( resultado.getString(i++));

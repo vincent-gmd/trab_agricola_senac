@@ -44,7 +44,6 @@ public class ContaminaDAO extends BaseDAO_Tables<Contamina>{
     @Override
     public Contamina construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
     	Contamina p =new Contamina();
-    	int i=1;
         p.setId( resultado.getInt(i++));
         p.setDataFim( resultado.getDate(i++).toInstant());
         p.setData( resultado.getDate(i++).toInstant());

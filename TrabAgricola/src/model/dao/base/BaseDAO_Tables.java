@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
-
 	protected  Table table;
 	public Table getTable(){
 		return table;	
@@ -27,6 +26,7 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 	public BaseDAO_Tables() {
 
 	}
+	
 
 	@Override
 	protected String getNomeTabela() {

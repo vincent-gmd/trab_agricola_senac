@@ -52,7 +52,6 @@ public class PropriedadeDAO extends BaseDAO_Tables< Propriedade>{
     @Override
     public  Propriedade construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
     	 Propriedade p =new  Propriedade();
-        int i=1;
         p.setIdPropriedade( resultado.getInt(i++));
         byte[] b=  resultado.getBytes(i++);
         Coordinate c= PointParser.readCoordinateFromWkbBytes(b);

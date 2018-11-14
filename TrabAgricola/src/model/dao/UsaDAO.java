@@ -36,7 +36,6 @@ public class UsaDAO extends BaseDAO_Tables<Usa>{
     @Override
     public Usa construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
     	Usa p =new Usa();
-    	int i=1;
         p.setId( resultado.getInt(i++));
         p.setIdProduto( resultado.getInt(i++));
         p.setIdTratamento( resultado.getInt(i++));

@@ -34,7 +34,6 @@ public class AfetaDAO extends BaseDAO_Tables<Afeta>{
     @Override
     public Afeta construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
     	Afeta p =new Afeta();
-    	int i=1;
         p.setId( resultado.getInt(i++));
         p.setIdCultura( resultado.getInt(i++));
         p.setIdDoenca( resultado.getInt(i++));

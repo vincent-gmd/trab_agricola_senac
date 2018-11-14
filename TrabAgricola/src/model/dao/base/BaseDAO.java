@@ -20,7 +20,7 @@ import java.util.List;
  *	
  */
 public abstract class BaseDAO<T> {
-
+	protected int i=0;
 	private static final int CODIGO_RETORNO_SUCESSO_SQL = 1;
 	/**
 	 * 
@@ -118,6 +118,7 @@ public abstract class BaseDAO<T> {
 		try{
 			resultado = stmt.executeQuery(sql);
 			while(resultado.next()){
+				i=1;
 				objetoConsultado = construirObjetoDoResultSet(resultado);
 			}
 		} catch (SQLException e){
@@ -141,6 +142,7 @@ public abstract class BaseDAO<T> {
 		try{
 			resultado = stmt.executeQuery(sql);
 			while(resultado.next()){
+				i=1;
 				T objetoConsultado = construirObjetoDoResultSet(resultado);
 				listaEntidades.add(objetoConsultado);
 			}
