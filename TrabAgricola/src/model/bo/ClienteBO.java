@@ -40,4 +40,23 @@ public class ClienteBO {
 			return null;
 		}
 	}
+	public Cliente loguin(String loguin,String senha){
+		
+		ArrayList<Colum> colums =new ArrayList<Colum>();
+		ArrayList<Object> values =new ArrayList<Object>();
+        colums.add(new Colum("String","login"));
+		values.add(loguin);
+        colums.add(new Colum("String","senha"));
+		values.add(senha);
+		List<Cliente> listaClientes = listarTodosWhere(colums,values);
+		if(listaClientes.isEmpty()) {
+			return null;
+		}else if(listaClientes.size()>1){	
+			//errror
+			return null;
+		}else{
+			return listaClientes.get(0);
+		}
+		
+	}
 }
