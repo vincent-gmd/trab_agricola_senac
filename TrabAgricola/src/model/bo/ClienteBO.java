@@ -52,7 +52,7 @@ public class ClienteBO {
 		if(listaClientes.isEmpty()) {
 			return null;
 		}else if(listaClientes.size()>1){	
-			//errror
+			//errror mais de um cliente identico
 			return null;
 		}else{
 			return listaClientes.get(0);
