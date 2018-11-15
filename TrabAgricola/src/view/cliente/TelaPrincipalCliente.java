@@ -2,6 +2,7 @@ package view.cliente;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Frame;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,7 +18,9 @@ public class TelaPrincipalCliente extends JFrame {
 
 	private JPanel contentPane;
 	private TelaPropriedadesCliente telaPropriedades;
-	private TelaProdutoCliente telaProdutoCliente;
+	private TelaDoencaCliente telaDoencaCliente;
+	
+	
 
 	/**
 	 * Launch the application.
@@ -28,6 +31,7 @@ public class TelaPrincipalCliente extends JFrame {
 				try {
 					TelaPrincipalCliente frame = new TelaPrincipalCliente();
 					frame.setVisible(true);
+					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -59,25 +63,20 @@ public class TelaPrincipalCliente extends JFrame {
 		});
 		mnNewMenu.add(mntmCadastroDePropriedade);
 		
-		JMenu mnProdutos = new JMenu("Produtos");
-		menuBar.add(mnProdutos);
+		JMenu mnDoenas = new JMenu("Doen\u00E7as");
+		menuBar.add(mnDoenas);
 		
-		JMenuItem mntmMeusProdutos = new JMenuItem("Meus Produtos");
-		mntmMeusProdutos.addActionListener(new ActionListener() {
+		JMenuItem mntmBuscar = new JMenuItem("Buscar");
+		mntmBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				telaProdutoCliente = new TelaProdutoCliente();
-				setContentPane(telaProdutoCliente);
-				telaProdutoCliente.setVisible(true);
-				telaProdutoCliente.updateUI();
+				telaDoencaCliente = new TelaDoencaCliente();
+				setContentPane(telaDoencaCliente);
+				telaDoencaCliente.setVisible(true);
+				telaDoencaCliente.updateUI();
+				
 			}
 		});
-		mnProdutos.add(mntmMeusProdutos);
-		
-		JMenu mnTratamentos = new JMenu("Tratamentos");
-		menuBar.add(mnTratamentos);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("New menu item");
-		mnTratamentos.add(mntmNewMenuItem);
+		mnDoenas.add(mntmBuscar);
 		contentPane = new JPanel();
 		contentPane.setBackground(SystemColor.activeCaption);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
