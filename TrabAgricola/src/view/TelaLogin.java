@@ -1,25 +1,21 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.SystemColor;
+import javax.swing.border.EmptyBorder;
+
+import controller.ClienteController;
+import view.cliente.TelaPrincipalCliente;
 
 public class TelaLogin extends JFrame {
 
@@ -55,37 +51,38 @@ public class TelaLogin extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblNome = new JLabel("Login:");
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblNome.setBounds(23, 17, 59, 34);
 		contentPane.add(lblNome);
-		
+
 		txtNome = new JTextField();
 		txtNome.setBounds(81, 26, 190, 20);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
-		
+
 		JLabel lblSenha = new JLabel("Senha:");
 		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblSenha.setBounds(23, 81, 59, 14);
 		contentPane.add(lblSenha);
-		
+
 		txtSenha = new JTextField();
 		txtSenha.setBounds(81, 80, 190, 20);
 		contentPane.add(txtSenha);
 		txtSenha.setColumns(10);
-		
+
 		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ValidarCampos();
+
+				ValidarCampos(txtNome.getText(), txtSenha.getText());
 			}
 		});
 		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnEntrar.setBounds(37, 148, 89, 34);
 		contentPane.add(btnEntrar);
-		
+
 		JButton btnNewButton = new JButton("Criar Cadastro");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.addActionListener(new ActionListener() {
@@ -95,13 +92,27 @@ public class TelaLogin extends JFrame {
 		btnNewButton.setBounds(187, 148, 121, 34);
 		contentPane.add(btnNewButton);
 	}
-	
-	private void ValidarCampos() {
-		 if (txtNome.getText().isEmpty() || txtSenha.getText().isEmpty()) {
-			 JOptionPane.showMessageDialog(null,"Preencha todos os campos!");
-		 }else {
-			 JOptionPane.showMessageDialog(null,"Login efetuado com sucesso!");
-		 }	
-	}
 
+	private void ValidarCampos(String nome, String senha) {
+		ClienteController clienteController = new ClienteController();
+		String validacao = clienteController.validarLogin(nome, senha);
+		if (txtNome.getText().isEmpty() || txtSenha.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+			if (validacao == null) {
+				JOptionPane.showMessageDialog(null, "Login e senha incorretos!");
+			} else {
+				JOptionPane.showMessageDialog(null, "Login efetuado com sucesso!");
+				if (validacao.equals("1")) {
+					TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
+					telaPrincipalCliente.setVisible(true);
+					dispose();
+				} else if (validacao.equals("2")) {
+					// TelaPrincipalAdmin telaPrincipalAdmin = new TelaPrincipalAdmin();// Criar
+					// está classe
+					// telaPrincipalCliente.setVisible(true);
+					// dispose();
+				}
+			}
+		}
+	}
 }

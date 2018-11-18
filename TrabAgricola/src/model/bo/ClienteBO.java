@@ -31,7 +31,8 @@ public class ClienteBO {
 	public List<Cliente> listarTodos() {
 		return dao.listarTodos();
 	}
-	public List<Cliente> listarTodosWhere(ArrayList<Colum> colums ,ArrayList<Object> values) {
+
+	public List<Cliente> listarTodosWhere(ArrayList<Colum> colums, ArrayList<Object> values) {
 		try {
 			return dao.listarTodosWhere(colums, values);
 		} catch (SQLException e) {
@@ -40,23 +41,42 @@ public class ClienteBO {
 			return null;
 		}
 	}
-	public Cliente loguin(String loguin,String senha){
-		
-		ArrayList<Colum> colums =new ArrayList<Colum>();
-		ArrayList<Object> values =new ArrayList<Object>();
-        colums.add(new Colum("String","login"));
-		values.add(loguin);
-        colums.add(new Colum("String","senha"));
+
+	public Cliente login(String login, String senha) {
+
+		ArrayList<Colum> colums = new ArrayList<Colum>();
+		ArrayList<Object> values = new ArrayList<Object>();
+		colums.add(new Colum("String", "login"));
+		values.add(login);
+		colums.add(new Colum("String", "senha"));
 		values.add(senha);
-		List<Cliente> listaClientes = listarTodosWhere(colums,values);
-		if(listaClientes.isEmpty()) {
+		List<Cliente> listaClientes = listarTodosWhere(colums, values);
+		if (listaClientes.isEmpty()) {
 			return null;
-		}else if(listaClientes.size()>1){	
-			//errror
+		} else if (listaClientes.size() > 1) {
+			// errror
 			return null;
-		}else{
+		} else {
 			return listaClientes.get(0);
 		}
-		
+
 	}
+
+	public Cliente validarCadastro(String login, String email) {
+
+		ArrayList<Colum> colums = new ArrayList<Colum>();
+		ArrayList<Object> values = new ArrayList<Object>();
+		colums.add(new Colum("String", "login"));
+		values.add(login);
+		colums.add(new Colum("String", "email"));
+		values.add(email);
+		List<Cliente> listaClientes = listarTodosWhere(colums, values);
+		if (listaClientes.isEmpty()) {
+			return null;
+		} else {
+			return listaClientes.get(0);
+		}
+
+	}
+
 }

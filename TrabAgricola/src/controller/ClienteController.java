@@ -13,14 +13,14 @@ public class ClienteController {
 
 	public int inserir(Cliente entidade) {
 		int idRetorno = -1;
-		ArrayList<Object> values=new ArrayList<Object>();
-		ArrayList<Colum> colums=new ArrayList<Colum>();
-		colums.add(new Colum("String","email"));
-		values.add(entidade.getEmail());	
+		ArrayList<Object> values = new ArrayList<Object>();
+		ArrayList<Colum> colums = new ArrayList<Colum>();
+		colums.add(new Colum("String", "email"));
+		values.add(entidade.getEmail());
 		List<Cliente> listaClientes = bo.listarTodosWhere(colums, values);
-		if (listaClientes.size()==0) {
-			return	idRetorno = bo.inserir(entidade);
-		}else {
+		if (listaClientes.size() == 0) {
+			return idRetorno = bo.inserir(entidade);
+		} else {
 			return idRetorno;
 		}
 		/**
@@ -31,17 +31,17 @@ public class ClienteController {
 
 	public boolean atualizar(Cliente entidade, int idEntidade) {
 		boolean idRetorno = false;
-		ArrayList<Object> values=new ArrayList<Object>();
-		ArrayList<Colum> colums=new ArrayList<Colum>();
-		colums.add(new Colum("String","email"));
+		ArrayList<Object> values = new ArrayList<Object>();
+		ArrayList<Colum> colums = new ArrayList<Colum>();
+		colums.add(new Colum("String", "email"));
 		values.add(entidade.getEmail());
 		List<Cliente> listaClientes = bo.listarTodosWhere(colums, values);
-		if (listaClientes.size()==0) {
-			return	idRetorno = bo.atualizar(entidade, idEntidade);
-		}else {
+		if (listaClientes.size() == 0) {
+			return idRetorno = bo.atualizar(entidade, idEntidade);
+		} else {
 			return idRetorno;
 		}
-		
+
 		/**
 		 * Em caso do funcionario ser atualizado com sucesso o metodo retornará o
 		 * verdadeiro, caso já possua o email vinculado a outro cadastro o mesmo
@@ -59,5 +59,24 @@ public class ClienteController {
 
 	public List<Cliente> listarTodos() {
 		return bo.listarTodos();
+	}
+
+	public String validarLogin(String login, String senha) {
+		Cliente cliente = bo.login(login, senha);
+		if (cliente == null) {
+			return null;
+		} else {
+			return cliente.getNivelAcesso();
+		}
+
+	}
+
+	public boolean validarCadastro(String login, String email) {
+		Cliente cliente = bo.validarCadastro(login, email);
+		if (cliente == null) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
