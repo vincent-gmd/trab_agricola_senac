@@ -53,8 +53,13 @@ public class ClienteBO {
 		List<Cliente> listaClientes = listarTodosWhere(colums, values);
 		if (listaClientes.isEmpty()) {
 			return null;
+<<<<<<< HEAD
 		} else if (listaClientes.size() > 1) {
 			// errror
+=======
+		}else if(listaClientes.size()>1){	
+			//errror mais de um cliente identico
+>>>>>>> branch 'master' of https://github.com/vincent-gmd/trab_agricola_senac
 			return null;
 		} else {
 			return listaClientes.get(0);
