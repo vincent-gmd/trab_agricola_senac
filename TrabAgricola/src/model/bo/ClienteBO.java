@@ -88,6 +88,8 @@ public class ClienteBO {
 			//erro exise cliente com esse email;
 			return false;
 		}
+		
+		//nemhum erro athe aqui pode cadastrar
 		return true;
 
 
