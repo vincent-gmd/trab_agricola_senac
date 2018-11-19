@@ -137,6 +137,8 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 			this.setValoresAtributosWhereStrings(colums, values, stmt);
 			resultado = stmt.executeQuery(sql);
 			while(resultado.next()){
+				i=1;
+
 				T objetoConsultado = construirObjetoDoResultSet(resultado);
 				listaEntidades.add(objetoConsultado);
 			}
@@ -164,6 +166,7 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 			this.setValoresAtributosWhere(colums, values, stmt);
 			resultado = stmt.executeQuery();
 			while(resultado.next()){
+				i=1;
 				T objetoConsultado = construirObjetoDoResultSet(resultado);
 				listaEntidades.add(objetoConsultado);
 			}
