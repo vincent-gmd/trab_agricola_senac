@@ -47,9 +47,10 @@ public class TelaPrincipalAdmin extends JFrame {
 		mntmCadastrarCultura.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				telaCultura = new TelaCultura();
-				setContentPane(telaCultura);
-				telaCultura.setVisible(true);
-				telaCultura.updateUI();// criar jpanels
+				JPanel contentPanel = telaCultura.getContentJPanel();
+				setContentPane(contentPanel);
+				contentPanel.setVisible(true);
+				contentPanel.updateUI();// criar jpanels
 
 			}
 		});

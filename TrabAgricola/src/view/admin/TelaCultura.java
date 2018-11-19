@@ -26,7 +26,9 @@ public class TelaCultura extends JFrame {
 	private JTable tblCulturas;
 	private JTextField txtNome;
 	private JTextField txtTipo;
-
+	public JPanel getContentJPanel(){
+		return contentPane;
+	}
 	/**
 	 * Launch the application.
 	 */

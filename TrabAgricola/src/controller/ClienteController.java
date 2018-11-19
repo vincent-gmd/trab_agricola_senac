@@ -72,11 +72,6 @@ public class ClienteController {
 	}
 
 	public boolean validarCadastro(String login, String email) {
-		Cliente cliente = bo.validarCadastro(login, email);
-		if (cliente == null) {
-			return true;
-		} else {
-			return false;
-		}
+		return bo.validarCadastro(login, email);
 	}
 }

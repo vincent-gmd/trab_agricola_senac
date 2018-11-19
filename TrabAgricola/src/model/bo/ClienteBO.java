@@ -62,20 +62,35 @@ public class ClienteBO {
 
 	}
 
-	public Cliente validarCadastro(String login, String email) {
+	public Boolean validarCadastro(String login, String email) {
+		Boolean validado =true;
 
 		ArrayList<Colum> colums = new ArrayList<Colum>();
 		ArrayList<Object> values = new ArrayList<Object>();
+		List<Cliente> listaClientes;
 		colums.add(new Colum("String", "login"));
 		values.add(login);
+		listaClientes = listarTodosWhere(colums, values);
+		if (listaClientes.isEmpty()) {
+			//ok nao exise cliente com esse login;
+		} else {
+			//erro exise cliente com esse login;
+			return false;
+		}
+		ArrayList<Colum> colums2 = new ArrayList<Colum>();
+		ArrayList<Object> values2 = new ArrayList<Object>();
 		colums.add(new Colum("String", "email"));
 		values.add(email);
-		List<Cliente> listaClientes = listarTodosWhere(colums, values);
+		listaClientes = listarTodosWhere(colums2, values2);
 		if (listaClientes.isEmpty()) {
-			return null;
+			//ok nao exise cliente com esse email;
 		} else {
-			return listaClientes.get(0);
+			//erro exise cliente com esse email;
+			return false;
 		}
+		return true;
+
+
 
 	}
 
