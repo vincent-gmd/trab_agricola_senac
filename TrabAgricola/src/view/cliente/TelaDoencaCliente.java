@@ -13,11 +13,13 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLayeredPane;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class TelaDoencaCliente extends JPanel {
 	private JTextField txtFiltrointeligente;
 	private JTable tblDoencas;
-	private JTextField textField;
+	private JTextField filtroInteligenteTratamentos;
 	private JPanel panelTratamentos;
 	private JPanel panelDoenca;
 	 
@@ -25,6 +27,7 @@ public class TelaDoencaCliente extends JPanel {
 	 * Create the panel.
 	 */
 	public TelaDoencaCliente() {
+
 		setBackground(SystemColor.activeCaption);
 		setLayout(null);
 		
@@ -41,10 +44,16 @@ public class TelaDoencaCliente extends JPanel {
 		label.setBounds(10, 11, 103, 17);
 		panelTratamentos.add(label);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(123, 11, 190, 20);
-		panelTratamentos.add(textField);
+		filtroInteligenteTratamentos = new JTextField();
+		filtroInteligenteTratamentos.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				
+			}
+		});
+		filtroInteligenteTratamentos.setColumns(10);
+		filtroInteligenteTratamentos.setBounds(123, 11, 190, 20);
+		panelTratamentos.add(filtroInteligenteTratamentos);
 		
 		JLabel label_1 = new JLabel("Tratamentos");
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
