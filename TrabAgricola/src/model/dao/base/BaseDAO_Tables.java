@@ -98,12 +98,12 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
                 if(!(colums.size()>0)){
                     return "";
                 }
-		String clausulaSet = "where ";
+		String clausulaSet = " WHERE ";
 		for(int i=0;i<colums.size();i++) {
 			
 			clausulaSet += colums.get(i).getName()+" =  ? ";
 					if((i+1)<colums.size()) {
-						clausulaSet+=" and ";
+						clausulaSet+=" AND ";
 					}
 		}	
 		return clausulaSet;
@@ -113,20 +113,20 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
                 if(!(colums.size()>0)){
                     return "";
                 }
-		String clausulaSet = "where ";
+		String clausulaSet = " WHERE ";
 		for(int i=0;i<colums.size();i++) {
 			
 			clausulaSet += colums.get(i).getName()+" like  ? ";
 					if((i+1)<colums.size()) {
-						clausulaSet+=" and ";
+						clausulaSet+=" AND ";
 					}
 		}	
 		return clausulaSet;
 	}
 	
 	public List<T> listarTodosWhereStringsLike(ArrayList<Colum> colums ,ArrayList<String> values) {
-		String sql = "SELECT * FROM " + getNomeTabela()+getValoresClausulaWhereLike(colums)+";";
-		
+		String sql = "SELECT * FROM " + getNomeTabela()+" 	"+getValoresClausulaWhereLike(colums)+";";
+		System.out.println(sql);
 
 		Connection conn = Banco.getConnection();
 		PreparedStatement stmt = Banco.getPreparedStatement(conn, sql);
@@ -152,7 +152,8 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 	
 	public List<T> listarTodosWhere(ArrayList<Colum> colums ,ArrayList<Object> values) throws SQLException{
 		String sql = "SELECT * FROM " + getNomeTabela()+getValoresClausulaWhere(colums)+";";
-		
+		System.out.println(sql);
+
 
 		Connection conn = Banco.getConnection();
 		PreparedStatement stmt = Banco.getPreparedStatement(conn, sql);
@@ -161,7 +162,7 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 		
 		try{
 			this.setValoresAtributosWhere(colums, values, stmt);
-			resultado = stmt.executeQuery(sql);
+			resultado = stmt.executeQuery();
 			while(resultado.next()){
 				T objetoConsultado = construirObjetoDoResultSet(resultado);
 				listaEntidades.add(objetoConsultado);
@@ -179,34 +180,35 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 	}
 	private void setValoresAtributosWhereStrings(ArrayList<Colum> colums ,ArrayList<String> values,PreparedStatement stmt) throws SQLException{
 		for(int i =0;i<values.size();i++) {
-			stmt.setString(i, values.get(i).toString());
+			stmt.setString(i+1, values.get(i).toString());
 		}
 	}
 	private void setValoresAtributosWhere(ArrayList<Colum> columns ,ArrayList<Object> values,PreparedStatement stmt) throws SQLException{
 		for(int i =0;i<values.size();i++) {
+			
 			switch (columns.get(i).getType()) {
 			case "String":
 			case "string":
-				stmt.setString(i, values.get(i).toString());
+				stmt.setString(i+1, values.get(i).toString());
 				break;
 			case "int":
 			case "Int":
 			case "Integer":
 			case "integer":
-				stmt.setInt(i,(Integer) values.get(i));
+				stmt.setInt(i+1,(Integer) values.get(i));
 				break;
 			
 			case "BigDecimal":
-				stmt.setBigDecimal(i,(BigDecimal) values.get(i));
+				stmt.setBigDecimal(i+1,(BigDecimal) values.get(i));
 				break;
 				
 			case "Boolean":
 			case "boolean":
-				stmt.setBoolean(i,(Boolean) values.get(i));
+				stmt.setBoolean(i+1,(Boolean) values.get(i));
 				break;
 				
 			case "Date":
-				stmt.setDate(i,(Date) values.get(i));
+				stmt.setDate(i+1,(Date) values.get(i));
 				break;
 				
 			case "Double":
@@ -216,7 +218,7 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 				
 			case "Float":
 			case "float":
-				stmt.setFloat(i,(Float) values.get(i));
+				stmt.setFloat(i+1,(Float) values.get(i));
 				break;
 			
 			case "Long":
@@ -226,24 +228,24 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 			
 			case "Null":
 			case "null":
-				stmt.setNull(i,(Integer) values.get(i));
+				stmt.setNull(i+1,(Integer) values.get(i));
 				break;
 				
 			case "Short":
 			case "short":
-				stmt.setShort(i,(Short) values.get(i));
+				stmt.setShort(i+1,(Short) values.get(i));
 				break;
 				
 			case "Time":
-				stmt.setTime(i,(Time) values.get(i));
+				stmt.setTime(i+1,(Time) values.get(i));
 				break;
 				
 			case "Timestamp":
-				stmt.setTimestamp(i,(Timestamp) values.get(i));
+				stmt.setTimestamp(i+1,(Timestamp) values.get(i));
 				break;
 				
 			case "URL":
-				stmt.setURL(i,(URL) values.get(i));
+				stmt.setURL(i+1,(URL) values.get(i));
 				break;
 			
 				
