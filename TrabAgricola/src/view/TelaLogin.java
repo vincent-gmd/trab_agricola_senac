@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import controller.ClienteController;
+import view.admin.TelaPrincipalAdmin;
 import view.cliente.TelaPrincipalCliente;
 
 public class TelaLogin extends JFrame {
@@ -75,7 +76,6 @@ public class TelaLogin extends JFrame {
 		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 				ValidarCampos(txtNome.getText(), txtSenha.getText());
 			}
 		});
@@ -98,21 +98,20 @@ public class TelaLogin extends JFrame {
 		String validacao = clienteController.validarLogin(nome, senha);
 		if (txtNome.getText().isEmpty() || txtSenha.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
-			if (validacao == null) {
-				JOptionPane.showMessageDialog(null, "Login e senha incorretos!");
-			} else {
-				JOptionPane.showMessageDialog(null, "Login efetuado com sucesso!");
-				if (validacao.equals("1")) {
-					TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
-					telaPrincipalCliente.setVisible(true);
-					dispose();
-				} else if (validacao.equals("2")) {
-					// TelaPrincipalAdmin telaPrincipalAdmin = new TelaPrincipalAdmin();// Criar
-					// está classe
-					// telaPrincipalCliente.setVisible(true);
-					// dispose();
-				}
+		} else if (validacao == null) {
+			JOptionPane.showMessageDialog(null, "Login e senha incorretos!");
+		} else {
+			JOptionPane.showMessageDialog(null, "Login efetuado com sucesso!");
+			if (validacao.equals("comon")) {
+				TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
+				telaPrincipalCliente.setVisible(true);
+				dispose();
+			} else if (validacao.equals("2")) {
+				TelaPrincipalAdmin telaPrincipalAdmin = new TelaPrincipalAdmin();
+				telaPrincipalAdmin.setVisible(true);
+				dispose();
 			}
 		}
+
 	}
 }

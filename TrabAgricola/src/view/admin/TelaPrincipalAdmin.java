@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
@@ -16,6 +17,9 @@ public class TelaPrincipalAdmin extends JFrame {
 
 	private TelaCultura telaCultura;
 	private JPanel contentPane;
+	private TelaDoenca telaDoenca;
+	private TelaProduto telaProduto;
+	private TelaTratamento telaTratamento;
 
 	/**
 	 * Launch the application.
@@ -43,18 +47,65 @@ public class TelaPrincipalAdmin extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 
-		JMenuItem mntmCadastrarCultura = new JMenuItem("Cadastrar Cultura");
-		mntmCadastrarCultura.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				telaCultura = new TelaCultura();
-				JPanel contentPanel = telaCultura.getContentJPanel();
-				setContentPane(contentPanel);
-				contentPanel.setVisible(true);
-				contentPanel.updateUI();// criar jpanels
+		JMenu mnCulturas = new JMenu("Culturas");
+		menuBar.add(mnCulturas);
 
+		JMenuItem mntmNewMenuItem = new JMenuItem("Cadastrar Culturas");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				telaCultura = new TelaCultura();
+				JPanel contentPane = telaCultura.getContentJPanel();
+				setContentPane(contentPane);
+				contentPane.setVisible(true);
+				contentPane.updateUI();
 			}
 		});
-		menuBar.add(mntmCadastrarCultura);
+		mnCulturas.add(mntmNewMenuItem);
+
+		JMenu mnDoenas = new JMenu("Doen\u00E7as");
+		menuBar.add(mnDoenas);
+
+		JMenuItem mntmCadastrarDoenas = new JMenuItem("Cadastrar Doen\u00E7as");
+		mntmCadastrarDoenas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				telaProduto = new TelaProduto();
+				JPanel contentPane = telaProduto.getContentJPanel();
+				setContentPane(contentPane);
+				contentPane.setVisible(true);
+				contentPane.updateUI();
+			}
+		});
+		mnDoenas.add(mntmCadastrarDoenas);
+
+		JMenu mnProdutos = new JMenu("Produtos");
+		menuBar.add(mnProdutos);
+
+		JMenuItem mntmCadastrarProdutos = new JMenuItem("Cadastrar Produtos");
+		mntmCadastrarProdutos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				telaDoenca = new TelaDoenca();
+				JPanel contentPane = telaDoenca.getContentJPanel();
+				setContentPane(contentPane);
+				contentPane.setVisible(true);
+				contentPane.updateUI();
+			}
+		});
+		mnProdutos.add(mntmCadastrarProdutos);
+
+		JMenu mnTratamentos = new JMenu("Tratamentos");
+		menuBar.add(mnTratamentos);
+
+		JMenuItem mntmCadastrarTratamentos = new JMenuItem("Cadastrar Tratamentos");
+		mntmCadastrarTratamentos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				telaTratamento = new TelaTratamento();
+				JPanel contentPane = telaTratamento.getContentJPanel();
+				setContentPane(contentPane);
+				contentPane.setVisible(true);
+				contentPane.updateUI();
+			}
+		});
+		mnTratamentos.add(mntmCadastrarTratamentos);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

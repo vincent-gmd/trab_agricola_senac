@@ -1,4 +1,4 @@
-package view.cliente;
+package view;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;

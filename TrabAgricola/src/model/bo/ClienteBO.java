@@ -52,18 +52,21 @@ public class ClienteBO {
 		values.add(senha);
 		List<Cliente> listaClientes = listarTodosWhere(colums, values);
 		if (listaClientes.isEmpty()) {
+			System.out.println("Ta caindo no bo");
 			return null;
-		} else if(listaClientes.size()>1){	
-			//errror mais de um cliente identico
+		} else if (listaClientes.size() > 1) {
+			// errror mais de um cliente identico
+			System.out.println("TA caindo do bo 2");
 			return null;
 		} else {
+
 			return listaClientes.get(0);
 		}
 
 	}
 
 	public Boolean validarCadastro(String login, String email) {
-		Boolean validado =true;
+		Boolean validado = true;
 
 		ArrayList<Colum> colums = new ArrayList<Colum>();
 		ArrayList<Object> values = new ArrayList<Object>();
@@ -72,9 +75,9 @@ public class ClienteBO {
 		values.add(login);
 		listaClientes = listarTodosWhere(colums, values);
 		if (listaClientes.isEmpty()) {
-			//ok nao exise cliente com esse login;
+			// ok nao exise cliente com esse login;
 		} else {
-			//erro exise cliente com esse login;
+			// erro exise cliente com esse login;
 			return false;
 		}
 		ArrayList<Colum> colums2 = new ArrayList<Colum>();
@@ -83,16 +86,14 @@ public class ClienteBO {
 		values.add(email);
 		listaClientes = listarTodosWhere(colums2, values2);
 		if (listaClientes.isEmpty()) {
-			//ok nao exise cliente com esse email;
+			// ok nao exise cliente com esse email;
 		} else {
-			//erro exise cliente com esse email;
+			// erro exise cliente com esse email;
 			return false;
 		}
-		
-		//nemhum erro athe aqui pode cadastrar
+
+		// nemhum erro athe aqui pode cadastrar
 		return true;
-
-
 
 	}
 
