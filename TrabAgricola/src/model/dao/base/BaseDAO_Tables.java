@@ -167,7 +167,9 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 				listaEntidades.add(objetoConsultado);
 			}
 		} catch (SQLException e){
-			System.out.println("Erro ao consultar todos os objetos da entidade " + this.getClass().toString());
+
+			e.printStackTrace();
+
 		} finally {
 			Banco.closeResultSet(resultado);
 			Banco.closeStatement(stmt);
