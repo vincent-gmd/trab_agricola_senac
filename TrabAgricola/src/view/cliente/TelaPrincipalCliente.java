@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
@@ -19,7 +21,11 @@ public class TelaPrincipalCliente extends JFrame {
 	private JPanel contentPane;
 	private TelaPropriedadesCliente telaPropriedades;
 	private TelaDoencaCliente telaDoencaCliente;
+	private TelaCulturasCliente telaCulturasCliente;
 	
+	public void testarChamadaAoPai() {
+		JOptionPane.showMessageDialog(null, "Teste");
+	}
 	
 
 	/**
@@ -82,5 +88,14 @@ public class TelaPrincipalCliente extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+	}
+
+
+	public void mostrarTelaCulturas() {
+		telaCulturasCliente = new TelaCulturasCliente();
+		setContentPane(telaCulturasCliente);
+		telaCulturasCliente.setVisible(true);
+		telaCulturasCliente.updateUI();
+		
 	}
 }

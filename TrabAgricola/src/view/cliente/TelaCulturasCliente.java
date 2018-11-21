@@ -13,14 +13,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class TelaCulturasCliente extends JPanel {
-	private JTextField textField;
+	private JTextField txtFiltro;
+	private JTable tblCulturas;
 	private JTextField txtNome;
 	private JTextField txtTipo;
-	private JTextField textField_1;
+	private JTextField txtDescricao;
 	private JTextField txtDataInicio;
 	private JTextField txtDataColheita;
-	private JTextField txtHecataresOcupados;
-	private JTable tblCulturas;
+	private JTextField txtHectaresOcupados;
 
 	/**
 	 * Create the panel.
@@ -31,24 +31,24 @@ public class TelaCulturasCliente extends JPanel {
 		
 		JPanel panelFiltro = new JPanel();
 		panelFiltro.setBackground(SystemColor.activeCaption);
-		panelFiltro.setBounds(0, 0, 982, 576);
+		panelFiltro.setBounds(0, 0, 583, 678);
 		add(panelFiltro);
 		panelFiltro.setLayout(null);
 		
-		JLabel label = new JLabel("Filtro Inteligente");
-		label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label.setBounds(10, 11, 114, 17);
-		panelFiltro.add(label);
+		JLabel lblFiltro = new JLabel("Filtro Inteligente");
+		lblFiltro.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblFiltro.setBounds(10, 11, 114, 17);
+		panelFiltro.add(lblFiltro);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(118, 11, 190, 20);
-		panelFiltro.add(textField);
+		txtFiltro = new JTextField();
+		txtFiltro.setColumns(10);
+		txtFiltro.setBounds(118, 11, 190, 20);
+		panelFiltro.add(txtFiltro);
 		
-		JLabel label_1 = new JLabel("Culturas");
-		label_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label_1.setBounds(10, 53, 59, 17);
-		panelFiltro.add(label_1);
+		JLabel lblCulturas = new JLabel("Culturas");
+		lblCulturas.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblCulturas.setBounds(10, 53, 59, 17);
+		panelFiltro.add(lblCulturas);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 78, 500, 200);
@@ -64,100 +64,108 @@ public class TelaCulturasCliente extends JPanel {
 		));
 		scrollPane.setViewportView(tblCulturas);
 		
-		JButton button = new JButton("Nova Cultura");
-		button.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		button.setBounds(10, 289, 114, 35);
-		panelFiltro.add(button);
+		JButton btnNovaCultura = new JButton("Nova Cultura");
+		btnNovaCultura.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnNovaCultura.setBounds(10, 289, 114, 35);
+		panelFiltro.add(btnNovaCultura);
 		
-		JButton button_1 = new JButton("Alterar");
-		button_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		button_1.setBounds(207, 289, 101, 35);
-		panelFiltro.add(button_1);
+		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnAlterar.setBounds(207, 289, 101, 35);
+		panelFiltro.add(btnAlterar);
 		
-		JButton button_2 = new JButton("Remover");
-		button_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		button_2.setBounds(409, 289, 101, 35);
-		panelFiltro.add(button_2);
-		
-		JPanel panelCadastro = new JPanel();
-		panelCadastro.setBackground(SystemColor.activeCaption);
-		panelCadastro.setBounds(609, 11, 363, 314);
-		panelFiltro.add(panelCadastro);
-		panelCadastro.setLayout(null);
+		JButton btnRemover = new JButton("Remover");
+		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnRemover.setBounds(409, 289, 101, 35);
+		panelFiltro.add(btnRemover);
 		
 		JLabel lblNome = new JLabel("Nome");
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNome.setBounds(10, 11, 46, 14);
-		panelCadastro.add(lblNome);
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNome.setBounds(10, 346, 46, 14);
+		panelFiltro.add(lblNome);
 		
 		JLabel lblTipo = new JLabel("Tipo");
-		lblTipo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblTipo.setBounds(10, 36, 46, 22);
-		panelCadastro.add(lblTipo);
+		lblTipo.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTipo.setBounds(10, 371, 46, 22);
+		panelFiltro.add(lblTipo);
 		
 		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o");
-		lblDescricao.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblDescricao.setBounds(10, 70, 76, 22);
-		panelCadastro.add(lblDescricao);
+		lblDescricao.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDescricao.setBounds(10, 405, 76, 22);
+		panelFiltro.add(lblDescricao);
 		
-		JLabel lblDataDeIncio = new JLabel("Data de In\u00EDcio");
-		lblDataDeIncio.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblDataDeIncio.setBounds(10, 114, 100, 22);
-		panelCadastro.add(lblDataDeIncio);
+		JLabel lblDataInicio = new JLabel("Data de In\u00EDcio");
+		lblDataInicio.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDataInicio.setBounds(10, 438, 100, 22);
+		panelFiltro.add(lblDataInicio);
 		
-		JLabel lblDataDeColheita = new JLabel("Data de Colheita");
-		lblDataDeColheita.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblDataDeColheita.setBounds(10, 158, 100, 22);
-		panelCadastro.add(lblDataDeColheita);
+		JLabel lblDataColheita = new JLabel("Data de Colheita");
+		lblDataColheita.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDataColheita.setBounds(10, 471, 100, 22);
+		panelFiltro.add(lblDataColheita);
 		
 		JLabel lblHectaresOcupados = new JLabel("Hectares Ocupados");
-		lblHectaresOcupados.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblHectaresOcupados.setBounds(10, 198, 124, 22);
-		panelCadastro.add(lblHectaresOcupados);
+		lblHectaresOcupados.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblHectaresOcupados.setBounds(10, 504, 124, 22);
+		panelFiltro.add(lblHectaresOcupados);
 		
 		txtNome = new JTextField();
-		txtNome.setBounds(54, 10, 190, 20);
-		panelCadastro.add(txtNome);
 		txtNome.setColumns(10);
+		txtNome.setBounds(144, 344, 190, 20);
+		panelFiltro.add(txtNome);
 		
 		txtTipo = new JTextField();
-		txtTipo.setBounds(54, 39, 190, 20);
-		panelCadastro.add(txtTipo);
 		txtTipo.setColumns(10);
+		txtTipo.setBounds(144, 373, 190, 20);
+		panelFiltro.add(txtTipo);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(77, 73, 190, 20);
-		panelCadastro.add(textField_1);
-		textField_1.setColumns(10);
+		txtDescricao = new JTextField();
+		txtDescricao.setColumns(10);
+		txtDescricao.setBounds(144, 407, 190, 20);
+		panelFiltro.add(txtDescricao);
 		
 		txtDataInicio = new JTextField();
-		txtDataInicio.setBounds(100, 117, 190, 20);
-		panelCadastro.add(txtDataInicio);
 		txtDataInicio.setColumns(10);
+		txtDataInicio.setBounds(144, 440, 190, 20);
+		panelFiltro.add(txtDataInicio);
 		
 		txtDataColheita = new JTextField();
-		txtDataColheita.setBounds(120, 161, 190, 20);
-		panelCadastro.add(txtDataColheita);
 		txtDataColheita.setColumns(10);
+		txtDataColheita.setBounds(144, 473, 190, 20);
+		panelFiltro.add(txtDataColheita);
 		
-		txtHecataresOcupados = new JTextField();
-		txtHecataresOcupados.setBounds(142, 201, 190, 20);
-		panelCadastro.add(txtHecataresOcupados);
-		txtHecataresOcupados.setColumns(10);
+		txtHectaresOcupados = new JTextField();
+		txtHectaresOcupados.setColumns(10);
+		txtHectaresOcupados.setBounds(144, 506, 190, 20);
+		panelFiltro.add(txtHectaresOcupados);
 		
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnSalvar.setBounds(120, 255, 100, 38);
-		panelCadastro.add(btnSalvar);
+		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnSalvar.setBounds(10, 583, 101, 28);
+		panelFiltro.add(btnSalvar);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
-		btnCadastrar.setBounds(120, 255, 100, 38);
-		panelCadastro.add(btnCadastrar);
+		btnCadastrar.setBounds(10, 585, 100, 27);
+		panelFiltro.add(btnCadastrar);
+		
+		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limparTela();
+			}
+		});
+		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnLimpar.setBounds(219, 583, 89, 28);
+		panelFiltro.add(btnLimpar);
 
+	}
+	private void limparTela() {
+		txtNome.setText("");
+		txtTipo.setText("");
+		txtDescricao.setText("");
+		txtDataInicio.setText("");
+		txtDataColheita.setText("");
+		txtHectaresOcupados.setText("");
 	}
 
 }

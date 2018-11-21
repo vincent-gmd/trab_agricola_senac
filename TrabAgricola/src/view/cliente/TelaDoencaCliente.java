@@ -67,7 +67,7 @@ public class TelaDoencaCliente extends JPanel {
 		JButton button = new JButton("Aplicar");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//TODO TESTE
+				
 				
 			}
 		});
@@ -87,68 +87,68 @@ public class TelaDoencaCliente extends JPanel {
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnVoltar.setBounds(407, 293, 103, 39);
 		panelTratamentos.add(btnVoltar);
-				
-				panelDoenca = new JPanel();
-				panelDoenca.setBounds(0, 0, 550, 580);
-				add(panelDoenca);
-				panelDoenca.setBackground(SystemColor.activeCaption);
-				panelDoenca.setLayout(null);
-				
-				JLabel lblFiltroInteligente = new JLabel("Filtro Inteligente");
-				lblFiltroInteligente.setFont(new Font("Tahoma", Font.PLAIN, 14));
-				lblFiltroInteligente.setBounds(10, 105, 96, 17);
-				panelDoenca.add(lblFiltroInteligente);
-				
-				txtFiltrointeligente = new JTextField();
-				txtFiltrointeligente.setColumns(10);
-				txtFiltrointeligente.setBounds(116, 105, 191, 20);
-				panelDoenca.add(txtFiltrointeligente);
-				
-				JLabel lblPropriedades = new JLabel("Propriedades");
-				lblPropriedades.setFont(new Font("Tahoma", Font.PLAIN, 14));
-				lblPropriedades.setBounds(10, 11, 96, 17);
-				panelDoenca.add(lblPropriedades);
-				
-				JComboBox cboxPropriedades = new JComboBox();
-				cboxPropriedades.setBounds(116, 11, 190, 20);
-				panelDoenca.add(cboxPropriedades);
-				
-				JScrollPane scrollPane = new JScrollPane();
-				scrollPane.setBounds(10, 193, 500, 200);
-				panelDoenca.add(scrollPane);
-				
-				tblDoencas = new JTable();
-				tblDoencas.setModel(new DefaultTableModel(
-					new Object[][] {
-					},
-					new String[] {
-						"Nome", "Tipo", "Causador"
+		
+		panelDoenca = new JPanel();
+		panelDoenca.setBounds(0, 0, 550, 580);
+		add(panelDoenca);
+		panelDoenca.setBackground(SystemColor.activeCaption);
+		panelDoenca.setLayout(null);
+		
+		JLabel lblFiltroInteligente = new JLabel("Filtro Inteligente");
+		lblFiltroInteligente.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblFiltroInteligente.setBounds(10, 105, 96, 17);
+		panelDoenca.add(lblFiltroInteligente);
+		
+		txtFiltrointeligente = new JTextField();
+		txtFiltrointeligente.setColumns(10);
+		txtFiltrointeligente.setBounds(116, 105, 191, 20);
+		panelDoenca.add(txtFiltrointeligente);
+		
+		JLabel lblPropriedades = new JLabel("Propriedades");
+		lblPropriedades.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblPropriedades.setBounds(10, 11, 96, 17);
+		panelDoenca.add(lblPropriedades);
+		
+		JComboBox cboxPropriedades = new JComboBox();
+		cboxPropriedades.setBounds(116, 11, 190, 20);
+		panelDoenca.add(cboxPropriedades);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 193, 500, 200);
+		panelDoenca.add(scrollPane);
+		
+		tblDoencas = new JTable();
+		tblDoencas.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Nome", "Tipo", "Causador"
+			}
+		));
+		scrollPane.setViewportView(tblDoencas);
+		
+		JLabel lblCulturas = new JLabel("Culturas");
+		lblCulturas.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblCulturas.setBounds(10, 49, 85, 14);
+		panelDoenca.add(lblCulturas);
+		
+		JComboBox cboxCulturas = new JComboBox();
+		cboxCulturas.setBounds(116, 48, 190, 20);
+		panelDoenca.add(cboxCulturas);
+		
+				JButton btnBuscarTratamentos = new JButton("Buscar Tratamento");
+				btnBuscarTratamentos.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						panelDoenca.setVisible(false);
+						panelDoenca.updateUI();
+						panelTratamentos.setVisible(true);
+						panelTratamentos.updateUI();
+						
 					}
-				));
-				scrollPane.setViewportView(tblDoencas);
-				
-				JLabel lblCulturas = new JLabel("Culturas");
-				lblCulturas.setFont(new Font("Tahoma", Font.PLAIN, 14));
-				lblCulturas.setBounds(10, 49, 85, 14);
-				panelDoenca.add(lblCulturas);
-				
-				JComboBox cboxCulturas = new JComboBox();
-				cboxCulturas.setBounds(116, 48, 190, 20);
-				panelDoenca.add(cboxCulturas);
-				
-						JButton btnBuscarTratamentos = new JButton("Buscar Tratamento");
-						btnBuscarTratamentos.addActionListener(new ActionListener() {
-							public void actionPerformed(ActionEvent arg0) {
-								panelDoenca.setVisible(false);
-								panelDoenca.updateUI();
-								panelTratamentos.setVisible(true);
-								panelTratamentos.updateUI();
-								
-							}
-						});
-						btnBuscarTratamentos.setFont(new Font("Tahoma", Font.PLAIN, 14));
-						btnBuscarTratamentos.setBounds(158, 423, 164, 33);
-						panelDoenca.add(btnBuscarTratamentos);
+				});
+				btnBuscarTratamentos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+				btnBuscarTratamentos.setBounds(158, 423, 164, 33);
+				panelDoenca.add(btnBuscarTratamentos);
 
 	}
 }
