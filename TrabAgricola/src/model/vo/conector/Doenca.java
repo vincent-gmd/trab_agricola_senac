@@ -1,6 +1,5 @@
 package model.vo.conector;
 
-import java.util.List;
 
 public class Doenca {
 	private Integer idDoenca;
@@ -33,13 +32,7 @@ public class Doenca {
 		this.descricao = descricao;
 	}
 	
-	public void getFilterStrings(List baseList) {
-		baseList.add(nome);
-		baseList.add(descricao);
-		baseList.add(causador);
 
-	}
-	
 	
 	
 }
