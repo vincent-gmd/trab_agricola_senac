@@ -44,8 +44,6 @@ public class Cliente implements TextFilterable{
 	public void getFilterStrings(List<String> baseList) {
 	      baseList.add(getLogin());
 	      baseList.add(getEmail());
-	 
-		
 	}
 	
 }
