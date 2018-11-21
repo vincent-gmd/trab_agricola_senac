@@ -15,6 +15,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import com.toedter.calendar.JDateChooser;
+
 public class TelaPropriedadesCliente extends JPanel {
 	/**
 	 * 
@@ -153,10 +155,6 @@ public class TelaPropriedadesCliente extends JPanel {
 		panelFiltro.add(btnNovaPropriedade);
 		btnNovaPropriedade.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// panelFiltro.setVisible(true);
-				panelCadastro.setVisible(true);
-				btnSalvar.setVisible(false);
-				btnCadastrar.setVisible(true);
 
 			}
 		});
@@ -171,6 +169,7 @@ public class TelaPropriedadesCliente extends JPanel {
 
 			}
 		});
+
 		btnAlterar.setBounds(222, 290, 100, 30);
 		panelFiltro.add(btnAlterar);
 		btnAlterar.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -189,6 +188,10 @@ public class TelaPropriedadesCliente extends JPanel {
 		btnMinhasCulturas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnMinhasCulturas.setBounds(10, 336, 150, 30);
 		panelFiltro.add(btnMinhasCulturas);
+
+		JDateChooser dateChooser = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
+		dateChooser.setBounds(589, 35, 162, 20);
+		panelFiltro.add(dateChooser);
 
 	}
 
