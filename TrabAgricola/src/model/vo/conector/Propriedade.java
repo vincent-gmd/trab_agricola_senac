@@ -1,9 +1,8 @@
 package model.vo.conector;
 
 import java.time.Instant;
-import java.time.LocalDate;
 
-public class Propriedade {
+public class Propriedade  {
 	private Integer idPropriedade;
 	private Double localizacaoX;
 	private Double localizacaoY;
@@ -64,5 +63,7 @@ public class Propriedade {
 	public void setIdcliente(Integer idcliente) {
 		this.idcliente = idcliente;
 	}
+
+
 	
 }

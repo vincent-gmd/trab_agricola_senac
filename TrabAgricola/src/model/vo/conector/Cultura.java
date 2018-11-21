@@ -1,5 +1,7 @@
 package model.vo.conector;
 
+
+
 public class Cultura {
 private Integer idCultura;
 private String tipo;
@@ -30,5 +32,5 @@ public String getDescricao() {
 public void setDescricao(String descricao) {
 	this.descricao = descricao;
 }
-	
+
 }
