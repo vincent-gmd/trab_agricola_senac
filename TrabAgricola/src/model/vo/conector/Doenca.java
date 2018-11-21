@@ -1,10 +1,7 @@
 package model.vo.conector;
 
-import java.util.List;
 
-import ca.odell.glazedlists.TextFilterable;
-
-public class Doenca implements TextFilterable{
+public class Doenca {
 	private Integer idDoenca;
 	private String nome;
 	private String causador;
@@ -35,13 +32,7 @@ public class Doenca implements TextFilterable{
 		this.descricao = descricao;
 	}
 	
-	public void getFilterStrings(List baseList) {
-		baseList.add(getNome());
-		baseList.add(getCausador());
-		baseList.add(getDescricao());
 
-	}
-	
 	
 	
 }

@@ -15,7 +15,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import ca.odell.glazedlists.EventList;
+import ca.odell.glazedlists.FilterList;
 import ca.odell.glazedlists.GlazedLists;
+import ca.odell.glazedlists.TextFilterator;
+import ca.odell.glazedlists.swing.*;
+
 import model.bo.ClienteBO;
 import model.vo.conector.Cliente;
 
@@ -116,6 +120,7 @@ public class ClienteTable extends JFrame {
 		List<Cliente> listOfNames = clientes;
 		EventList<Cliente> eventList = GlazedLists.eventList(listOfNames);
 		EventList<Cliente> threadSafeEventList = GlazedLists.threadSafeList(eventList);
+		FilterList <Cliente> filteredCustomers = new FilterList <Cliente>(threadSafeEventList);
 
 
 		table.setModel(new DefaultTableModel(
