@@ -2,8 +2,11 @@ package model.vo.conector;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.List;
 
-public class Propriedade {
+import ca.odell.glazedlists.TextFilterable;
+
+public class Propriedade implements TextFilterable{
 	private Integer idPropriedade;
 	private Double localizacaoX;
 	private Double localizacaoY;
@@ -63,6 +66,12 @@ public class Propriedade {
 	}
 	public void setIdcliente(Integer idcliente) {
 		this.idcliente = idcliente;
+	}
+	@Override
+	public void getFilterStrings(List<String> baseList) {
+		baseList.add(getDocumento());
+		baseList.add(getEndereco());
+		
 	}
 	
 }

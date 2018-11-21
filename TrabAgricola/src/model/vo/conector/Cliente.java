@@ -1,6 +1,10 @@
 package model.vo.conector;
 
-public class Cliente {
+import java.util.List;
+
+import ca.odell.glazedlists.TextFilterable;
+
+public class Cliente implements TextFilterable{
 	private Integer idCliente;
 	private String login;
 	private String senha;
@@ -36,4 +40,12 @@ public class Cliente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	@Override
+	public void getFilterStrings(List<String> baseList) {
+	      baseList.add(getLogin());
+	      baseList.add(getEmail());
+	 
+		
+	}
+	
 }

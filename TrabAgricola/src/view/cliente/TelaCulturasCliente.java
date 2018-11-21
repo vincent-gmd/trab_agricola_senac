@@ -11,9 +11,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Rectangle;
 
 public class TelaCulturasCliente extends JPanel {
-	private JTextField textField;
+	private JTextField filtroCulturas;
 	private JTextField txtNome;
 	private JTextField txtTipo;
 	private JTextField textField_1;
@@ -26,6 +27,7 @@ public class TelaCulturasCliente extends JPanel {
 	 * Create the panel.
 	 */
 	public TelaCulturasCliente() {
+		setBounds(new Rectangle(0, 0, 1000, 800));
 		setBackground(SystemColor.activeCaption);
 		setLayout(null);
 		
@@ -40,10 +42,10 @@ public class TelaCulturasCliente extends JPanel {
 		label.setBounds(10, 11, 114, 17);
 		panelFiltro.add(label);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(118, 11, 190, 20);
-		panelFiltro.add(textField);
+		filtroCulturas = new JTextField();
+		filtroCulturas.setColumns(10);
+		filtroCulturas.setBounds(118, 11, 190, 20);
+		panelFiltro.add(filtroCulturas);
 		
 		JLabel label_1 = new JLabel("Culturas");
 		label_1.setFont(new Font("Tahoma", Font.PLAIN, 14));

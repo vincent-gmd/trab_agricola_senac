@@ -1,6 +1,10 @@
 package model.vo.conector;
 
-public class Cultura {
+import java.util.List;
+
+import ca.odell.glazedlists.TextFilterable;
+
+public class Cultura implements TextFilterable{
 private Integer idCultura;
 private String tipo;
 private String nome;
@@ -29,6 +33,13 @@ public String getDescricao() {
 }
 public void setDescricao(String descricao) {
 	this.descricao = descricao;
+}
+@Override
+public void getFilterStrings(List<String> baseList) {
+	baseList.add(getTipo());
+	baseList.add(getNome());
+	baseList.add(getDescricao());
+	
 }
 	
 }
