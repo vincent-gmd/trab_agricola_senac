@@ -19,7 +19,7 @@ import java.awt.SystemColor;
 public class TelaPrincipalCliente extends JFrame {
 
 	private JPanel contentPane;
-	private TelaPropriedadesCliente telaPropriedades;
+	private TelaPropriedadesCliente telaPropriedadesCliente;
 	private TelaDoencaCliente telaDoencaCliente;
 	private TelaCulturasCliente telaCulturasCliente;
 	
@@ -61,10 +61,10 @@ public class TelaPrincipalCliente extends JFrame {
 		JMenuItem mntmCadastroDePropriedade = new JMenuItem("Minhas Propriedades");
 		mntmCadastroDePropriedade.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				telaPropriedades = new TelaPropriedadesCliente();
-				setContentPane(telaPropriedades);
-				telaPropriedades.setVisible(true);
-				telaPropriedades.updateUI();
+				telaPropriedadesCliente = new TelaPropriedadesCliente();
+				setContentPane(telaPropriedadesCliente);
+				telaPropriedadesCliente.setVisible(true);
+				telaPropriedadesCliente.updateUI();
 			}
 		});
 		mnNewMenu.add(mntmCadastroDePropriedade);
@@ -97,5 +97,12 @@ public class TelaPrincipalCliente extends JFrame {
 		telaCulturasCliente.setVisible(true);
 		telaCulturasCliente.updateUI();
 		
+	}
+	
+	public void mostrarTelaPropriedade() {
+		telaPropriedadesCliente = new TelaPropriedadesCliente();
+		setContentPane(telaPropriedadesCliente);
+		telaPropriedadesCliente.setVisible(true);
+		telaPropriedadesCliente.updateUI();
 	}
 }

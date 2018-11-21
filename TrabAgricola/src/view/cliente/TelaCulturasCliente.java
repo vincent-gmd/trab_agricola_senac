@@ -4,6 +4,8 @@ import javax.swing.JPanel;
 import java.awt.SystemColor;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
 import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -13,6 +15,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class TelaCulturasCliente extends JPanel {
+	
+	private TelaCulturasCliente panelCulturasClientes;
+	private TelaPropriedadesCliente telaPropriedadesClientes;
 	private JTextField txtFiltro;
 	private JTable tblCulturas;
 	private JTextField txtNome;
@@ -26,6 +31,7 @@ public class TelaCulturasCliente extends JPanel {
 	 * Create the panel.
 	 */
 	public TelaCulturasCliente() {
+		panelCulturasClientes =this;
 		setBackground(SystemColor.activeCaption);
 		setLayout(null);
 		
@@ -59,7 +65,7 @@ public class TelaCulturasCliente extends JPanel {
 			new Object[][] {
 			},
 			new String[] {
-				"Nome", "Tipo", "Descrição"
+				"Nome", "Tipo", "Descrição","Hectares utilizados",
 			}
 		));
 		scrollPane.setViewportView(tblCulturas);
@@ -141,7 +147,7 @@ public class TelaCulturasCliente extends JPanel {
 		
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnSalvar.setBounds(10, 583, 101, 28);
+		btnSalvar.setBounds(10, 583, 101, 30);
 		panelFiltro.add(btnSalvar);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
@@ -155,8 +161,20 @@ public class TelaCulturasCliente extends JPanel {
 			}
 		});
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnLimpar.setBounds(219, 583, 89, 28);
+		btnLimpar.setBounds(196, 583, 91, 30);
 		panelFiltro.add(btnLimpar);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaPrincipalCliente pai = (TelaPrincipalCliente) SwingUtilities.windowForComponent(panelCulturasClientes);
+				pai.mostrarTelaPropriedade();
+				
+			}
+		});
+		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		btnVoltar.setBounds(362, 583, 101, 30);
+		panelFiltro.add(btnVoltar);
 
 	}
 	private void limparTela() {
@@ -167,5 +185,7 @@ public class TelaCulturasCliente extends JPanel {
 		txtDataColheita.setText("");
 		txtHectaresOcupados.setText("");
 	}
+	
+
 
 }

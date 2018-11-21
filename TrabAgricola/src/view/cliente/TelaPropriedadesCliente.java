@@ -17,6 +17,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaPropriedadesCliente extends JPanel {
 	/**
@@ -25,18 +27,22 @@ public class TelaPropriedadesCliente extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField txtFiltro;
 	private JTable table;
-	private TelaPropriedadesCliente painel;
+	private TelaPropriedadesCliente panelPropriedadesClientes;
 	private JTextField txtDocumento;
 	private JTextField txtEndereco;
 	private JTextField txtLatitude;
 	private JTextField txtLongitude;
 	private JTextField txtHecatares;
+	private JButton btnNovaPropriedade;
+	private JButton btnAlterar;
+	private JButton btnMinhasCulturas;
+	private JButton btnRemover;
 
 	/**
 	 * Create the panel.
 	 */
 	public TelaPropriedadesCliente() {
-		painel = this;
+		panelPropriedadesClientes = this;
 		setBounds(new Rectangle(0, 0, 1000, 800));
 		setBackground(SystemColor.activeCaption);
 		setLayout(null);
@@ -75,10 +81,23 @@ public class TelaPropriedadesCliente extends JPanel {
 				return false;
 			}
 		};
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Documento", "Hecatres", "Endereço" }));
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				btnAlterar.setEnabled(true);
+				btnRemover.setEnabled(true);
+			}
+		});
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Documento", "Hecatres", "Endere\u00E7o","Hectares Ocupados","Infectado","Tratamento Aplicado",
+			}
+		));
 		scrollPane.setViewportView(table);
 
-		JButton btnNovaPropriedade = new JButton("Nova Propriedade");
+		btnNovaPropriedade = new JButton("Nova Propriedade");
 		btnNovaPropriedade.setBounds(10, 290, 146, 30);
 		panelFiltro.add(btnNovaPropriedade);
 		btnNovaPropriedade.addActionListener(new ActionListener() {
@@ -88,8 +107,8 @@ public class TelaPropriedadesCliente extends JPanel {
 		});
 		btnNovaPropriedade.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
-		JButton btnAlterar = new JButton("Alterar");
-		btnAlterar.setVisible(false);
+		btnAlterar = new JButton("Alterar");
+		btnAlterar.setEnabled(false);
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -99,22 +118,22 @@ public class TelaPropriedadesCliente extends JPanel {
 		panelFiltro.add(btnAlterar);
 		btnAlterar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
-		JButton btnRemover = new JButton("Remover");
-		btnRemover.setVisible(false);
+		btnRemover = new JButton("Remover");
+		btnRemover.setEnabled(false);
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limparTela();
 			}
 		});
+		
 		btnRemover.setBounds(410, 290, 100, 30);
 		panelFiltro.add(btnRemover);
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
-		JButton btnMinhasCulturas = new JButton("Minhas Culturas");
-		
+		btnMinhasCulturas = new JButton("Minhas Culturas");
 		btnMinhasCulturas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				TelaPrincipalCliente pai = (TelaPrincipalCliente) SwingUtilities.windowForComponent(painel);
+				TelaPrincipalCliente pai = (TelaPrincipalCliente) SwingUtilities.windowForComponent(panelPropriedadesClientes);
 				pai.mostrarTelaCulturas();
 			}
 		});
