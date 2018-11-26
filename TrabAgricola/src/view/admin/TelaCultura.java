@@ -65,8 +65,8 @@ public class TelaCultura extends JFrame {
 
 		JLabel lblFiltro = new JLabel("Pesquisar:");
 		lblFiltro.setForeground(new Color(255, 255, 255));
-		lblFiltro.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblFiltro.setBounds(20, 51, 101, 17);
+		lblFiltro.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblFiltro.setBounds(20, 51, 75, 17);
 		contentPane.add(lblFiltro);
 
 		txtFiltro = new JTextField();
@@ -130,7 +130,7 @@ public class TelaCultura extends JFrame {
 
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setForeground(new Color(255, 255, 255));
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNome.setBounds(20, 332, 52, 14);
 		contentPane.add(lblNome);
 
@@ -142,8 +142,8 @@ public class TelaCultura extends JFrame {
 
 		JLabel lblTipo = new JLabel("Tipo:");
 		lblTipo.setForeground(new Color(255, 255, 255));
-		lblTipo.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblTipo.setBounds(20, 360, 67, 17);
+		lblTipo.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTipo.setBounds(20, 360, 57, 17);
 		contentPane.add(lblTipo);
 
 		txtTipo = new JTextField();

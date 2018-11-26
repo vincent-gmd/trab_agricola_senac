@@ -33,7 +33,7 @@ public class TelaCulturasCliente extends JPanel {
 	 */
 	public TelaCulturasCliente() {
 		panelCulturasClientes = this;
-		setBackground(SystemColor.activeCaption);
+		setBackground(new Color(85, 107, 47));
 		setLayout(null);
 
 		JPanel panelFiltro = new JPanel();
@@ -45,7 +45,7 @@ public class TelaCulturasCliente extends JPanel {
 		JLabel lblFiltro = new JLabel("Pesquisar:");
 		lblFiltro.setForeground(new Color(255, 255, 255));
 		lblFiltro.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblFiltro.setBounds(10, 50, 114, 17);
+		lblFiltro.setBounds(10, 50, 76, 17);
 		panelFiltro.add(lblFiltro);
 
 		txtFiltro = new JTextField();

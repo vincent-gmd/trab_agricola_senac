@@ -62,7 +62,7 @@ public class TelaDoenca extends JFrame {
 
 		JLabel lblFiltro = new JLabel("Pesquisar:");
 		lblFiltro.setForeground(new Color(255, 255, 255));
-		lblFiltro.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblFiltro.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblFiltro.setBounds(10, 42, 101, 17);
 		contentPane.add(lblFiltro);
 
@@ -124,19 +124,19 @@ public class TelaDoenca extends JFrame {
 
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setForeground(new Color(255, 255, 255));
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNome.setBounds(10, 322, 61, 14);
 		contentPane.add(lblNome);
 
 		JLabel lblCausador = new JLabel("Causador:");
 		lblCausador.setForeground(new Color(255, 255, 255));
-		lblCausador.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblCausador.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblCausador.setBounds(10, 361, 71, 14);
 		contentPane.add(lblCausador);
 
 		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o");
 		lblDescrio.setForeground(new Color(255, 255, 255));
-		lblDescrio.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblDescrio.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblDescrio.setBounds(10, 396, 84, 20);
 		contentPane.add(lblDescrio);
 
