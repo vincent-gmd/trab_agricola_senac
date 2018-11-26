@@ -226,10 +226,11 @@ public class TelaPropriedadesCliente extends JPanel {
 		btnLimpar.setBounds(173, 613, 96, 30);
 		panelFiltro.add(btnLimpar);
 		
-		atualizarTabela();
 		JDateChooser dataCadastro = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
 		dataCadastro.setBounds(121, 460, 164, 20);
 		panelFiltro.add(dataCadastro);
+		
+		atualizarTabela();
 
 		}
 		
