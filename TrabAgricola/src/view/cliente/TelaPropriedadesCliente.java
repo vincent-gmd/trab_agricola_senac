@@ -17,8 +17,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
+import model.bo.ClienteBO;
+import model.vo.conector.Propriedade;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.awt.Color;
 
 public class TelaPropriedadesCliente extends JPanel {
@@ -38,6 +44,7 @@ public class TelaPropriedadesCliente extends JPanel {
 	private JButton btnAlterar;
 	private JButton btnMinhasCulturas;
 	private JButton btnRemover;
+	private String[] colunasTabela=  new String[] {"Documento", "Hecatres", "Endere\u00E7o","Hectares Ocupados"};
 
 	/**
 	 * Create the panel.
@@ -92,9 +99,7 @@ public class TelaPropriedadesCliente extends JPanel {
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
-			new String[] {
-				"Documento", "Hecatres", "Endere\u00E7o","Hectares Ocupados","Infectado","Tratamento Aplicado",
-			}
+			colunasTabela
 		));
 		scrollPane.setViewportView(table);
 
@@ -216,9 +221,34 @@ public class TelaPropriedadesCliente extends JPanel {
 		});
 		btnLimpar.setBounds(173, 613, 96, 30);
 		panelFiltro.add(btnLimpar);
+		
+		atualizarTabela();
 		}
 		
-				
+			
+	private void atualizarTabela(){
+		ArrayList<Propriedade> propriedades = new propriedadesBO().listarTodos() ;
+
+		Object[][] valores = new Object[propriedades.size()][colunasTabela.length] ;
+		
+		table.setModel(new DefaultTableModel(
+				valores
+				,
+				colunasTabela
+			));
+		TableModel model = table.getModel();
+		for(int i=0;i<clientes.size();i++) {
+			
+				model.setValueAt(propriedades.get(i).getIdCliente(), i, 0);
+				model.setValueAt(clientes.get(i).getLogin(), i, 1);
+				model.setValueAt(clientes.get(i).getSenha(), i, 2);
+				model.setValueAt(clientes.get(i).getNivelAcesso(), i, 3);
+				model.setValueAt(clientes.get(i).getEmail(), i, 4);
+			
+			
+		}
+		
+	}
 
 	private void limparTela() {
 		txtDocumento.setText("");
