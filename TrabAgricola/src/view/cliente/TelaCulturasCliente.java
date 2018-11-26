@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -182,7 +183,12 @@ public class TelaCulturasCliente extends JPanel {
 		txtHectaresOcupados.setBounds(144, 506, 190, 20);
 		panelFiltro.add(txtHectaresOcupados);
 
-		btnSalvar = new JButton("Salvar");
+		btnSalvar = new JButton("Cadastrar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ValidarCampos();
+			}
+		});
 		btnSalvar.setEnabled(false);
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnSalvar.setBounds(10, 583, 101, 30);
@@ -228,6 +234,15 @@ public class TelaCulturasCliente extends JPanel {
 		
 
 	}
+	
+	private void ValidarCampos() {
+		if (txtNome.getText().isEmpty() || txtTipo.getText().isEmpty() || txtDescricao.getText().isEmpty()
+				|| txtHectaresOcupados.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+		} else {
+			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamente! Cadastro Concluído com sucesso.");
+		}
+	}
 
 	private void limparTela() {
 		txtNome.setText("");
@@ -250,4 +265,5 @@ public class TelaCulturasCliente extends JPanel {
 			break;
 	} 
   }
+	
 }

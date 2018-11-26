@@ -253,7 +253,7 @@ public class TelaPropriedadesCliente extends JPanel {
 				|| txtLongitude.getText().isEmpty() || txtHecatares.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
 		} else {
-			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamento");
+			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamente! Cadastro concluído com sucesso.");
 		}
 	}
 	
