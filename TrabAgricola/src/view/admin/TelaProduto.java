@@ -26,6 +26,11 @@ public class TelaProduto extends JFrame {
 	private JTable tblProdutos;
 	private JTextField txtNome;
 	private JTextField txtDescricao;
+	private JButton btnEditar;
+	private JButton btnRemover;
+	private JButton btnSalvar;
+	private JButton btnLimpar;	
+	private static final int INSERIR = 1;
 
 	public JPanel getContentJPanel() {
 		return contentPane;
@@ -61,6 +66,7 @@ public class TelaProduto extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblFiltroInteligente = new JLabel("Filtro Inteligente:");
+		lblFiltroInteligente.setForeground(new Color(255, 255, 255));
 		lblFiltroInteligente.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblFiltroInteligente.setBounds(10, 11, 101, 17);
 		contentPane.add(lblFiltroInteligente);
@@ -71,6 +77,7 @@ public class TelaProduto extends JFrame {
 		txtFiltro.setColumns(10);
 
 		JLabel lblProdutos = new JLabel("Produtos");
+		lblProdutos.setForeground(new Color(255, 255, 255));
 		lblProdutos.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblProdutos.setBounds(10, 52, 61, 14);
 		contentPane.add(lblProdutos);
@@ -80,8 +87,9 @@ public class TelaProduto extends JFrame {
 		contentPane.add(scrollPane);
 
 		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setForeground(new Color(255, 255, 255));
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNome.setBounds(10, 360, 52, 14);
+		lblNome.setBounds(10, 344, 52, 14);
 		contentPane.add(lblNome);
 
 		tblProdutos = new JTable() {
@@ -95,9 +103,17 @@ public class TelaProduto extends JFrame {
 				int linha = tblProdutos.getSelectedRow();
 				String celulaNome = (String) tblProdutos.getModel().getValueAt(linha, 0);
 				String celulaDescricao = (String) tblProdutos.getModel().getValueAt(linha, 1);
+				btnEditar.setEnabled(true);
+				btnRemover.setEnabled(true);
 			}
 		});
-		tblProdutos.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "Descri\u00E7\u00E3o" }));
+		tblProdutos.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Nome", "Descri\u00E7\u00E3o"
+			}
+		));
 		tblProdutos.setCellSelectionEnabled(false);
 		tblProdutos.setRowSelectionAllowed(true);
 		scrollPane.setViewportView(tblProdutos);
@@ -105,14 +121,15 @@ public class TelaProduto extends JFrame {
 		JButton btnNovoProduto = new JButton("Novo Produto");
 		btnNovoProduto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				manipularMenu(1);
 			}
 		});
 		btnNovoProduto.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNovoProduto.setBounds(10, 298, 130, 30);
+		btnNovoProduto.setBounds(10, 298, 130, 20);
 		contentPane.add(btnNovoProduto);
 
-		JButton btnEditar = new JButton("Editar");
+		btnEditar = new JButton("Editar");
+		btnEditar.setEnabled(false);
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				txtNome.setText((String) tblProdutos.getValueAt(0, 0));
@@ -120,42 +137,48 @@ public class TelaProduto extends JFrame {
 			}
 		});
 		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnEditar.setBounds(224, 298, 100, 30);
+		btnEditar.setBounds(224, 298, 100, 20);
 		contentPane.add(btnEditar);
 
-		JButton btnRemover = new JButton("Remover");
+		btnRemover = new JButton("Remover");
+		btnRemover.setEnabled(false);
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnRemover.setBounds(410, 298, 100, 30);
+		btnRemover.setBounds(410, 298, 100, 20);
 		contentPane.add(btnRemover);
 
 		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o");
+		lblDescricao.setForeground(new Color(255, 255, 255));
 		lblDescricao.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDescricao.setBounds(10, 390, 67, 17);
+		lblDescricao.setBounds(10, 373, 67, 17);
 		contentPane.add(lblDescricao);
 
 		txtNome = new JTextField();
-		txtNome.setBounds(72, 359, 190, 20);
+		txtNome.setEnabled(false);
+		txtNome.setBounds(61, 342, 190, 20);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 
 		txtDescricao = new JTextField();
-		txtDescricao.setBounds(10, 418, 500, 200);
+		txtDescricao.setEnabled(false);
+		txtDescricao.setBounds(10, 401, 500, 200);
 		contentPane.add(txtDescricao);
 		txtDescricao.setColumns(10);
 
-		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar = new JButton("Salvar");
+		btnSalvar.setEnabled(false);
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnSalvar.setBounds(101, 629, 100, 30);
+		btnSalvar.setBounds(101, 629, 100, 25);
 		contentPane.add(btnSalvar);
 
-		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar = new JButton("Limpar");
+		btnLimpar.setEnabled(false);
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LimparTela();
 			}
 		});
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnLimpar.setBounds(331, 629, 100, 30);
+		btnLimpar.setBounds(331, 629, 100, 25);
 		contentPane.add(btnLimpar);
 	}
 
@@ -164,5 +187,16 @@ public class TelaProduto extends JFrame {
 		txtDescricao.setText("");
 
 	}
+	
+	public void manipularMenu(int modo) {
+		switch (modo) {
+		case INSERIR:
+			txtNome.setEnabled(true);
+			txtDescricao.setEnabled(true);
+			btnSalvar.setEnabled(true);
+			btnLimpar.setEnabled(true);
+			break;
+	} 
+  }
 
 }

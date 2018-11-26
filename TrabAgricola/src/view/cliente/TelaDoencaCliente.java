@@ -31,9 +31,6 @@ public class TelaDoencaCliente extends JPanel {
 		setBackground(new Color(85, 107, 47));
 		setLayout(null);
 
-		panelTratamentos = new JPanel();
-		panelTratamentos.setVisible(false);
-
 		panelDoenca = new JPanel();
 		panelDoenca.setBounds(0, 0, 496, 424);
 		add(panelDoenca);
@@ -92,61 +89,64 @@ public class TelaDoencaCliente extends JPanel {
 		btnBuscarTratamentos.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnBuscarTratamentos.setBounds(160, 345, 164, 33);
 		panelDoenca.add(btnBuscarTratamentos);
-		panelTratamentos.setBounds(0, 0, 496, 424);
-		add(panelTratamentos);
-		panelTratamentos.setLayout(null);
-		panelTratamentos.setBackground(new Color(85, 107, 47));
-
-		JLabel lblPesquisar = new JLabel("Pesquisar:");
-		lblPesquisar.setForeground(new Color(255, 255, 255));
-		lblPesquisar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblPesquisar.setBounds(66, 54, 69, 17);
-		panelTratamentos.add(lblPesquisar);
-
-		filtroInteligenteTratamentos = new JTextField();
-		filtroInteligenteTratamentos.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent arg0) {
-
-			}
-		});
-		filtroInteligenteTratamentos.setColumns(10);
-		filtroInteligenteTratamentos.setBounds(129, 54, 216, 20);
-		panelTratamentos.add(filtroInteligenteTratamentos);
-
-		JLabel label_1 = new JLabel("Tratamentos");
-		label_1.setForeground(new Color(255, 255, 255));
-		label_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		label_1.setBounds(198, 11, 114, 17);
-		panelTratamentos.add(label_1);
-
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(25, 82, 436, 200);
-		panelTratamentos.add(scrollPane_1);
-
-		JButton button = new JButton("Aplicar");
-		button.setEnabled(false);
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
-		button.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		button.setBounds(25, 293, 114, 40);
-		panelTratamentos.add(button);
-
-		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				panelDoenca.setVisible(true);
-				panelDoenca.updateUI();
+		
+				panelTratamentos = new JPanel();
 				panelTratamentos.setVisible(false);
-				panelTratamentos.updateUI();
-			}
-		});
-		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnVoltar.setBounds(358, 294, 103, 39);
-		panelTratamentos.add(btnVoltar);
+				panelTratamentos.setBounds(0, 0, 496, 424);
+				add(panelTratamentos);
+				panelTratamentos.setLayout(null);
+				panelTratamentos.setBackground(new Color(85, 107, 47));
+				
+						JLabel lblPesquisar = new JLabel("Pesquisar:");
+						lblPesquisar.setForeground(new Color(255, 255, 255));
+						lblPesquisar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+						lblPesquisar.setBounds(66, 54, 69, 17);
+						panelTratamentos.add(lblPesquisar);
+						
+								filtroInteligenteTratamentos = new JTextField();
+								filtroInteligenteTratamentos.addKeyListener(new KeyAdapter() {
+									@Override
+									public void keyTyped(KeyEvent arg0) {
+
+									}
+								});
+								filtroInteligenteTratamentos.setColumns(10);
+								filtroInteligenteTratamentos.setBounds(129, 54, 216, 20);
+								panelTratamentos.add(filtroInteligenteTratamentos);
+								
+										JLabel label_1 = new JLabel("Tratamentos");
+										label_1.setForeground(new Color(255, 255, 255));
+										label_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+										label_1.setBounds(198, 11, 114, 17);
+										panelTratamentos.add(label_1);
+										
+												JScrollPane scrollPane_1 = new JScrollPane();
+												scrollPane_1.setBounds(25, 82, 436, 200);
+												panelTratamentos.add(scrollPane_1);
+												
+														JButton button = new JButton("Aplicar");
+														button.setEnabled(false);
+														button.addActionListener(new ActionListener() {
+															public void actionPerformed(ActionEvent e) {
+
+															}
+														});
+														button.setFont(new Font("Tahoma", Font.PLAIN, 14));
+														button.setBounds(25, 293, 114, 40);
+														panelTratamentos.add(button);
+														
+																JButton btnVoltar = new JButton("Voltar");
+																btnVoltar.addActionListener(new ActionListener() {
+																	public void actionPerformed(ActionEvent e) {
+																		panelDoenca.setVisible(true);
+																		panelDoenca.updateUI();
+																		panelTratamentos.setVisible(false);
+																		panelTratamentos.updateUI();
+																	}
+																});
+																btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+																btnVoltar.setBounds(358, 294, 103, 39);
+																panelTratamentos.add(btnVoltar);
 
 	}
 }

@@ -26,6 +26,11 @@ public class TelaDoenca extends JFrame {
 	private JTextField txtNome;
 	private JTextField txtCausador;
 	private JTextField txtDescricao;
+	private JButton btnLimpar;
+	private JButton btnSalvar;
+	private JButton btnRemover;
+	private JButton btnEditar;
+	private static final int INSERIR = 1;
 
 	public JPanel getContentJPanel() {
 		return contentPane;
@@ -94,17 +99,31 @@ public class TelaDoenca extends JFrame {
 				String celulaNome = (String) tblDoencas.getModel().getValueAt(linha, 0);
 				String celulaCausador = (String) tblDoencas.getModel().getValueAt(linha, 1);
 				String celulaDescricao = (String) tblDoencas.getModel().getValueAt(linha, 2);
+				btnEditar.setEnabled(true);
+				btnRemover.setEnabled(true);
 			}
 		});
-		tblDoencas.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "Causador", "Descrição" }));
+		tblDoencas.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Nome", "Causador", "Descri\u00E7\u00E3o"
+			}
+		));
 		scrollPane.setViewportView(tblDoencas);
 
 		JButton btnNovaDoenca = new JButton("Nova Doen\u00E7a");
+		btnNovaDoenca.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manipularMenu(1);
+			}
+		});
 		btnNovaDoenca.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNovaDoenca.setBounds(10, 281, 130, 30);
+		btnNovaDoenca.setBounds(10, 281, 130, 20);
 		contentPane.add(btnNovaDoenca);
 
-		JButton btnEditar = new JButton("Editar");
+		btnEditar = new JButton("Editar");
+		btnEditar.setEnabled(false);
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtNome.setText((String) tblDoencas.getValueAt(0, 0));
@@ -114,12 +133,13 @@ public class TelaDoenca extends JFrame {
 			}
 		});
 		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnEditar.setBounds(211, 281, 100, 32);
+		btnEditar.setBounds(211, 281, 100, 20);
 		contentPane.add(btnEditar);
 
-		JButton btnRemover = new JButton("Remover");
+		btnRemover = new JButton("Remover");
+		btnRemover.setEnabled(false);
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnRemover.setBounds(408, 281, 100, 30);
+		btnRemover.setBounds(408, 281, 100, 20);
 		contentPane.add(btnRemover);
 
 		JLabel lblNome = new JLabel("Nome:");
@@ -131,43 +151,48 @@ public class TelaDoenca extends JFrame {
 		JLabel lblCausador = new JLabel("Causador:");
 		lblCausador.setForeground(new Color(255, 255, 255));
 		lblCausador.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblCausador.setBounds(10, 361, 71, 14);
+		lblCausador.setBounds(10, 347, 71, 14);
 		contentPane.add(lblCausador);
 
 		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o");
 		lblDescrio.setForeground(new Color(255, 255, 255));
 		lblDescrio.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDescrio.setBounds(10, 396, 84, 20);
+		lblDescrio.setBounds(10, 383, 84, 20);
 		contentPane.add(lblDescrio);
 
 		txtNome = new JTextField();
-		txtNome.setBounds(77, 322, 190, 20);
+		txtNome.setEnabled(false);
+		txtNome.setBounds(77, 320, 190, 20);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 
 		txtCausador = new JTextField();
-		txtCausador.setBounds(77, 360, 190, 20);
+		txtCausador.setEnabled(false);
+		txtCausador.setBounds(77, 345, 190, 20);
 		contentPane.add(txtCausador);
 		txtCausador.setColumns(10);
 
 		txtDescricao = new JTextField();
-		txtDescricao.setBounds(10, 427, 500, 160);
+		txtDescricao.setEnabled(false);
+		txtDescricao.setBounds(10, 414, 500, 160);
 		contentPane.add(txtDescricao);
 		txtDescricao.setColumns(10);
 
-		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar = new JButton("Salvar");
+		btnSalvar.setEnabled(false);
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnSalvar.setBounds(91, 598, 100, 30);
+		btnSalvar.setBounds(92, 598, 80, 25);
 		contentPane.add(btnSalvar);
 
-		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar = new JButton("Limpar");
+		btnLimpar.setEnabled(false);
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LimparTela();
 			}
 		});
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnLimpar.setBounds(321, 598, 100, 30);
+		btnLimpar.setBounds(321, 598, 80, 25);
 		contentPane.add(btnLimpar);
 	}
 
@@ -177,5 +202,17 @@ public class TelaDoenca extends JFrame {
 		txtDescricao.setText("");
 
 	}
+	
+	public void manipularMenu(int modo) {
+		switch (modo) {
+		case INSERIR:
+			txtNome.setEnabled(true);
+			txtCausador.setEnabled(true);
+			txtDescricao.setEnabled(true);
+			btnLimpar.setEnabled(true);
+			btnSalvar.setEnabled(true);
+			break;
+	} 
+  }
 
 }

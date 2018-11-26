@@ -16,6 +16,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JDateChooser;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaCulturasCliente extends JPanel {
 
@@ -27,6 +29,15 @@ public class TelaCulturasCliente extends JPanel {
 	private JTextField txtTipo;
 	private JTextField txtDescricao;
 	private JTextField txtHectaresOcupados;
+	private JDateChooser dataPlantio;
+	private JDateChooser dataColheita;
+	private JButton btnAlterar;
+	private JButton btnRemover;
+	private JButton btnSalvar;
+	private JButton btnLimpar;
+	private JButton btnCadastrar;
+	private JButton btnVoltar;
+	private static final int INSERIR = 1;
 
 	/**
 	 * Create the panel.
@@ -64,21 +75,49 @@ public class TelaCulturasCliente extends JPanel {
 		panelFiltro.add(scrollPane);
 
 		tblCulturas = new JTable();
-		tblCulturas.setModel(new DefaultTableModel(new Object[][] {},
-				new String[] { "Nome", "Tipo", "Descrição", "Hectares utilizados", }));
+		tblCulturas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				btnAlterar.setEnabled(true);
+				btnRemover.setEnabled(true);
+			}
+		});
+		tblCulturas.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Nome", "Tipo", "Descri\u00E7\u00E3o", "Hectares utilizados"
+			}
+		));
 		scrollPane.setViewportView(tblCulturas);
 
 		JButton btnNovaCultura = new JButton("Nova Cultura");
+		btnNovaCultura.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				manipularMenu(1);
+			}
+		});
 		btnNovaCultura.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnNovaCultura.setBounds(10, 289, 114, 30);
 		panelFiltro.add(btnNovaCultura);
 
-		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar = new JButton("Alterar");
+		btnAlterar.setEnabled(false);
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		btnAlterar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnAlterar.setBounds(208, 289, 101, 30);
 		panelFiltro.add(btnAlterar);
 
-		JButton btnRemover = new JButton("Remover");
+		btnRemover = new JButton("Remover");
+		btnRemover.setEnabled(false);
+		btnRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnRemover.setBounds(409, 289, 101, 30);
 		panelFiltro.add(btnRemover);
@@ -120,35 +159,41 @@ public class TelaCulturasCliente extends JPanel {
 		panelFiltro.add(lblHectaresOcupados);
 
 		txtNome = new JTextField();
+		txtNome.setEnabled(false);
 		txtNome.setColumns(10);
 		txtNome.setBounds(144, 344, 190, 20);
 		panelFiltro.add(txtNome);
 
 		txtTipo = new JTextField();
+		txtTipo.setEnabled(false);
 		txtTipo.setColumns(10);
 		txtTipo.setBounds(144, 373, 190, 20);
 		panelFiltro.add(txtTipo);
 
 		txtDescricao = new JTextField();
+		txtDescricao.setEnabled(false);
 		txtDescricao.setColumns(10);
 		txtDescricao.setBounds(144, 407, 190, 20);
 		panelFiltro.add(txtDescricao);
 
 		txtHectaresOcupados = new JTextField();
+		txtHectaresOcupados.setEnabled(false);
 		txtHectaresOcupados.setColumns(10);
 		txtHectaresOcupados.setBounds(144, 506, 190, 20);
 		panelFiltro.add(txtHectaresOcupados);
 
-		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar = new JButton("Salvar");
+		btnSalvar.setEnabled(false);
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnSalvar.setBounds(10, 583, 101, 30);
 		panelFiltro.add(btnSalvar);
 
-		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.setBounds(10, 585, 100, 27);
 		panelFiltro.add(btnCadastrar);
 
-		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar = new JButton("Limpar");
+		btnLimpar.setEnabled(false);
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limparTela();
@@ -158,7 +203,7 @@ public class TelaCulturasCliente extends JPanel {
 		btnLimpar.setBounds(196, 583, 91, 30);
 		panelFiltro.add(btnLimpar);
 
-		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaPrincipalCliente pai = (TelaPrincipalCliente) SwingUtilities
@@ -171,13 +216,16 @@ public class TelaCulturasCliente extends JPanel {
 		btnVoltar.setBounds(362, 583, 101, 30);
 		panelFiltro.add(btnVoltar);
 
-		JDateChooser dataPlantio = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
+		dataPlantio = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
+		dataPlantio.setEnabled(false);
 		dataPlantio.setBounds(144, 440, 190, 20);
 		panelFiltro.add(dataPlantio);
 
-		JDateChooser dataColheita = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
+		dataColheita = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
+		dataColheita.setEnabled(false);
 		dataColheita.setBounds(144, 471, 190, 20);
 		panelFiltro.add(dataColheita);
+		
 
 	}
 
@@ -187,4 +235,19 @@ public class TelaCulturasCliente extends JPanel {
 		txtDescricao.setText("");
 		txtHectaresOcupados.setText("");
 	}
+	
+	public void manipularMenu(int modo) {
+		switch (modo) {
+		case INSERIR:
+			txtNome.setEnabled(true);
+			txtTipo.setEnabled(true);
+			txtDescricao.setEnabled(true);
+			dataPlantio.setEnabled(true);
+			dataColheita.setEnabled(true);
+			txtHectaresOcupados.setEnabled(true);
+			btnSalvar.setEnabled(true);
+			btnLimpar.setEnabled(true);
+			break;
+	} 
+  }
 }
