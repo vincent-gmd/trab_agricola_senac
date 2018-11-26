@@ -17,20 +17,16 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
-<<<<<<< HEAD
 import javax.swing.table.TableModel;
 
 import model.bo.ClienteBO;
 import model.vo.conector.Propriedade;
 
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.awt.Color;
-=======
 
 import com.toedter.calendar.JDateChooser;
->>>>>>> branch 'master' of https://github.com/vincent-gmd/trab_agricola_senac
 
 public class TelaPropriedadesCliente extends JPanel {
 	/**
@@ -226,7 +222,6 @@ public class TelaPropriedadesCliente extends JPanel {
 		});
 		btnLimpar.setBounds(173, 613, 96, 30);
 		panelFiltro.add(btnLimpar);
-<<<<<<< HEAD
 		
 		atualizarTabela();
 		}
@@ -254,12 +249,10 @@ public class TelaPropriedadesCliente extends JPanel {
 			
 		}
 		
-=======
 
 		JDateChooser dataCadastro = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
 		dataCadastro.setBounds(121, 460, 164, 20);
 		panelFiltro.add(dataCadastro);
->>>>>>> branch 'master' of https://github.com/vincent-gmd/trab_agricola_senac
 	}
 
 	private void limparTela() {
