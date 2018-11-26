@@ -18,7 +18,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import controller.ClienteController;
@@ -26,10 +25,15 @@ import model.vo.conector.Cliente;
 
 public class TelaCadastroCliente extends JFrame {
 
+	public JPanel getContentJPanel() {
+		return contentPane;
+	}
+
 	private JPanel contentPane;
 	private JTextField txtLogin;
 	private JTextField txtSenha;
 	private JTextField txtEmail;
+	private TelaLogin telaLogin;
 	private static TelaCadastroCliente frameCadastro = new TelaCadastroCliente();
 
 	/**
@@ -108,9 +112,7 @@ public class TelaCadastroCliente extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				TelaLogin pai = (TelaLogin) SwingUtilities.windowForComponent(frameCadastro);
-				pai.setVisible(true);
-				frameCadastro.dispose();
+				setContentPane(telaLogin.getContentJPanel());
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -162,5 +164,6 @@ public class TelaCadastroCliente extends JFrame {
 										.addComponent(btnRealizarCadastro).addComponent(btnVoltar))
 								.addGap(27)));
 		contentPane.setLayout(gl_contentPane);
+
 	}
 }

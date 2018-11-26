@@ -1,14 +1,14 @@
 package view.cliente;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Rectangle;
-import java.awt.SystemColor;
-import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -17,9 +17,8 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.Color;
+
+import com.toedter.calendar.JDateChooser;
 
 public class TelaPropriedadesCliente extends JPanel {
 	/**
@@ -60,8 +59,6 @@ public class TelaPropriedadesCliente extends JPanel {
 		panelFiltro.add(lblFiltroInteligente);
 		lblFiltroInteligente.setFont(new Font("Tahoma", Font.PLAIN, 12));
 
-
-
 		txtFiltro = new JTextField();
 		txtFiltro.setBounds(121, 10, 190, 20);
 		panelFiltro.add(txtFiltro);
@@ -75,7 +72,6 @@ public class TelaPropriedadesCliente extends JPanel {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 79, 540, 200);
 		panelFiltro.add(scrollPane);
-		
 
 		table = new JTable() {
 			public boolean isCellEditable(int row, int column) {
@@ -89,13 +85,8 @@ public class TelaPropriedadesCliente extends JPanel {
 				btnRemover.setEnabled(true);
 			}
 		});
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Documento", "Hecatres", "Endere\u00E7o","Hectares Ocupados","Infectado","Tratamento Aplicado",
-			}
-		));
+		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Documento", "Hecatres", "Endere\u00E7o",
+				"Hectares Ocupados", "Infectado", "Tratamento Aplicado", }));
 		scrollPane.setViewportView(table);
 
 		btnNovaPropriedade = new JButton("Nova Propriedade");
@@ -103,7 +94,7 @@ public class TelaPropriedadesCliente extends JPanel {
 		panelFiltro.add(btnNovaPropriedade);
 		btnNovaPropriedade.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
 		btnNovaPropriedade.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -126,7 +117,7 @@ public class TelaPropriedadesCliente extends JPanel {
 				limparTela();
 			}
 		});
-		
+
 		btnRemover.setBounds(410, 290, 100, 30);
 		panelFiltro.add(btnRemover);
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -134,80 +125,81 @@ public class TelaPropriedadesCliente extends JPanel {
 		btnMinhasCulturas = new JButton("Minhas Culturas");
 		btnMinhasCulturas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				TelaPrincipalCliente pai = (TelaPrincipalCliente) SwingUtilities.windowForComponent(panelPropriedadesClientes);
+				TelaPrincipalCliente pai = (TelaPrincipalCliente) SwingUtilities
+						.windowForComponent(panelPropriedadesClientes);
 				pai.mostrarTelaCulturas();
 			}
 		});
 		btnMinhasCulturas.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnMinhasCulturas.setBounds(10, 336, 134, 30);
 		panelFiltro.add(btnMinhasCulturas);
-		
+
 		JLabel lblDocumento = new JLabel("Documento:");
 		lblDocumento.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblDocumento.setBounds(10, 405, 74, 17);
 		panelFiltro.add(lblDocumento);
-		
+
 		txtDocumento = new JTextField();
 		txtDocumento.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtDocumento.setColumns(10);
 		txtDocumento.setBounds(95, 402, 190, 20);
 		panelFiltro.add(txtDocumento);
-		
+
 		JLabel lblEndereco = new JLabel("Endere\u00E7o:");
 		lblEndereco.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblEndereco.setBounds(10, 433, 75, 17);
 		panelFiltro.add(lblEndereco);
-		
+
 		txtEndereco = new JTextField();
 		txtEndereco.setColumns(10);
 		txtEndereco.setBounds(95, 432, 190, 20);
 		panelFiltro.add(txtEndereco);
-		
-		JLabel lblDataCadastro = new JLabel("Data de Cadastro");
+
+		JLabel lblDataCadastro = new JLabel("Data de Cadastro:");
 		lblDataCadastro.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblDataCadastro.setBounds(10, 460, 107, 14);
 		panelFiltro.add(lblDataCadastro);
-		
+
 		JLabel lblLatitude = new JLabel("Latitude:");
 		lblLatitude.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblLatitude.setBounds(10, 487, 62, 14);
 		panelFiltro.add(lblLatitude);
-		
+
 		txtLatitude = new JTextField();
 		txtLatitude.setColumns(10);
 		txtLatitude.setBounds(95, 485, 190, 20);
 		panelFiltro.add(txtLatitude);
-		
+
 		JLabel lblLongitude = new JLabel("Longitude:");
 		lblLongitude.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblLongitude.setBounds(14, 517, 75, 17);
 		panelFiltro.add(lblLongitude);
-		
+
 		txtLongitude = new JTextField();
 		txtLongitude.setColumns(10);
 		txtLongitude.setBounds(95, 516, 190, 20);
 		panelFiltro.add(txtLongitude);
-		
+
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnCadastrar.setBounds(10, 613, 100, 30);
 		panelFiltro.add(btnCadastrar);
-		
+
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnSalvar.setBounds(10, 613, 100, 30);
 		panelFiltro.add(btnSalvar);
-		
+
 		JLabel lblHectares = new JLabel("Hectares:");
 		lblHectares.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblHectares.setBounds(10, 548, 62, 17);
 		panelFiltro.add(lblHectares);
-		
+
 		txtHecatares = new JTextField();
 		txtHecatares.setColumns(10);
 		txtHecatares.setBounds(95, 547, 190, 20);
 		panelFiltro.add(txtHecatares);
-		
+
 		JButton btnLimpar = new JButton("Limpar");
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -216,9 +208,11 @@ public class TelaPropriedadesCliente extends JPanel {
 		});
 		btnLimpar.setBounds(173, 613, 96, 30);
 		panelFiltro.add(btnLimpar);
-		}
-		
-				
+
+		JDateChooser dataCadastro = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
+		dataCadastro.setBounds(121, 460, 164, 20);
+		panelFiltro.add(dataCadastro);
+	}
 
 	private void limparTela() {
 		txtDocumento.setText("");

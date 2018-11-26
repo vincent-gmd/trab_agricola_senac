@@ -29,6 +29,10 @@ public class TelaLogin extends JFrame {
 	private TelaCadastroCliente telaCadastroCliente;
 	private static TelaLogin frameLogin = new TelaLogin();
 
+	public JPanel getContentJPanel() {
+		return contentPane;
+	}
+
 	/**
 	 * Launch the application.
 	 */
@@ -96,8 +100,10 @@ public class TelaLogin extends JFrame {
 		btnCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				telaCadastroCliente = new TelaCadastroCliente();
-				telaCadastroCliente.setVisible(true);
-				frameLogin.dispose();
+				JPanel contentPane = telaCadastroCliente.getContentJPanel();
+				setContentPane(contentPane);
+				contentPane.setVisible(true);
+				contentPane.updateUI();
 			}
 		});
 		btnCadastro.setBounds(222, 221, 121, 25);
@@ -131,6 +137,13 @@ public class TelaLogin extends JFrame {
 				dispose();
 			}
 		}
+
+	}
+
+	public void mostrarTelaLogin() {
+		setContentPane(contentPane);
+		contentPane.setVisible(true);
+		contentPane.updateUI();
 
 	}
 }
