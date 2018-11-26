@@ -4,26 +4,31 @@ import java.time.Instant;
 
 public class Aplicado {
 private Integer id;
-private Instant data ;
-private Integer idPropriedade;
-private Integer idTratamento;
+private Instant data_fim ;
+private Instant data_inicio ;
 public Integer getId() {
 	return id;
 }
 public void setId(Integer id) {
 	this.id = id;
 }
-public Instant getData() {
-	return data;
+public Instant getData_fim() {
+	return data_fim;
 }
-public void setData(Instant data) {
-	this.data = data;
+public void setData_fim(Instant data_fim) {
+	this.data_fim = data_fim;
 }
-public Integer getIdPropriedade() {
-	return idPropriedade;
+public Instant getData_inicio() {
+	return data_inicio;
 }
-public void setIdPropriedade(Integer idPropriedade) {
-	this.idPropriedade = idPropriedade;
+public void setData_inicio(Instant data_inicio) {
+	this.data_inicio = data_inicio;
+}
+public Integer getIdcultivo() {
+	return idcultivo;
+}
+public void setIdcultivo(Integer idcultivo) {
+	this.idcultivo = idcultivo;
 }
 public Integer getIdTratamento() {
 	return idTratamento;
@@ -31,5 +36,7 @@ public Integer getIdTratamento() {
 public void setIdTratamento(Integer idTratamento) {
 	this.idTratamento = idTratamento;
 }
+private Integer idcultivo;
+private Integer idTratamento;
 
 }

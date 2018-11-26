@@ -18,23 +18,26 @@ import ca.odell.glazedlists.EventList;
 import ca.odell.glazedlists.FilterList;
 import ca.odell.glazedlists.GlazedLists;
 import ca.odell.glazedlists.TextFilterator;
+import ca.odell.glazedlists.matchers.MatcherEditor;
 import ca.odell.glazedlists.swing.*;
 
 import model.bo.ClienteBO;
 import model.vo.conector.Cliente;
+import model.vo.front.ClienteFilter;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
-public class ClienteTable extends JFrame {
+public class TelaClienteTable extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField filtroInteligenteClientes;
 	private JTable table;
 	protected List<Cliente> clientes;
 	private String[] camposTabela;
+	MatcherEditor<Cliente> textMatcherEditor;
 
 	/**
 	 * Launch the application.
@@ -43,7 +46,7 @@ public class ClienteTable extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ClienteTable frame = new ClienteTable();
+					TelaClienteTable frame = new TelaClienteTable();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,7 +58,7 @@ public class ClienteTable extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ClienteTable() {
+	public TelaClienteTable() {
 		model.dao.tables.ClienteTable clienteTable = new model.dao.tables.ClienteTable();
 		camposTabela =clienteTable.getNames().toArray(new String[clienteTable.getNames().size()]);
 
@@ -82,13 +85,9 @@ public class ClienteTable extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		filtroInteligenteClientes = new JTextField();
-		filtroInteligenteClientes.setBounds(74, 187, 203, 20);
+		filtroInteligenteClientes.setBounds(10, 187, 203, 20);
 		contentPane.add(filtroInteligenteClientes);
 		filtroInteligenteClientes.setColumns(10);
-		
-		JLabel filtro = new JLabel("New label");
-		filtro.setBounds(10, 190, 46, 14);
-		contentPane.add(filtro);
 		
 		JButton btnBuscarClientes = new JButton("buscar Clientes");
 		btnBuscarClientes.addActionListener(new ActionListener() {
@@ -108,6 +107,19 @@ public class ClienteTable extends JFrame {
 		});
 		btnFiltrar.setBounds(131, 11, 89, 23);
 		contentPane.add(btnFiltrar);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		textMatcherEditor = new TextComponentMatcherEditor<Cliente>(
+				filtroInteligenteClientes, new ClienteFilter());
+
 	}
 	protected void filtrar() {
 		// TODO Auto-generated method stub
@@ -120,8 +132,7 @@ public class ClienteTable extends JFrame {
 		List<Cliente> listOfNames = clientes;
 		EventList<Cliente> eventList = GlazedLists.eventList(listOfNames);
 		EventList<Cliente> threadSafeEventList = GlazedLists.threadSafeList(eventList);
-		FilterList <Cliente> filteredCustomers = new FilterList <Cliente>(threadSafeEventList);
-
+	    FilterList<Cliente> textFilteredcliente = new FilterList<Cliente>(threadSafeEventList, textMatcherEditor);
 
 		table.setModel(new DefaultTableModel(
 				valores
@@ -131,11 +142,11 @@ public class ClienteTable extends JFrame {
 		TableModel model = table.getModel();
 		for(int i=0;i<clientes.size();i++) {
 			
-				model.setValueAt(clientes.get(i).getIdCliente(), i, 0);
-				model.setValueAt(clientes.get(i).getLogin(), i, 1);
-				model.setValueAt(clientes.get(i).getSenha(), i, 2);
-				model.setValueAt(clientes.get(i).getNivelAcesso(), i, 3);
-				model.setValueAt(clientes.get(i).getEmail(), i, 4);
+				model.setValueAt(textFilteredcliente.get(i).getIdCliente(), i, 0);
+				model.setValueAt(textFilteredcliente.get(i).getLogin(), i, 1);
+				model.setValueAt(textFilteredcliente.get(i).getSenha(), i, 2);
+				model.setValueAt(textFilteredcliente.get(i).getNivelAcesso(), i, 3);
+				model.setValueAt(textFilteredcliente.get(i).getEmail(), i, 4);
 			
 			
 		}

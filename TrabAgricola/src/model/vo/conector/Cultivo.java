@@ -2,17 +2,24 @@ package model.vo.conector;
 
 import java.time.Instant;
 
-public class Produz {
-private Integer id;
+public class Cultivo {
+private Integer idcultivo;
+private Integer hectares_ocupa;
 private Instant dataInicio;
 private Instant DataFim;
 private Integer idCultura;
 private Integer idPropriedade;
-public Integer getId() {
-	return id;
+public Integer getIdcultivo() {
+	return idcultivo;
 }
-public void setId(Integer id) {
-	this.id = id;
+public void setIdcultivo(Integer idcultivo) {
+	this.idcultivo = idcultivo;
+}
+public Integer getHectares_ocupa() {
+	return hectares_ocupa;
+}
+public void setHectares_ocupa(Integer hectares_ocupa) {
+	this.hectares_ocupa = hectares_ocupa;
 }
 public Instant getDataInicio() {
 	return dataInicio;
@@ -37,6 +44,6 @@ public Integer getIdPropriedade() {
 }
 public void setIdPropriedade(Integer idPropriedade) {
 	this.idPropriedade = idPropriedade;
-} 
+}
 
 }
