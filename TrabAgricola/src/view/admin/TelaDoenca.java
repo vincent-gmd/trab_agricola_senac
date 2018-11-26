@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -179,6 +180,11 @@ public class TelaDoenca extends JFrame {
 		txtDescricao.setColumns(10);
 
 		btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				validarCampos();
+			}
+		});
 		btnSalvar.setEnabled(false);
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnSalvar.setBounds(92, 598, 80, 25);
@@ -194,6 +200,16 @@ public class TelaDoenca extends JFrame {
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnLimpar.setBounds(321, 598, 80, 25);
 		contentPane.add(btnLimpar);
+	}
+	
+	private boolean validarCampos() {
+		if (txtNome.getText().isEmpty() || txtCausador.getText().isEmpty() || txtDescricao.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+			return false;
+		} else {
+			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamente! Cadastro concluído com sucesso.");
+			return true;
+		}
 	}
 
 	private void LimparTela() {

@@ -235,12 +235,14 @@ public class TelaCulturasCliente extends JPanel {
 
 	}
 	
-	private void ValidarCampos() {
+	private boolean ValidarCampos() {
 		if (txtNome.getText().isEmpty() || txtTipo.getText().isEmpty() || txtDescricao.getText().isEmpty()
 				|| txtHectaresOcupados.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+			return false;
 		} else {
 			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamente! Cadastro Concluído com sucesso.");
+			return true;
 		}
 	}
 

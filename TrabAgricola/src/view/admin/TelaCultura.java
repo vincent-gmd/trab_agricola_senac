@@ -101,6 +101,7 @@ public class TelaCultura extends JFrame {
 		btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ValidarCampos();
 			}
 		});
 		btnSalvar.setEnabled(false);
@@ -189,11 +190,13 @@ public class TelaCultura extends JFrame {
 		btnNovaCultura.setFont(new Font("Tahoma", Font.PLAIN, 12));
 	}
 
-	private void ValidarCampos() {
+	private boolean ValidarCampos() {
 		if (txtNome.getText().isEmpty() || txtTipo.getText().isEmpty() ){
 			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+			return false;
 		} else {
 			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamente! Cadastro Concluído com sucesso.");
+			return true;
 		}
 	}
 	
