@@ -25,10 +25,16 @@ import model.vo.conector.Cliente;
 
 public class TelaCadastroCliente extends JFrame {
 
+	public JPanel getContentJPanel() {
+		return contentPane;
+	}
+
 	private JPanel contentPane;
 	private JTextField txtLogin;
 	private JTextField txtSenha;
 	private JTextField txtEmail;
+	private TelaLogin telaLogin;
+	private static TelaCadastroCliente frameCadastro = new TelaCadastroCliente();
 
 	/**
 	 * Launch the application.
@@ -37,9 +43,8 @@ public class TelaCadastroCliente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaCadastroCliente frame = new TelaCadastroCliente();
-					frame.setVisible(true);
-					frame.setTitle("TrabGricola");
+					frameCadastro.setVisible(true);
+					frameCadastro.setTitle("TrabGricola");
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -105,6 +110,11 @@ public class TelaCadastroCliente extends JFrame {
 		});
 
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				setContentPane(telaLogin.getContentJPanel());
+			}
+		});
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 
 		JLabel lblNewLabel = new JLabel("TrabGricola");
@@ -154,5 +164,6 @@ public class TelaCadastroCliente extends JFrame {
 										.addComponent(btnRealizarCadastro).addComponent(btnVoltar))
 								.addGap(27)));
 		contentPane.setLayout(gl_contentPane);
+
 	}
 }
