@@ -98,16 +98,13 @@ public class TelaPropriedadesCliente extends JPanel {
 				btnRemover.setEnabled(true);
 			}
 		});
-<<<<<<< HEAD
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			colunasTabela
 		));
-=======
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Documento", "Hecatres", "Endere\u00E7o",
 				"Hectares Ocupados", "Infectado", "Tratamento Aplicado", }));
->>>>>>> branch 'master' of https://github.com/vincent-gmd/trab_agricola_senac
 		scrollPane.setViewportView(table);
 
 		btnNovaPropriedade = new JButton("Nova Propriedade");
