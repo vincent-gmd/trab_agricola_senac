@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import controller.ClienteController;
@@ -29,6 +30,7 @@ public class TelaCadastroCliente extends JFrame {
 	private JTextField txtLogin;
 	private JTextField txtSenha;
 	private JTextField txtEmail;
+	private static TelaCadastroCliente frameCadastro = new TelaCadastroCliente();
 
 	/**
 	 * Launch the application.
@@ -37,9 +39,8 @@ public class TelaCadastroCliente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaCadastroCliente frame = new TelaCadastroCliente();
-					frame.setVisible(true);
-					frame.setTitle("TrabGricola");
+					frameCadastro.setVisible(true);
+					frameCadastro.setTitle("TrabGricola");
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -105,6 +106,13 @@ public class TelaCadastroCliente extends JFrame {
 		});
 
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				TelaLogin pai = (TelaLogin) SwingUtilities.windowForComponent(frameCadastro);
+				pai.setVisible(true);
+				frameCadastro.dispose();
+			}
+		});
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 
 		JLabel lblNewLabel = new JLabel("TrabGricola");
