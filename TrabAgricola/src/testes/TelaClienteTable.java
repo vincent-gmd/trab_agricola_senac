@@ -21,6 +21,7 @@ import ca.odell.glazedlists.TextFilterator;
 import ca.odell.glazedlists.swing.*;
 
 import model.bo.ClienteBO;
+import model.dao.tables.ClienteTable;
 import model.vo.conector.Cliente;
 
 import javax.swing.JButton;
@@ -28,7 +29,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
-public class ClienteTable extends JFrame {
+public class TelaClienteTable extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField filtroInteligenteClientes;
@@ -43,7 +44,7 @@ public class ClienteTable extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ClienteTable frame = new ClienteTable();
+					TelaClienteTable frame = new TelaClienteTable();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,8 +56,8 @@ public class ClienteTable extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ClienteTable() {
-		model.dao.tables.ClienteTable clienteTable = new model.dao.tables.ClienteTable();
+	public TelaClienteTable() {
+		ClienteTable clienteTable = new ClienteTable();
 		camposTabela =clienteTable.getNames().toArray(new String[clienteTable.getNames().size()]);
 
 		
@@ -86,10 +87,6 @@ public class ClienteTable extends JFrame {
 		contentPane.add(filtroInteligenteClientes);
 		filtroInteligenteClientes.setColumns(10);
 		
-		JLabel filtro = new JLabel("New label");
-		filtro.setBounds(10, 190, 46, 14);
-		contentPane.add(filtro);
-		
 		JButton btnBuscarClientes = new JButton("buscar Clientes");
 		btnBuscarClientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -113,14 +110,16 @@ public class ClienteTable extends JFrame {
 		// TODO Auto-generated method stub
 		
 	}
+	void criarTable(){
+		
+	}
 
 	void atualizarTable(){
 		
 		Object[][] valores = new Object[clientes.size()][camposTabela.length] ;
-		List<Cliente> listOfNames = clientes;
-		EventList<Cliente> eventList = GlazedLists.eventList(listOfNames);
-		EventList<Cliente> threadSafeEventList = GlazedLists.threadSafeList(eventList);
-		FilterList <Cliente> filteredCustomers = new FilterList <Cliente>(threadSafeEventList);
+		//EventList<Cliente> eventList = GlazedLists.eventList(listOfNames);
+		//EventList<Cliente> threadSafeEventList = GlazedLists.threadSafeList(eventList);
+		//FilterList <Cliente> filteredCustomers = new FilterList <Cliente>(threadSafeEventList);
 
 
 		table.setModel(new DefaultTableModel(
