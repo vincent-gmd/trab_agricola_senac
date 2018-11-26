@@ -24,9 +24,12 @@ import model.vo.conector.Propriedade;
 
 import java.awt.event.MouseAdapter;
 import java.util.ArrayList;
+import java.util.List;
 import java.awt.Color;
 
 import com.toedter.calendar.JDateChooser;
+
+import controller.PropriedadeController;
 
 public class TelaPropriedadesCliente extends JPanel {
 	/**
@@ -224,35 +227,37 @@ public class TelaPropriedadesCliente extends JPanel {
 		panelFiltro.add(btnLimpar);
 		
 		atualizarTabela();
+		JDateChooser dataCadastro = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
+		dataCadastro.setBounds(121, 460, 164, 20);
+		panelFiltro.add(dataCadastro);
+
 		}
 		
 			
 	private void atualizarTabela(){
-		ArrayList<Propriedade> propriedades = new propriedadesBO().listarTodos() ;
+		List<Propriedade> propriedades = new PropriedadeController().listarTodos() ;
 
 		Object[][] valores = new Object[propriedades.size()][colunasTabela.length] ;
-		
+		Propriedade propriedade;
 		table.setModel(new DefaultTableModel(
 				valores
 				,
 				colunasTabela
 			));
 		TableModel model = table.getModel();
-		for(int i=0;i<clientes.size();i++) {
+		int count;
+		for(int i=0;i<propriedades.size();i++) {
+			 propriedade= propriedades.get(i);
+			 count=0;
 			
-				model.setValueAt(propriedades.get(i).getIdCliente(), i, 0);
-				model.setValueAt(clientes.get(i).getLogin(), i, 1);
-				model.setValueAt(clientes.get(i).getSenha(), i, 2);
-				model.setValueAt(clientes.get(i).getNivelAcesso(), i, 3);
-				model.setValueAt(clientes.get(i).getEmail(), i, 4);
+				model.setValueAt(propriedade.getDocumento(), i, count++);
+				model.setValueAt(propriedade.getHectares_total(), i, count++);
+				model.setValueAt(propriedade.getEndereco(), i, count++);
 			
 			
 		}
 		
 
-		JDateChooser dataCadastro = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
-		dataCadastro.setBounds(121, 460, 164, 20);
-		panelFiltro.add(dataCadastro);
 	}
 
 	private void limparTela() {
