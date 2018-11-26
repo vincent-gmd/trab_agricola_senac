@@ -48,6 +48,11 @@ public class TelaPropriedadesCliente extends JPanel {
 	private JButton btnAlterar;
 	private JButton btnMinhasCulturas;
 	private JButton btnRemover;
+
+	private JButton btnLimpar;
+	private JButton btnCadastrar;
+	private static final int INSERIR = 1;
+
 	private String[] colunasTabela=  new String[] {"Documento", "Hecatres", "Endere\u00E7o","Hectares Ocupados"};
 
 	/**
@@ -67,6 +72,7 @@ public class TelaPropriedadesCliente extends JPanel {
 		setVisible(false);
 
 		JLabel lblFiltroInteligente = new JLabel("Filtro Inteligente:");
+		lblFiltroInteligente.setForeground(new Color(255, 255, 255));
 		lblFiltroInteligente.setBounds(10, 11, 101, 17);
 		panelFiltro.add(lblFiltroInteligente);
 		lblFiltroInteligente.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -77,6 +83,7 @@ public class TelaPropriedadesCliente extends JPanel {
 		txtFiltro.setColumns(10);
 
 		JLabel lblPropriedades = new JLabel("Propriedades");
+		lblPropriedades.setForeground(new Color(255, 255, 255));
 		lblPropriedades.setBounds(10, 51, 79, 17);
 		panelFiltro.add(lblPropriedades);
 		lblPropriedades.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -100,6 +107,9 @@ public class TelaPropriedadesCliente extends JPanel {
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
+			new String[] {
+				"Documento", "Hecatres", "Endere\u00E7o", "Hectares Ocupados", "Infectado", "Tratamento Aplicado"
+			}
 			colunasTabela
 		));
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Documento", "Hecatres", "Endere\u00E7o",
@@ -111,6 +121,8 @@ public class TelaPropriedadesCliente extends JPanel {
 		panelFiltro.add(btnNovaPropriedade);
 		btnNovaPropriedade.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				manipularMenu(1);
+				
 
 			}
 		});
@@ -152,25 +164,32 @@ public class TelaPropriedadesCliente extends JPanel {
 		panelFiltro.add(btnMinhasCulturas);
 
 		JLabel lblDocumento = new JLabel("Documento:");
+		lblDocumento.setForeground(new Color(255, 255, 255));
 		lblDocumento.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblDocumento.setBounds(10, 405, 74, 17);
 		panelFiltro.add(lblDocumento);
 
 		txtDocumento = new JTextField();
+		txtDocumento.setEnabled(false);
 		txtDocumento.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtDocumento.setColumns(10);
 		txtDocumento.setBounds(95, 402, 190, 20);
 		panelFiltro.add(txtDocumento);
 
 		JLabel lblEndereco = new JLabel("Endere\u00E7o:");
+		lblEndereco.setForeground(new Color(255, 255, 255));
 		lblEndereco.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblEndereco.setBounds(10, 433, 75, 17);
 		panelFiltro.add(lblEndereco);
 
 		txtEndereco = new JTextField();
+		txtEndereco.setEnabled(false);
 		txtEndereco.setColumns(10);
 		txtEndereco.setBounds(95, 432, 190, 20);
 		panelFiltro.add(txtEndereco);
+		
+		JLabel lblDataCadastro = new JLabel("Data de Cadastro");
+		lblDataCadastro.setForeground(new Color(255, 255, 255));
 
 		JLabel lblDataCadastro = new JLabel("Data de Cadastro:");
 		lblDataCadastro.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -178,24 +197,31 @@ public class TelaPropriedadesCliente extends JPanel {
 		panelFiltro.add(lblDataCadastro);
 
 		JLabel lblLatitude = new JLabel("Latitude:");
+		lblLatitude.setForeground(new Color(255, 255, 255));
 		lblLatitude.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblLatitude.setBounds(10, 487, 62, 14);
 		panelFiltro.add(lblLatitude);
 
 		txtLatitude = new JTextField();
+		txtLatitude.setEnabled(false);
 		txtLatitude.setColumns(10);
 		txtLatitude.setBounds(95, 485, 190, 20);
 		panelFiltro.add(txtLatitude);
 
 		JLabel lblLongitude = new JLabel("Longitude:");
+		lblLongitude.setForeground(new Color(255, 255, 255));
 		lblLongitude.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblLongitude.setBounds(14, 517, 75, 17);
+		lblLongitude.setBounds(10, 517, 75, 17);
 		panelFiltro.add(lblLongitude);
 
 		txtLongitude = new JTextField();
+		txtLongitude.setEnabled(false);
 		txtLongitude.setColumns(10);
 		txtLongitude.setBounds(95, 516, 190, 20);
 		panelFiltro.add(txtLongitude);
+		
+		btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.setEnabled(false);
 
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
@@ -213,14 +239,19 @@ public class TelaPropriedadesCliente extends JPanel {
 		panelFiltro.add(btnSalvar);
 
 		JLabel lblHectares = new JLabel("Hectares:");
+		lblHectares.setForeground(new Color(255, 255, 255));
 		lblHectares.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblHectares.setBounds(10, 548, 62, 17);
 		panelFiltro.add(lblHectares);
 
 		txtHecatares = new JTextField();
+		txtHecatares.setEnabled(false);
 		txtHecatares.setColumns(10);
 		txtHecatares.setBounds(95, 547, 190, 20);
 		panelFiltro.add(txtHecatares);
+		
+		btnLimpar = new JButton("Limpar");
+		btnLimpar.setEnabled(false);
 
 		JButton btnLimpar = new JButton("Limpar");
 		btnLimpar.addActionListener(new ActionListener() {
@@ -286,7 +317,21 @@ public class TelaPropriedadesCliente extends JPanel {
 				|| txtLongitude.getText().isEmpty() || txtHecatares.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
 		} else {
-			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamento");
+			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamente! Cadastro concluído com sucesso.");
 		}
 	}
-}
+	
+	public void manipularMenu(int modo) {
+		switch (modo) {
+		case INSERIR:
+			txtDocumento.setEnabled(true);
+			txtEndereco.setEnabled(true);
+			txtLatitude.setEnabled(true);
+			txtLongitude.setEnabled(true);
+			txtHecatares.setEnabled(true);
+			btnLimpar.setEnabled(true);
+			btnCadastrar.setEnabled(true);
+			break;
+	} 
+  }
+}	
