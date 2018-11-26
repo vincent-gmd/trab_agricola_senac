@@ -103,7 +103,7 @@ public class TelaPropriedadesCliente extends JPanel {
 			colunasTabela
 		));
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Documento", "Hecatres", "Endere\u00E7o",
-				"Hectares Ocupados", "Infectado", "Tratamento Aplicado", }));
+				"Hectares Ocupados", }));
 		scrollPane.setViewportView(table);
 
 		btnNovaPropriedade = new JButton("Nova Propriedade");
@@ -279,6 +279,7 @@ public class TelaPropriedadesCliente extends JPanel {
 		txtLongitude.setText("");
 		txtHecatares.setText("");
 	}
+	
 
 	private void validarCampos() {
 		if (txtDocumento.getText().isEmpty() || txtEndereco.getText().isEmpty() || txtLatitude.getText().isEmpty()
