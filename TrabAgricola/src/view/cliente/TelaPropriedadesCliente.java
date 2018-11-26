@@ -198,6 +198,11 @@ public class TelaPropriedadesCliente extends JPanel {
 		panelFiltro.add(txtLongitude);
 
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cadastrar();
+			}
+		});
 		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnCadastrar.setBounds(10, 613, 100, 30);
 		panelFiltro.add(btnCadastrar);
@@ -235,6 +240,12 @@ public class TelaPropriedadesCliente extends JPanel {
 		}
 		
 			
+	protected void cadastrar() {
+		validarCampos();
+		
+	}
+
+
 	private void atualizarTabela(){
 		List<Propriedade> propriedades = new PropriedadeController().listarTodos() ;
 
@@ -269,7 +280,7 @@ public class TelaPropriedadesCliente extends JPanel {
 		txtHecatares.setText("");
 	}
 
-	private void ValidarCampos() {
+	private void validarCampos() {
 		if (txtDocumento.getText().isEmpty() || txtEndereco.getText().isEmpty() || txtLatitude.getText().isEmpty()
 				|| txtLongitude.getText().isEmpty() || txtHecatares.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
