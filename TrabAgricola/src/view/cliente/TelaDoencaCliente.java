@@ -43,12 +43,12 @@ public class TelaDoencaCliente extends JPanel {
 		JLabel lblFiltroInteligente = new JLabel("Pesquisar:");
 		lblFiltroInteligente.setForeground(new Color(255, 255, 255));
 		lblFiltroInteligente.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblFiltroInteligente.setBounds(73, 86, 75, 17);
+		lblFiltroInteligente.setBounds(74, 106, 75, 17);
 		panelDoenca.add(lblFiltroInteligente);
 
 		txtFiltrointeligente = new JTextField();
 		txtFiltrointeligente.setColumns(10);
-		txtFiltrointeligente.setBounds(145, 86, 191, 20);
+		txtFiltrointeligente.setBounds(145, 106, 191, 20);
 		panelDoenca.add(txtFiltrointeligente);
 
 		JLabel lblPropriedades = new JLabel("Propriedades:");
@@ -62,7 +62,7 @@ public class TelaDoencaCliente extends JPanel {
 		panelDoenca.add(cboxPropriedades);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(34, 113, 421, 200);
+		scrollPane.setBounds(36, 134, 421, 200);
 		panelDoenca.add(scrollPane);
 
 		tblDoencas = new JTable();
@@ -90,7 +90,7 @@ public class TelaDoencaCliente extends JPanel {
 			}
 		});
 		btnBuscarTratamentos.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnBuscarTratamentos.setBounds(159, 324, 164, 33);
+		btnBuscarTratamentos.setBounds(160, 345, 164, 33);
 		panelDoenca.add(btnBuscarTratamentos);
 		panelTratamentos.setBounds(0, 0, 496, 424);
 		add(panelTratamentos);

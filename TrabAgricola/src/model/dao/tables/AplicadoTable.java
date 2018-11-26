@@ -10,8 +10,10 @@ public class AplicadoTable extends Table{
         name="aplicado";
 
         colums.add(new Colum("int","id"));
-        colums.add(new Colum("Date","data"));
-        colums.add(new Colum("int","idpropriedade"));
+        colums.add(new Colum("Date","data_fim"));
+        colums.add(new Colum("Date","data_inicio"));
+
+        colums.add(new Colum("int","idcultivo"));
         colums.add(new Colum("int","idtratamento"));
     }
 

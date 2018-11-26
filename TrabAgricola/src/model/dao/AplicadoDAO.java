@@ -18,8 +18,10 @@ public class AplicadoDAO extends BaseDAO_Tables<Aplicado>{
     @Override
     public void setValoresAtributosInsert(Aplicado entidade, PreparedStatement stmt) throws SQLException  {
     	int i=1;
-    	stmt.setDate(i++, (Date)Date.from(entidade.getData()));
-    	stmt.setInt(i++, entidade.getIdPropriedade());
+    	stmt.setDate(i++, (Date)Date.from(entidade.getData_fim()));
+    	stmt.setDate(i++, (Date)Date.from(entidade.getData_inicio()));
+
+    	stmt.setInt(i++, entidade.getIdcultivo());
     	stmt.setInt(i++, entidade.getIdTratamento());
     }
 
@@ -27,9 +29,12 @@ public class AplicadoDAO extends BaseDAO_Tables<Aplicado>{
     public void setValoresAtributosUpdate(Aplicado entidade, PreparedStatement stmt)throws SQLException  {
     	int i=1;
     	stmt.setInt(i++, entidade.getId());
-        stmt.setDate(i++, (Date)Date.from(entidade.getData()));
-        stmt.setInt(i++, entidade.getIdPropriedade());
-        stmt.setInt(i++, entidade.getIdTratamento());
+    	stmt.setDate(i++, (Date)Date.from(entidade.getData_fim()));
+    	stmt.setDate(i++, (Date)Date.from(entidade.getData_inicio()));
+
+    	stmt.setInt(i++, entidade.getIdcultivo());
+    	stmt.setInt(i++, entidade.getIdTratamento());
+
 
     }
 
@@ -37,8 +42,10 @@ public class AplicadoDAO extends BaseDAO_Tables<Aplicado>{
     public Aplicado construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
     	Aplicado p =new Aplicado();
         p.setId( resultado.getInt(i++));
-        p.setData( resultado.getDate(i++).toInstant());
-        p.setIdPropriedade( resultado.getInt(i++));
+        p.setData_fim( resultado.getDate(i++).toInstant());
+        p.setData_inicio( resultado.getDate(i++).toInstant());
+
+        p.setIdcultivo( resultado.getInt(i++));
         p.setIdTratamento( resultado.getInt(i++));
 
         return p;

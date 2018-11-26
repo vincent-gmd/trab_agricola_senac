@@ -9,6 +9,7 @@ public class Propriedade  {
 	private String documento;
 	private Instant data_cadastro;
 	private String endereco;
+	private Integer hectares_total;
 	private Integer idcliente;
 	public Double getLat() {
 		return localizacaoX;
@@ -56,6 +57,12 @@ public class Propriedade  {
 	}
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
+	}
+	public Integer getHectares_total() {
+		return hectares_total;
+	}
+	public void setHectares_total(Integer hectares_total) {
+		this.hectares_total = hectares_total;
 	}
 	public Integer getIdcliente() {
 		return idcliente;

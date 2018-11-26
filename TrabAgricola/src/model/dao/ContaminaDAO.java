@@ -19,11 +19,11 @@ public class ContaminaDAO extends BaseDAO_Tables<Contamina>{
     public void setValoresAtributosInsert(Contamina entidade, PreparedStatement stmt) throws SQLException  {
     	int i=1;
         stmt.setDate(i++, (Date)Date.from(entidade.getDataFim()));
-        stmt.setDate(i++, (Date)Date.from(entidade.getData()));
+        stmt.setDate(i++, (Date)Date.from(entidade.getData_inicio()));
         //stmt.setString(i++, entidade.getFotos());
         stmt.setInt(i++, entidade.getConfirmacao());
         stmt.setString(i++, entidade.getDescricao());
-        stmt.setInt(i++, entidade.getIdPropriedade());
+        stmt.setInt(i++, entidade.getIdCultivo());
         stmt.setInt(i++, entidade.getIdDoenca());
     }
 
@@ -32,11 +32,11 @@ public class ContaminaDAO extends BaseDAO_Tables<Contamina>{
     	int i=1;
     	stmt.setInt(i++, entidade.getId());
         stmt.setDate(i++, (Date)Date.from(entidade.getDataFim()));
-        stmt.setDate(i++, (Date)Date.from(entidade.getData()));
+        stmt.setDate(i++, (Date)Date.from(entidade.getData_inicio()));
         //stmt.setString(i++, entidade.getFotos());
         stmt.setInt(i++, entidade.getConfirmacao());
         stmt.setString(i++, entidade.getDescricao());
-        stmt.setInt(i++, entidade.getIdPropriedade());
+        stmt.setInt(i++, entidade.getIdCultivo());
         stmt.setInt(i++, entidade.getIdDoenca());
 
     }
@@ -46,10 +46,10 @@ public class ContaminaDAO extends BaseDAO_Tables<Contamina>{
     	Contamina p =new Contamina();
         p.setId( resultado.getInt(i++));
         p.setDataFim( resultado.getDate(i++).toInstant());
-        p.setData( resultado.getDate(i++).toInstant());
+        p.setData_inicio( resultado.getDate(i++).toInstant());
         p.setConfirmacao( resultado.getInt(i++));
         p.setDescricao( resultado.getString(i++));
-        p.setIdPropriedade( resultado.getInt(i++));
+        p.setIdCultivo( resultado.getInt(i++));
         p.setIdDoenca( resultado.getInt(i++));
 
         return p;

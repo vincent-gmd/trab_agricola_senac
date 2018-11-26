@@ -1,4 +1,4 @@
-package view.admin;
+package testes;
 
 import java.awt.BorderLayout;
 import java.awt.Component;

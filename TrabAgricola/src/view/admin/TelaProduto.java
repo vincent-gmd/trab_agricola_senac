@@ -17,6 +17,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
 
 public class TelaProduto extends JFrame {
 
@@ -54,13 +55,13 @@ public class TelaProduto extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 606, 709);
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.activeCaption);
+		contentPane.setBackground(new Color(85, 107, 47));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JLabel lblFiltroInteligente = new JLabel("Filtro Inteligente:");
-		lblFiltroInteligente.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblFiltroInteligente.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblFiltroInteligente.setBounds(10, 11, 101, 17);
 		contentPane.add(lblFiltroInteligente);
 
@@ -70,17 +71,17 @@ public class TelaProduto extends JFrame {
 		txtFiltro.setColumns(10);
 
 		JLabel lblProdutos = new JLabel("Produtos");
-		lblProdutos.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblProdutos.setBounds(10, 62, 61, 14);
+		lblProdutos.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblProdutos.setBounds(10, 52, 61, 14);
 		contentPane.add(lblProdutos);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 87, 500, 200);
+		scrollPane.setBounds(10, 77, 500, 200);
 		contentPane.add(scrollPane);
 
 		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNome.setBounds(25, 355, 52, 14);
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNome.setBounds(10, 360, 52, 14);
 		contentPane.add(lblNome);
 
 		tblProdutos = new JTable() {
@@ -108,7 +109,7 @@ public class TelaProduto extends JFrame {
 			}
 		});
 		btnNovoProduto.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNovoProduto.setBounds(22, 298, 130, 30);
+		btnNovoProduto.setBounds(10, 298, 130, 30);
 		contentPane.add(btnNovoProduto);
 
 		JButton btnEditar = new JButton("Editar");
@@ -119,32 +120,32 @@ public class TelaProduto extends JFrame {
 			}
 		});
 		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnEditar.setBounds(211, 298, 100, 30);
+		btnEditar.setBounds(224, 298, 100, 30);
 		contentPane.add(btnEditar);
 
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnRemover.setBounds(420, 298, 100, 30);
+		btnRemover.setBounds(410, 298, 100, 30);
 		contentPane.add(btnRemover);
 
 		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o");
-		lblDescricao.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblDescricao.setBounds(23, 385, 67, 17);
+		lblDescricao.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDescricao.setBounds(10, 390, 67, 17);
 		contentPane.add(lblDescricao);
 
 		txtNome = new JTextField();
-		txtNome.setBounds(73, 354, 190, 20);
+		txtNome.setBounds(72, 359, 190, 20);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 
 		txtDescricao = new JTextField();
-		txtDescricao.setBounds(27, 413, 500, 200);
+		txtDescricao.setBounds(10, 418, 500, 200);
 		contentPane.add(txtDescricao);
 		txtDescricao.setColumns(10);
 
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnSalvar.setBounds(110, 624, 100, 30);
+		btnSalvar.setBounds(101, 629, 100, 30);
 		contentPane.add(btnSalvar);
 
 		JButton btnLimpar = new JButton("Limpar");
@@ -154,7 +155,7 @@ public class TelaProduto extends JFrame {
 			}
 		});
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnLimpar.setBounds(348, 624, 100, 30);
+		btnLimpar.setBounds(331, 629, 100, 30);
 		contentPane.add(btnLimpar);
 	}
 

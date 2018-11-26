@@ -5,11 +5,11 @@ import java.time.Instant;
 public class Contamina {
 	private Integer id;
 	private Instant dataFim;
-	private Instant data;
+	private Instant data_inicio;
 	//private String fotos;
 	private Integer confirmacao;
 	private String descricao;
-	private Integer idPropriedade;
+	private Integer idCultivo;
 	private Integer idDoenca;
 	public Integer getId() {
 		return id;
@@ -23,13 +23,12 @@ public class Contamina {
 	public void setDataFim(Instant dataFim) {
 		this.dataFim = dataFim;
 	}
-	public Instant getData() {
-		return data;
+	public Instant getData_inicio() {
+		return data_inicio;
 	}
-	public void setData(Instant data) {
-		this.data = data;
+	public void setData_inicio(Instant data_inicio) {
+		this.data_inicio = data_inicio;
 	}
-
 	public Integer getConfirmacao() {
 		return confirmacao;
 	}
@@ -42,11 +41,11 @@ public class Contamina {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public Integer getIdPropriedade() {
-		return idPropriedade;
+	public Integer getIdCultivo() {
+		return idCultivo;
 	}
-	public void setIdPropriedade(Integer idPropriedade) {
-		this.idPropriedade = idPropriedade;
+	public void setIdCultivo(Integer idCultivo) {
+		this.idCultivo = idCultivo;
 	}
 	public Integer getIdDoenca() {
 		return idDoenca;
