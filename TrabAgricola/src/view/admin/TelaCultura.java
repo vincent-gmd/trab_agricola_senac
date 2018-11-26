@@ -190,8 +190,7 @@ public class TelaCultura extends JFrame {
 	}
 
 	private void ValidarCampos() {
-		if (txtNome.getText().isEmpty() || txtTipo.getText().isEmpty() || txtDescricao.getText().isEmpty()
-				|| txtHectaresOcupados.getText().isEmpty()) {
+		if (txtNome.getText().isEmpty() || txtTipo.getText().isEmpty() ){
 			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
 		} else {
 			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamente! Cadastro Concluído com sucesso.");

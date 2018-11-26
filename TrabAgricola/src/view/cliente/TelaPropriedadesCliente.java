@@ -107,9 +107,7 @@ public class TelaPropriedadesCliente extends JPanel {
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
-			new String[] {
-				"Documento", "Hecatres", "Endere\u00E7o", "Hectares Ocupados", "Infectado", "Tratamento Aplicado"
-			}
+			
 			colunasTabela
 		));
 		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Documento", "Hecatres", "Endere\u00E7o",
@@ -191,7 +189,6 @@ public class TelaPropriedadesCliente extends JPanel {
 		JLabel lblDataCadastro = new JLabel("Data de Cadastro");
 		lblDataCadastro.setForeground(new Color(255, 255, 255));
 
-		JLabel lblDataCadastro = new JLabel("Data de Cadastro:");
 		lblDataCadastro.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblDataCadastro.setBounds(10, 460, 107, 14);
 		panelFiltro.add(lblDataCadastro);
