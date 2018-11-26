@@ -1,8 +1,8 @@
 package view.admin;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -53,27 +53,29 @@ public class TelaDoenca extends JFrame {
 	public TelaDoenca() {
 		setTitle("Doen\u00E7a");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 600, 700);
+		setBounds(100, 100, 536, 700);
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.activeCaption);
+		contentPane.setBackground(new Color(85, 107, 47));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblFiltro = new JLabel("Filtro Inteligente:");
+		JLabel lblFiltro = new JLabel("Pesquisar:");
+		lblFiltro.setForeground(new Color(255, 255, 255));
 		lblFiltro.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblFiltro.setBounds(10, 11, 101, 17);
+		lblFiltro.setBounds(10, 42, 101, 17);
 		contentPane.add(lblFiltro);
 
 		txtFiltro = new JTextField();
 		txtFiltro.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtFiltro.setColumns(10);
-		txtFiltro.setBounds(121, 11, 190, 20);
+		txtFiltro.setBounds(77, 40, 190, 20);
 		contentPane.add(txtFiltro);
 
 		JLabel lblDoena = new JLabel("Doen\u00E7a");
-		lblDoena.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblDoena.setBounds(10, 39, 61, 20);
+		lblDoena.setForeground(new Color(255, 255, 255));
+		lblDoena.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblDoena.setBounds(246, 9, 61, 20);
 		contentPane.add(lblDoena);
 
 		JScrollPane scrollPane = new JScrollPane();
@@ -121,16 +123,19 @@ public class TelaDoenca extends JFrame {
 		contentPane.add(btnRemover);
 
 		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setForeground(new Color(255, 255, 255));
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNome.setBounds(10, 322, 61, 14);
 		contentPane.add(lblNome);
 
 		JLabel lblCausador = new JLabel("Causador:");
+		lblCausador.setForeground(new Color(255, 255, 255));
 		lblCausador.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblCausador.setBounds(10, 361, 71, 14);
 		contentPane.add(lblCausador);
 
 		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o");
+		lblDescrio.setForeground(new Color(255, 255, 255));
 		lblDescrio.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDescrio.setBounds(10, 396, 84, 20);
 		contentPane.add(lblDescrio);

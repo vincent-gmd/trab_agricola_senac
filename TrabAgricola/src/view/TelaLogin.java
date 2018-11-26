@@ -1,17 +1,20 @@
 package view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import controller.ClienteController;
@@ -44,32 +47,36 @@ public class TelaLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaLogin() {
-		setTitle("Login");
+		setIconImage(
+				Toolkit.getDefaultToolkit().getImage(TelaLogin.class.getResource("/icones/icons8-ovelha-2-26.png")));
+		setTitle("TrabGricola");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 484, 341);
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.activeCaption);
+		contentPane.setBackground(new Color(85, 107, 47));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JLabel lblNome = new JLabel("Login:");
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNome.setBounds(23, 17, 59, 34);
+		lblNome.setForeground(new Color(255, 255, 255));
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNome.setBounds(94, 146, 59, 34);
 		contentPane.add(lblNome);
 
 		txtNome = new JTextField();
-		txtNome.setBounds(81, 26, 190, 20);
+		txtNome.setBounds(153, 155, 190, 20);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 
 		JLabel lblSenha = new JLabel("Senha:");
-		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblSenha.setBounds(23, 81, 59, 14);
+		lblSenha.setForeground(new Color(255, 255, 255));
+		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblSenha.setBounds(94, 191, 59, 14);
 		contentPane.add(lblSenha);
 
 		txtSenha = new JTextField();
-		txtSenha.setBounds(81, 80, 190, 20);
+		txtSenha.setBounds(153, 191, 190, 20);
 		contentPane.add(txtSenha);
 		txtSenha.setColumns(10);
 
@@ -80,7 +87,7 @@ public class TelaLogin extends JFrame {
 			}
 		});
 		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnEntrar.setBounds(37, 148, 89, 34);
+		btnEntrar.setBounds(94, 221, 89, 25);
 		contentPane.add(btnEntrar);
 
 		JButton btnNewButton = new JButton("Criar Cadastro");
@@ -89,8 +96,16 @@ public class TelaLogin extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton.setBounds(187, 148, 121, 34);
+		btnNewButton.setBounds(222, 221, 121, 25);
 		contentPane.add(btnNewButton);
+
+		JLabel label = new JLabel("TrabGricola");
+		label.setIcon(new ImageIcon(TelaLogin.class.getResource("/icones/icons8-ovelha-2-filled-100.png")));
+		label.setVerticalAlignment(SwingConstants.BOTTOM);
+		label.setForeground(Color.WHITE);
+		label.setFont(new Font("Ink Free", Font.BOLD, 18));
+		label.setBounds(136, 32, 207, 100);
+		contentPane.add(label);
 	}
 
 	private void ValidarCampos(String nome, String senha) {

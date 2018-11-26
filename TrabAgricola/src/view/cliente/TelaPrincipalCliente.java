@@ -1,20 +1,19 @@
 package view.cliente;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.Frame;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.SystemColor;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 public class TelaPrincipalCliente extends JFrame {
 
@@ -22,11 +21,10 @@ public class TelaPrincipalCliente extends JFrame {
 	private TelaPropriedadesCliente telaPropriedadesCliente;
 	private TelaDoencaCliente telaDoencaCliente;
 	private TelaCulturasCliente telaCulturasCliente;
-	
+
 	public void testarChamadaAoPai() {
 		JOptionPane.showMessageDialog(null, "Teste");
 	}
-	
 
 	/**
 	 * Launch the application.
@@ -37,6 +35,7 @@ public class TelaPrincipalCliente extends JFrame {
 				try {
 					TelaPrincipalCliente frame = new TelaPrincipalCliente();
 					frame.setVisible(true);
+					frame.setTitle("TrabGricola");
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,16 +48,21 @@ public class TelaPrincipalCliente extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaPrincipalCliente() {
+		setIconImage(Toolkit.getDefaultToolkit()
+				.getImage(TelaPrincipalCliente.class.getResource("/icones/icons8-ovelha-2-26.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 642, 573);
-		
+
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
-		
+
 		JMenu mnNewMenu = new JMenu("Propriedades");
+		mnNewMenu.setIcon(new ImageIcon(TelaPrincipalCliente.class.getResource("/icones/icons8-campo-26.png")));
 		menuBar.add(mnNewMenu);
-		
+
 		JMenuItem mntmCadastroDePropriedade = new JMenuItem("Minhas Propriedades");
+		mntmCadastroDePropriedade
+				.setIcon(new ImageIcon(TelaPrincipalCliente.class.getResource("/icones/icons8-fazenda-24.png")));
 		mntmCadastroDePropriedade.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				telaPropriedadesCliente = new TelaPropriedadesCliente();
@@ -68,37 +72,40 @@ public class TelaPrincipalCliente extends JFrame {
 			}
 		});
 		mnNewMenu.add(mntmCadastroDePropriedade);
-		
+
 		JMenu mnDoenas = new JMenu("Doen\u00E7as");
+		mnDoenas.setIcon(
+				new ImageIcon(TelaPrincipalCliente.class.getResource("/icones/icons8-comida-org\u00E2nica-26.png")));
 		menuBar.add(mnDoenas);
-		
-		JMenuItem mntmBuscar = new JMenuItem("Buscar");
+
+		JMenuItem mntmBuscar = new JMenuItem("Informar Doen\u00E7a");
+		mntmBuscar.setIcon(
+				new ImageIcon(TelaPrincipalCliente.class.getResource("/icones/icons8-planta-sob-chuva-24.png")));
 		mntmBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				telaDoencaCliente = new TelaDoencaCliente();
 				setContentPane(telaDoencaCliente);
 				telaDoencaCliente.setVisible(true);
 				telaDoencaCliente.updateUI();
-				
+
 			}
 		});
 		mnDoenas.add(mntmBuscar);
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.activeCaption);
+		contentPane.setBackground(new Color(85, 107, 47));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 	}
-
 
 	public void mostrarTelaCulturas() {
 		telaCulturasCliente = new TelaCulturasCliente();
 		setContentPane(telaCulturasCliente);
 		telaCulturasCliente.setVisible(true);
 		telaCulturasCliente.updateUI();
-		
+
 	}
-	
+
 	public void mostrarTelaPropriedade() {
 		telaPropriedadesCliente = new TelaPropriedadesCliente();
 		setContentPane(telaPropriedadesCliente);

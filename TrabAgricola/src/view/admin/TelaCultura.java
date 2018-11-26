@@ -1,23 +1,23 @@
 package view.admin;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import java.awt.SystemColor;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JButton;
-import javax.swing.table.DefaultTableModel;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class TelaCultura extends JFrame {
 
@@ -26,9 +26,11 @@ public class TelaCultura extends JFrame {
 	private JTable tblCulturas;
 	private JTextField txtNome;
 	private JTextField txtTipo;
-	public JPanel getContentJPanel(){
+
+	public JPanel getContentJPanel() {
 		return contentPane;
 	}
+
 	/**
 	 * Launch the application.
 	 */
@@ -49,40 +51,45 @@ public class TelaCultura extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaCultura() {
+
+		setIconImage(
+				Toolkit.getDefaultToolkit().getImage(TelaCultura.class.getResource("/icones/icons8-ovelha-2-26.png")));
 		setTitle("Cultura");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 546, 546);
+		setBounds(0, 0, 488, 547);
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.activeCaption);
+		contentPane.setBackground(new Color(85, 107, 47));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JLabel lblFiltro = new JLabel("Filtro Inteligente:");
+
+		JLabel lblFiltro = new JLabel("Pesquisar:");
+		lblFiltro.setForeground(new Color(255, 255, 255));
 		lblFiltro.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblFiltro.setBounds(10, 11, 101, 17);
+		lblFiltro.setBounds(20, 51, 101, 17);
 		contentPane.add(lblFiltro);
-		
+
 		txtFiltro = new JTextField();
 		txtFiltro.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtFiltro.setColumns(10);
-		txtFiltro.setBounds(121, 11, 190, 20);
+		txtFiltro.setBounds(89, 49, 190, 20);
 		contentPane.add(txtFiltro);
-		
-		JLabel lblCultura = new JLabel("Cultura");
-		lblCultura.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblCultura.setBounds(10, 54, 61, 14);
+
+		JLabel lblCultura = new JLabel("Culturas");
+		lblCultura.setForeground(new Color(255, 255, 255));
+		lblCultura.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblCultura.setBounds(204, 11, 75, 14);
 		contentPane.add(lblCultura);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 79, 500, 200);
+		scrollPane.setBounds(20, 79, 433, 200);
 		contentPane.add(scrollPane);
-		
+
 		tblCulturas = new JTable() {
 			public boolean isCellEditable(int row, int column) {
-                return false;
-            }
-        };
+				return false;
+			}
+		};
 		tblCulturas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -91,75 +98,79 @@ public class TelaCultura extends JFrame {
 				String celulaTipo = (String) tblCulturas.getModel().getValueAt(linha, 1);
 			}
 		});
-		tblCulturas.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Nome", "Tipo"
-			}
-		));
+		tblCulturas.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "Tipo" }));
 		scrollPane.setViewportView(tblCulturas);
-		
+
 		JButton btnNovaCultura = new JButton("Nova Cultura");
-		btnNovaCultura.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNovaCultura.setBounds(10, 290, 130, 30);
+		btnNovaCultura.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtNome.setEnabled(true);
+				txtTipo.setEnabled(true);
+			}
+		});
+		btnNovaCultura.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnNovaCultura.setBounds(20, 290, 114, 20);
 		contentPane.add(btnNovaCultura);
-		
+
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				txtNome.setText((String) tblCulturas.getValueAt(0,0));
-				txtTipo.setText((String) tblCulturas.getValueAt(0,1));
+				txtNome.setText((String) tblCulturas.getValueAt(0, 0));
+				txtTipo.setText((String) tblCulturas.getValueAt(0, 1));
 			}
 		});
-		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnEditar.setBounds(199, 290, 100, 32);
+		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnEditar.setBounds(191, 290, 100, 20);
 		contentPane.add(btnEditar);
-		
+
 		JButton btnRemover = new JButton("Remover");
-		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnRemover.setBounds(408, 290, 100, 30);
+		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnRemover.setBounds(353, 290, 100, 20);
 		contentPane.add(btnRemover);
-		
+
 		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblNome.setBounds(12, 348, 52, 14);
+		lblNome.setForeground(new Color(255, 255, 255));
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNome.setBounds(20, 332, 52, 14);
 		contentPane.add(lblNome);
-		
+
 		txtNome = new JTextField();
 		txtNome.setColumns(10);
-		txtNome.setBounds(73, 347, 190, 20);
+		txtNome.setBounds(82, 331, 190, 20);
+		txtNome.setEnabled(false);
 		contentPane.add(txtNome);
-		
+
 		JLabel lblTipo = new JLabel("Tipo:");
-		lblTipo.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblTipo.setBounds(10, 378, 67, 17);
+		lblTipo.setForeground(new Color(255, 255, 255));
+		lblTipo.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblTipo.setBounds(20, 360, 67, 17);
 		contentPane.add(lblTipo);
-		
+
 		txtTipo = new JTextField();
 		txtTipo.setColumns(10);
-		txtTipo.setBounds(73, 378, 190, 20);
+		txtTipo.setBounds(83, 360, 190, 20);
+		txtTipo.setEnabled(false);
 		contentPane.add(txtTipo);
-		
+
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnSalvar.setBounds(60, 449, 100, 30);
+		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnSalvar.setBounds(111, 401, 100, 30);
 		contentPane.add(btnSalvar);
-		
+
 		JButton btnLimpar = new JButton("Limpar");
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				LimparTela();
 			}
 		});
-		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnLimpar.setBounds(290, 449, 100, 30);
+		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnLimpar.setBounds(236, 401, 100, 30);
 		contentPane.add(btnLimpar);
 	}
+
 	private void LimparTela() {
 		txtNome.setText("");
 		txtTipo.setText("");
-		
-		
+
 	}
 }
