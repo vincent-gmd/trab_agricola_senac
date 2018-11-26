@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -188,6 +189,15 @@ public class TelaCultura extends JFrame {
 		btnNovaCultura.setFont(new Font("Tahoma", Font.PLAIN, 12));
 	}
 
+	private void ValidarCampos() {
+		if (txtNome.getText().isEmpty() || txtTipo.getText().isEmpty() || txtDescricao.getText().isEmpty()
+				|| txtHectaresOcupados.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+		} else {
+			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamente! Cadastro Concluído com sucesso.");
+		}
+	}
+	
 	private void LimparTela() {
 		txtNome.setText("");
 		txtTipo.setText("");

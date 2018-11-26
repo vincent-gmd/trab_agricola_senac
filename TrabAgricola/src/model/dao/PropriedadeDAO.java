@@ -32,6 +32,9 @@ public class PropriedadeDAO extends BaseDAO_Tables< Propriedade>{
         stmt.setString(i++, entidade.getDocumento());
         stmt.setDate(i++, (Date)Date.from(entidade.getData_cadastro()) );
         stmt.setString(i++, entidade.getEndereco());
+    	stmt.setInt(i++, entidade.getHectares_total());
+
+        
     	stmt.setInt(i++, entidade.getIdcliente());
     }
 
@@ -44,6 +47,9 @@ public class PropriedadeDAO extends BaseDAO_Tables< Propriedade>{
         stmt.setString(i++, entidade.getDocumento());
         stmt.setDate(i++, (Date)Date.from(entidade.getData_cadastro()) );
         stmt.setString(i++, entidade.getEndereco());
+    	stmt.setInt(i++, entidade.getHectares_total());
+
+        
     	stmt.setInt(i++, entidade.getIdcliente());
 
 
@@ -61,6 +67,9 @@ public class PropriedadeDAO extends BaseDAO_Tables< Propriedade>{
         p.setDocumento(resultado.getString(i++));
         p.setData_cadastro(resultado.getDate(i++).toInstant());
         p.setEndereco(resultado.getString(i++));
+        p.setHectares_total(resultado.getInt(i++));
+
+        
         p.setIdcliente(resultado.getInt(i++));
 
         return p;

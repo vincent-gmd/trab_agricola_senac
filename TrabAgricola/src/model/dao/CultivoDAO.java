@@ -7,18 +7,18 @@ import java.sql.SQLException;
 
 import model.dao.base.BaseDAO_Tables;
 import model.dao.tables.ContaminaTable;
-import model.dao.tables.ProduzTable;
+import model.dao.tables.CultivoTable;
 import model.vo.conector.Contamina;
-import model.vo.conector.Produz;
+import model.vo.conector.Cultivo;
 
-public class ProduzDAO extends BaseDAO_Tables<Produz>{
+public class CultivoDAO extends BaseDAO_Tables<Cultivo>{
 
-	public ProduzDAO(){
-		this.table=new ProduzTable();
+	public CultivoDAO(){
+		this.table=new CultivoTable();
 	}
 
     @Override
-    public void setValoresAtributosInsert(Produz entidade, PreparedStatement stmt) throws SQLException  {
+    public void setValoresAtributosInsert(Cultivo entidade, PreparedStatement stmt) throws SQLException  {
     	int i=1;
     	stmt.setDate(i++, (Date)Date.from(entidade.getDataInicio()));
         stmt.setDate(i++, (Date)Date.from(entidade.getDataFim()));
@@ -27,9 +27,9 @@ public class ProduzDAO extends BaseDAO_Tables<Produz>{
     }
 
     @Override
-    public void setValoresAtributosUpdate(Produz entidade, PreparedStatement stmt)throws SQLException  {
+    public void setValoresAtributosUpdate(Cultivo entidade, PreparedStatement stmt)throws SQLException  {
     	int i=1;
-    	stmt.setInt(i++, entidade.getId());
+    	stmt.setInt(i++, entidade.getIdcultivo());
     	stmt.setDate(i++, (Date)Date.from(entidade.getDataInicio()));
         stmt.setDate(i++, (Date)Date.from(entidade.getDataFim()));
         stmt.setInt(i++, entidade.getIdCultura());
@@ -38,9 +38,10 @@ public class ProduzDAO extends BaseDAO_Tables<Produz>{
     }
 
     @Override
-    public Produz construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
-    	Produz p =new Produz();
-        p.setId( resultado.getInt(i++));
+    public Cultivo construirObjetoDoResultSet(ResultSet resultado) throws SQLException {
+    	Cultivo p =new Cultivo();
+        p.setIdcultivo( resultado.getInt(i++));
+        p.setHectares_ocupa( resultado.getInt(i++));
         p.setDataInicio( resultado.getDate(i++).toInstant());
         p.setDataFim( resultado.getDate(i++).toInstant());
         p.setIdCultura( resultado.getInt(i++));

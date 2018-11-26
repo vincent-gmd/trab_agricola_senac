@@ -26,6 +26,12 @@ public class TelaLogin extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtNome;
 	private JTextField txtSenha;
+	private TelaCadastroCliente telaCadastroCliente;
+	private static TelaLogin frameLogin = new TelaLogin();
+
+	public JPanel getContentJPanel() {
+		return contentPane;
+	}
 
 	/**
 	 * Launch the application.
@@ -34,8 +40,7 @@ public class TelaLogin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaLogin frame = new TelaLogin();
-					frame.setVisible(true);
+					frameLogin.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -90,14 +95,19 @@ public class TelaLogin extends JFrame {
 		btnEntrar.setBounds(94, 221, 89, 25);
 		contentPane.add(btnEntrar);
 
-		JButton btnNewButton = new JButton("Criar Cadastro");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnCadastro = new JButton("Criar Cadastro");
+		btnCadastro.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				telaCadastroCliente = new TelaCadastroCliente();
+				JPanel contentPane = telaCadastroCliente.getContentJPanel();
+				setContentPane(contentPane);
+				contentPane.setVisible(true);
+				contentPane.updateUI();
 			}
 		});
-		btnNewButton.setBounds(222, 221, 121, 25);
-		contentPane.add(btnNewButton);
+		btnCadastro.setBounds(222, 221, 121, 25);
+		contentPane.add(btnCadastro);
 
 		JLabel label = new JLabel("TrabGricola");
 		label.setIcon(new ImageIcon(TelaLogin.class.getResource("/icones/icons8-ovelha-2-filled-100.png")));
@@ -127,6 +137,13 @@ public class TelaLogin extends JFrame {
 				dispose();
 			}
 		}
+
+	}
+
+	public void mostrarTelaLogin() {
+		setContentPane(contentPane);
+		contentPane.setVisible(true);
+		contentPane.updateUI();
 
 	}
 }

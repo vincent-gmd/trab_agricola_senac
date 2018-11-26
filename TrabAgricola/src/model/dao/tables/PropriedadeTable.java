@@ -11,6 +11,7 @@ public class PropriedadeTable extends Table{
         colums.add(new Colum("String","documento"));
         colums.add(new Colum("Date","data_cadastro"));
         colums.add(new Colum("String","endereco"));
+        colums.add(new Colum("int","hectares_total"));
 
         colums.add(new Colum("int","idcliente"));
     }
