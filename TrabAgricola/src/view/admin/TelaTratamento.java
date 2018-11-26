@@ -17,6 +17,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Color;
 
 public class TelaTratamento extends JFrame {
 
@@ -54,13 +55,13 @@ public class TelaTratamento extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 606, 709);
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.activeCaption);
+		contentPane.setBackground(new Color(85, 107, 47));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JLabel lblFiltro = new JLabel("Filtro Inteligente:");
-		lblFiltro.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblFiltro.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblFiltro.setBounds(10, 11, 101, 17);
 		contentPane.add(lblFiltro);
 
@@ -70,12 +71,12 @@ public class TelaTratamento extends JFrame {
 		contentPane.add(txtFiltro);
 
 		JLabel lblTratamento = new JLabel("Produtos");
-		lblTratamento.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblTratamento.setBounds(10, 62, 61, 14);
+		lblTratamento.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTratamento.setBounds(10, 50, 61, 14);
 		contentPane.add(lblTratamento);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 87, 500, 200);
+		scrollPane.setBounds(10, 75, 500, 200);
 		contentPane.add(scrollPane);
 
 		tblTratamentos = new JTable() {
@@ -116,23 +117,23 @@ public class TelaTratamento extends JFrame {
 		contentPane.add(btnRemover);
 
 		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNome.setBounds(10, 346, 52, 14);
+		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblNome.setBounds(10, 351, 52, 14);
 		contentPane.add(lblNome);
 
 		txtNome = new JTextField();
 		txtNome.setColumns(10);
-		txtNome.setBounds(61, 345, 190, 20);
+		txtNome.setBounds(65, 349, 190, 20);
 		contentPane.add(txtNome);
 
 		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o");
-		lblDescricao.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblDescricao.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblDescricao.setBounds(10, 390, 67, 17);
 		contentPane.add(lblDescricao);
 
 		txtDescricao = new JTextField();
 		txtDescricao.setColumns(10);
-		txtDescricao.setBounds(14, 418, 500, 200);
+		txtDescricao.setBounds(10, 418, 500, 200);
 		contentPane.add(txtDescricao);
 
 		JButton btnSalvar = new JButton("Salvar");

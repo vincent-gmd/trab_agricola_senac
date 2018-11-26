@@ -19,6 +19,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.Color;
 
 public class TelaPropriedadesCliente extends JPanel {
 	/**
@@ -44,35 +45,35 @@ public class TelaPropriedadesCliente extends JPanel {
 	public TelaPropriedadesCliente() {
 		panelPropriedadesClientes = this;
 		setBounds(new Rectangle(0, 0, 1000, 800));
-		setBackground(SystemColor.activeCaption);
+		setBackground(new Color(85, 107, 47));
 		setLayout(null);
 
 		final JPanel panelFiltro = new JPanel();
-		panelFiltro.setBackground(SystemColor.activeCaption);
-		panelFiltro.setBounds(10, 11, 532, 678);
+		panelFiltro.setBackground(new Color(85, 107, 47));
+		panelFiltro.setBounds(10, 11, 560, 678);
 		add(panelFiltro);
 		panelFiltro.setLayout(null);
 		setVisible(false);
 
-		JLabel lblFiltroInteligente = new JLabel("Filtro Inteligente");
+		JLabel lblFiltroInteligente = new JLabel("Filtro Inteligente:");
 		lblFiltroInteligente.setBounds(10, 11, 101, 17);
 		panelFiltro.add(lblFiltroInteligente);
-		lblFiltroInteligente.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblFiltroInteligente.setFont(new Font("Tahoma", Font.PLAIN, 12));
 
 
 
 		txtFiltro = new JTextField();
-		txtFiltro.setBounds(132, 11, 190, 20);
+		txtFiltro.setBounds(121, 10, 190, 20);
 		panelFiltro.add(txtFiltro);
 		txtFiltro.setColumns(10);
 
 		JLabel lblPropriedades = new JLabel("Propriedades");
 		lblPropriedades.setBounds(10, 51, 79, 17);
 		panelFiltro.add(lblPropriedades);
-		lblPropriedades.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblPropriedades.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 79, 500, 200);
+		scrollPane.setBounds(10, 79, 540, 200);
 		panelFiltro.add(scrollPane);
 		
 
@@ -141,9 +142,9 @@ public class TelaPropriedadesCliente extends JPanel {
 		btnMinhasCulturas.setBounds(10, 336, 134, 30);
 		panelFiltro.add(btnMinhasCulturas);
 		
-		JLabel lblDocumento = new JLabel("Documento");
+		JLabel lblDocumento = new JLabel("Documento:");
 		lblDocumento.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDocumento.setBounds(10, 404, 96, 17);
+		lblDocumento.setBounds(10, 405, 74, 17);
 		panelFiltro.add(lblDocumento);
 		
 		txtDocumento = new JTextField();
@@ -152,9 +153,9 @@ public class TelaPropriedadesCliente extends JPanel {
 		txtDocumento.setBounds(95, 402, 190, 20);
 		panelFiltro.add(txtDocumento);
 		
-		JLabel lblEndereco = new JLabel("Endere\u00E7o");
+		JLabel lblEndereco = new JLabel("Endere\u00E7o:");
 		lblEndereco.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblEndereco.setBounds(10, 432, 75, 17);
+		lblEndereco.setBounds(10, 433, 75, 17);
 		panelFiltro.add(lblEndereco);
 		
 		txtEndereco = new JTextField();
@@ -164,12 +165,12 @@ public class TelaPropriedadesCliente extends JPanel {
 		
 		JLabel lblDataCadastro = new JLabel("Data de Cadastro");
 		lblDataCadastro.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDataCadastro.setBounds(10, 460, 119, 14);
+		lblDataCadastro.setBounds(10, 460, 107, 14);
 		panelFiltro.add(lblDataCadastro);
 		
-		JLabel lblLatitude = new JLabel("Latitude");
+		JLabel lblLatitude = new JLabel("Latitude:");
 		lblLatitude.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblLatitude.setBounds(10, 485, 62, 14);
+		lblLatitude.setBounds(10, 487, 62, 14);
 		panelFiltro.add(lblLatitude);
 		
 		txtLatitude = new JTextField();
@@ -177,9 +178,9 @@ public class TelaPropriedadesCliente extends JPanel {
 		txtLatitude.setBounds(95, 485, 190, 20);
 		panelFiltro.add(txtLatitude);
 		
-		JLabel lblLongitude = new JLabel("Longitude");
+		JLabel lblLongitude = new JLabel("Longitude:");
 		lblLongitude.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblLongitude.setBounds(10, 510, 75, 17);
+		lblLongitude.setBounds(14, 517, 75, 17);
 		panelFiltro.add(lblLongitude);
 		
 		txtLongitude = new JTextField();
@@ -197,9 +198,9 @@ public class TelaPropriedadesCliente extends JPanel {
 		btnSalvar.setBounds(10, 613, 100, 30);
 		panelFiltro.add(btnSalvar);
 		
-		JLabel lblHectares = new JLabel("Hectares");
+		JLabel lblHectares = new JLabel("Hectares:");
 		lblHectares.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblHectares.setBounds(10, 538, 62, 17);
+		lblHectares.setBounds(10, 548, 62, 17);
 		panelFiltro.add(lblHectares);
 		
 		txtHecatares = new JTextField();
