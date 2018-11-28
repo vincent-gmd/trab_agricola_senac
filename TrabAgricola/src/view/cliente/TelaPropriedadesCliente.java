@@ -223,7 +223,10 @@ public class TelaPropriedadesCliente extends JPanel {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cadastrar();
+				if(validarCampos()) {
+					cadastrar();
+
+				}
 			}
 		});
 		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -269,7 +272,9 @@ public class TelaPropriedadesCliente extends JPanel {
 		
 			
 	protected void cadastrar() {
-		validarCampos();
+		
+		
+		Propriedade propriedade=new Propriedade();
 		
 	}
 
@@ -309,12 +314,14 @@ public class TelaPropriedadesCliente extends JPanel {
 	}
 	
 
-	private void validarCampos() {
+	private Boolean validarCampos() {
 		if (txtDocumento.getText().isEmpty() || txtEndereco.getText().isEmpty() || txtLatitude.getText().isEmpty()
 				|| txtLongitude.getText().isEmpty() || txtHecatares.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+			return false;
 		} else {
 			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamente! Cadastro concluído com sucesso.");
+			return true;
 		}
 	}
 	
