@@ -38,20 +38,7 @@ public class ClienteController {
 	 */
 	public Cliente validarLogin(String login, String senha) {
 		Cliente cliente = bo.login(login, senha);
-		if (cliente == null) {
-<<<<<<< HEAD
-=======
-			System.out.println("nao encontrado");
->>>>>>> branch 'master' of https://github.com/vincent-gmd/trab_agricola_senac
-			return null;
-		} else {
-<<<<<<< HEAD
-=======
-			System.out.println(cliente.getNivelAcesso());
->>>>>>> branch 'master' of https://github.com/vincent-gmd/trab_agricola_senac
-			return cliente;
-		}
-
+		return cliente;
 	}
 
 	public boolean validarCadastro(String login, String email) {
