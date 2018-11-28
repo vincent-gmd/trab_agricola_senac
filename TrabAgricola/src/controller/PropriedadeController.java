@@ -28,4 +28,9 @@ public class PropriedadeController {
 	public List<Propriedade> listarTodos() {
 		return bo.listarTodos();
 	}
+
+	public boolean validarCadastroPropriedade(String documento) {
+		return bo.validarCadastroPropriedade(documento);
+	}
+
 }

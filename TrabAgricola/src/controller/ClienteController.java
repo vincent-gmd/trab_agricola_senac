@@ -36,14 +36,12 @@ public class ClienteController {
 	 * @param senha
 	 * @return String - Nivel de Acesso ou Null caso
 	 */
-	public String validarLogin(String login, String senha) {
+	public Cliente validarLogin(String login, String senha) {
 		Cliente cliente = bo.login(login, senha);
 		if (cliente == null) {
-			System.out.println("ow viado");
 			return null;
 		} else {
-			System.out.println(cliente.getNivelAcesso());
-			return cliente.getNivelAcesso();
+			return cliente;
 		}
 
 	}

@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.Instant;
+import java.time.LocalDate;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,7 +20,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
-import com.toedter.calendar.JDateChooser;
+import controller.PropriedadeController;
+import model.vo.conector.Propriedade;
 
 public class TelaPropriedadesCliente extends JPanel {
 	/**
@@ -26,22 +29,22 @@ public class TelaPropriedadesCliente extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTextField txtFiltro;
-	private JTable table;
+	private JTable tblPropriedades;
 	private TelaPropriedadesCliente panelPropriedadesClientes;
 	private JTextField txtDocumento;
 	private JTextField txtEndereco;
-	private JTextField txtLatitude;
-	private JTextField txtLongitude;
-	private JTextField txtHecatares;
+	private JTextField txtHectares;
 	private JButton btnNovaPropriedade;
 	private JButton btnAlterar;
 	private JButton btnMinhasCulturas;
 	private JButton btnRemover;
+	private PropriedadeController propriedadeController;
 
 	/**
 	 * Create the panel.
 	 */
 	public TelaPropriedadesCliente() {
+
 		panelPropriedadesClientes = this;
 		setBounds(new Rectangle(0, 0, 1000, 800));
 		setBackground(new Color(85, 107, 47));
@@ -73,28 +76,27 @@ public class TelaPropriedadesCliente extends JPanel {
 		scrollPane.setBounds(10, 79, 540, 200);
 		panelFiltro.add(scrollPane);
 
-		table = new JTable() {
+		tblPropriedades = new JTable() {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
-		table.addMouseListener(new MouseAdapter() {
+		tblPropriedades.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				btnAlterar.setEnabled(true);
 				btnRemover.setEnabled(true);
 			}
 		});
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Documento", "Hecatres", "Endere\u00E7o",
-				"Hectares Ocupados", "Infectado", "Tratamento Aplicado", }));
-		scrollPane.setViewportView(table);
+		tblPropriedades.setModel(new DefaultTableModel(new Object[][] {},
+				new String[] { "Documento", "Hecatres", "Endere\u00E7o", "Hectares Ocupados" }));
+		scrollPane.setViewportView(tblPropriedades);
 
 		btnNovaPropriedade = new JButton("Nova Propriedade");
 		btnNovaPropriedade.setBounds(10, 290, 146, 30);
 		panelFiltro.add(btnNovaPropriedade);
 		btnNovaPropriedade.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
 			}
 		});
 		btnNovaPropriedade.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -155,50 +157,56 @@ public class TelaPropriedadesCliente extends JPanel {
 		txtEndereco.setBounds(95, 432, 190, 20);
 		panelFiltro.add(txtEndereco);
 
-		JLabel lblDataCadastro = new JLabel("Data de Cadastro:");
-		lblDataCadastro.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDataCadastro.setBounds(10, 460, 107, 14);
-		panelFiltro.add(lblDataCadastro);
-
-		JLabel lblLatitude = new JLabel("Latitude:");
-		lblLatitude.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblLatitude.setBounds(10, 487, 62, 14);
-		panelFiltro.add(lblLatitude);
-
-		txtLatitude = new JTextField();
-		txtLatitude.setColumns(10);
-		txtLatitude.setBounds(95, 485, 190, 20);
-		panelFiltro.add(txtLatitude);
-
-		JLabel lblLongitude = new JLabel("Longitude:");
-		lblLongitude.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblLongitude.setBounds(14, 517, 75, 17);
-		panelFiltro.add(lblLongitude);
-
-		txtLongitude = new JTextField();
-		txtLongitude.setColumns(10);
-		txtLongitude.setBounds(95, 516, 190, 20);
-		panelFiltro.add(txtLongitude);
-
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (ValidarCampos() == true) {
+					propriedadeController = new PropriedadeController();
+					Propriedade propriedade = new Propriedade();
+					String documento = txtDocumento.getText();
+					String endereco = txtEndereco.getText();
+					Integer hectares = Integer.parseInt((txtHectares.getText()));
+					System.out.println(hectares);
+					Instant dataCadastro = Instant.now();
+					LocalDate data = LocalDate.now();
+					propriedade.setDocumento(documento);
+					propriedade.setEndereco(endereco);
+					propriedade.setHectares_total(hectares);
+					propriedade.setData_cadastro(data);
+
+					if (propriedadeController.validarCadastroPropriedade(documento) == true) {
+						JOptionPane.showMessageDialog(null, "Propriedade cadastrada com sucesso!");
+						propriedadeController.inserir(propriedade);
+						carregarTabela();
+					} else {
+						JOptionPane.showMessageDialog(null, "Propriedade já cadastrada");
+					}
+
+				} else {
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+
+				}
+
+			}
+		});
 		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnCadastrar.setBounds(10, 613, 100, 30);
+		btnCadastrar.setBounds(10, 541, 100, 30);
 		panelFiltro.add(btnCadastrar);
 
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnSalvar.setBounds(10, 613, 100, 30);
+		btnSalvar.setBounds(11, 541, 100, 30);
 		panelFiltro.add(btnSalvar);
 
 		JLabel lblHectares = new JLabel("Hectares:");
 		lblHectares.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblHectares.setBounds(10, 548, 62, 17);
+		lblHectares.setBounds(10, 461, 62, 17);
 		panelFiltro.add(lblHectares);
 
-		txtHecatares = new JTextField();
-		txtHecatares.setColumns(10);
-		txtHecatares.setBounds(95, 547, 190, 20);
-		panelFiltro.add(txtHecatares);
+		txtHectares = new JTextField();
+		txtHectares.setColumns(10);
+		txtHectares.setBounds(95, 463, 190, 20);
+		panelFiltro.add(txtHectares);
 
 		JButton btnLimpar = new JButton("Limpar");
 		btnLimpar.addActionListener(new ActionListener() {
@@ -206,28 +214,36 @@ public class TelaPropriedadesCliente extends JPanel {
 				limparTela();
 			}
 		});
-		btnLimpar.setBounds(173, 613, 96, 30);
+		btnLimpar.setBounds(166, 542, 96, 30);
 		panelFiltro.add(btnLimpar);
-
-		JDateChooser dataCadastro = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
-		dataCadastro.setBounds(121, 460, 164, 20);
-		panelFiltro.add(dataCadastro);
 	}
 
 	private void limparTela() {
 		txtDocumento.setText("");
 		txtEndereco.setText("");
-		txtLatitude.setText("");
-		txtLongitude.setText("");
-		txtHecatares.setText("");
+		txtHectares.setText("");
 	}
 
-	private void ValidarCampos() {
-		if (txtDocumento.getText().isEmpty() || txtEndereco.getText().isEmpty() || txtLatitude.getText().isEmpty()
-				|| txtLongitude.getText().isEmpty() || txtHecatares.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+	private boolean ValidarCampos() {
+		if (txtDocumento.getText().isEmpty() || txtEndereco.getText().isEmpty() || txtHectares.getText().isEmpty()) {
+			return false;
 		} else {
-			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamento");
+			return true;
 		}
+	}
+
+	public void carregarTabela() {
+		DefaultTableModel modelo = new DefaultTableModel(
+				new Object[] { "DOCUMENTO", "HECTARES", "ENDERECO", "DATA DE CADASTRO" }, 0);
+		for (int i = 0; i < propriedadeController.listarTodos().size(); i++) {
+			Object linha[] = new Object[] { propriedadeController.listarTodos().get(i).getDocumento(),
+					propriedadeController.listarTodos().get(i).getHectares_total(),
+					propriedadeController.listarTodos().get(i).getEndereco(),
+					propriedadeController.listarTodos().get(i).getData_cadastro() };
+
+			modelo.addRow(linha);
+		}
+		tblPropriedades.setModel(modelo);
+
 	}
 }

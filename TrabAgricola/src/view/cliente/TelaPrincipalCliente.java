@@ -15,12 +15,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import model.vo.conector.Cliente;
+
 public class TelaPrincipalCliente extends JFrame {
 
 	private JPanel contentPane;
 	private TelaPropriedadesCliente telaPropriedadesCliente;
 	private TelaDoencaCliente telaDoencaCliente;
 	private TelaCulturasCliente telaCulturasCliente;
+	private Cliente clienteLogado;
 
 	public void testarChamadaAoPai() {
 		JOptionPane.showMessageDialog(null, "Teste");
