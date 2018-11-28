@@ -17,6 +17,9 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JDateChooser;
+
+import controller.TelaClienteControler;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -39,11 +42,13 @@ public class TelaCulturasCliente extends JPanel {
 	private JButton btnCadastrar;
 	private JButton btnVoltar;
 	private static final int INSERIR = 1;
+	private TelaClienteControler telaControler;
 
 	/**
 	 * Create the panel.
 	 */
-	public TelaCulturasCliente() {
+	public TelaCulturasCliente(TelaClienteControler telaControlerin) {
+		telaControler=telaControlerin;
 		panelCulturasClientes = this;
 		setBackground(new Color(85, 107, 47));
 		setLayout(null);

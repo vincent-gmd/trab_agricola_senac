@@ -16,17 +16,26 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import controller.PropriedadeController;
+import controller.TelaClienteControler;
+import model.dao.PropriedadeDAO;
+import model.vo.conector.Cultivo;
+import model.vo.conector.Cultura;
+import model.vo.conector.Propriedade;
+
 public class TelaDoencaCliente extends JPanel {
 	private JTextField txtFiltrointeligente;
 	private JTable tblDoencas;
 	private JTextField filtroInteligenteTratamentos;
 	private JPanel panelTratamentos;
 	private JPanel panelDoenca;
-
+	private PropriedadeController controller;
+	private final JComboBox cboxCulturas;
+	private TelaClienteControler telaControler;
 	/**
 	 * Create the panel.
 	 */
-	public TelaDoencaCliente() {
+	public TelaDoencaCliente(TelaClienteControler telaControlerIn) {
 
 		setBackground(new Color(85, 107, 47));
 		setLayout(null);
@@ -54,7 +63,15 @@ public class TelaDoencaCliente extends JPanel {
 		lblPropriedades.setBounds(10, 11, 96, 17);
 		panelDoenca.add(lblPropriedades);
 
-		JComboBox cboxPropriedades = new JComboBox();
+		final JComboBox cboxPropriedades = new JComboBox();
+		cboxPropriedades.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {				
+				for(Propriedade p : controller.listarPorClientId(telaControler.getCliente().getIdCliente())) {
+					cboxPropriedades.addItem(p);
+				}
+				enableCultura();
+			}
+		});
 		cboxPropriedades.setBounds(99, 11, 190, 20);
 		panelDoenca.add(cboxPropriedades);
 
@@ -66,13 +83,22 @@ public class TelaDoencaCliente extends JPanel {
 		tblDoencas.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "Tipo", "Causador", }));
 		scrollPane.setViewportView(tblDoencas);
 
-		JLabel lblCulturas = new JLabel("Culturas:");
+		JLabel lblCulturas = new JLabel("Cultivos:");
 		lblCulturas.setForeground(new Color(255, 255, 255));
 		lblCulturas.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblCulturas.setBounds(10, 39, 85, 14);
 		panelDoenca.add(lblCulturas);
 
-		JComboBox cboxCulturas = new JComboBox();
+		 cboxCulturas = new JComboBox();
+		cboxCulturas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int idpropriedade=((Propriedade)cboxPropriedades.getSelectedItem()).getIdPropriedade();
+				for(Cultivo c : controller.pesquisarJoinPorId(idpropriedade).getJoinList()) {
+					cboxCulturas.addItem(c);
+				}
+				
+			}
+		});
 		cboxCulturas.setBounds(99, 39, 190, 20);
 		panelDoenca.add(cboxCulturas);
 
@@ -148,5 +174,8 @@ public class TelaDoencaCliente extends JPanel {
 																btnVoltar.setBounds(358, 294, 103, 39);
 																panelTratamentos.add(btnVoltar);
 
+	}
+	void enableCultura(){
+		cboxCulturas.setEnabled(true);
 	}
 }

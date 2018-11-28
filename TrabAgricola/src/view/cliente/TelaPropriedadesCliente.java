@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import model.bo.ClienteBO;
+import model.dao.base.Colum;
 import model.vo.conector.Propriedade;
 
 import java.awt.event.MouseAdapter;
@@ -30,6 +31,7 @@ import java.awt.Color;
 import com.toedter.calendar.JDateChooser;
 
 import controller.PropriedadeController;
+import controller.TelaClienteControler;
 
 public class TelaPropriedadesCliente extends JPanel {
 	/**
@@ -48,17 +50,19 @@ public class TelaPropriedadesCliente extends JPanel {
 	private JButton btnAlterar;
 	private JButton btnMinhasCulturas;
 	private JButton btnRemover;
-
+	private TelaClienteControler telaControler;
 	private JButton btnLimpar;
 	private JButton btnCadastrar;
 	private static final int INSERIR = 1;
 
-	private String[] colunasTabela=  new String[] {"Documento", "Hecatres", "Endere\u00E7o","Hectares Ocupados"};
+	private String[] colunasTabela=  new String[] 
+			{ "Documento", "Endere\u00E7o","Hecatres","Hectares Ocupados", };
 
 	/**
 	 * Create the panel.
 	 */
-	public TelaPropriedadesCliente() {
+	public TelaPropriedadesCliente(TelaClienteControler telaControlerIn) {
+		telaControler=telaControlerIn;
 		panelPropriedadesClientes = this;
 		setBounds(new Rectangle(0, 0, 1000, 800));
 		setBackground(new Color(85, 107, 47));
@@ -110,8 +114,6 @@ public class TelaPropriedadesCliente extends JPanel {
 			
 			colunasTabela
 		));
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Documento", "Hecatres", "Endere\u00E7o",
-				"Hectares Ocupados", }));
 		scrollPane.setViewportView(table);
 
 		btnNovaPropriedade = new JButton("Nova Propriedade");
@@ -276,11 +278,15 @@ public class TelaPropriedadesCliente extends JPanel {
 		
 		Propriedade propriedade=new Propriedade();
 		
+		atualizarTabela();
+
 	}
 
 
 	private void atualizarTabela(){
-		List<Propriedade> propriedades = new PropriedadeController().listarTodos() ;
+		
+		
+		List<Propriedade> propriedades = new PropriedadeController().listarPorClientId(telaControler.getCliente().getIdCliente()) ;
 
 		Object[][] valores = new Object[propriedades.size()][colunasTabela.length] ;
 		Propriedade propriedade;
@@ -296,8 +302,9 @@ public class TelaPropriedadesCliente extends JPanel {
 			 count=0;
 			
 				model.setValueAt(propriedade.getDocumento(), i, count++);
-				model.setValueAt(propriedade.getHectares_total(), i, count++);
 				model.setValueAt(propriedade.getEndereco(), i, count++);
+				model.setValueAt(propriedade.getHectares_total(), i, count++);
+
 			
 			
 		}
