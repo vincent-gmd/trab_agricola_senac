@@ -100,10 +100,14 @@ public class TelaLogin extends JFrame {
 		btnCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				telaCadastroCliente = new TelaCadastroCliente();
-				JPanel contentPane = telaCadastroCliente.getContentJPanel();
-				setContentPane(contentPane);
-				contentPane.setVisible(true);
-				contentPane.updateUI();
+				//JPanel contentPane = telaCadastroCliente.getContentJPanel();
+				//setContentPane(contentPane);
+				//contentPane.setVisible(true);
+				//contentPane.updateUI();
+				telaCadastroCliente.setVisible(true);
+				dispose();
+
+				
 			}
 		});
 		btnCadastro.setBounds(222, 221, 121, 25);

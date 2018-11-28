@@ -102,8 +102,9 @@ public class TelaCadastroCliente extends JFrame {
 				cliente.setSenha(senha);
 
 				if (clienteController.validarCadastro(login, email) == true) {
-					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+					
 					clienteController.inserir(cliente);
+					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
 				}
 
 			}
@@ -112,7 +113,15 @@ public class TelaCadastroCliente extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				setContentPane(telaLogin.getContentJPanel());
+				telaLogin = new TelaLogin();
+				//JPanel contentPane = telaLogin.getContentJPanel();
+				//setContentPane(contentPane);
+				//contentPane.setVisible(true);
+				//contentPane.updateUI();
+				telaLogin.setVisible(true);
+				dispose();
+
+
 			}
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 12));
