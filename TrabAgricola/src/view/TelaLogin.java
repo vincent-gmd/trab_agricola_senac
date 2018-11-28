@@ -135,7 +135,7 @@ public class TelaLogin extends JFrame {
 				TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
 				telaPrincipalCliente.setVisible(true);
 				dispose();
-			} else if (validacao.equals("2")) {
+			} else if (validacao.equals("admin")) {
 				TelaPrincipalAdmin telaPrincipalAdmin = new TelaPrincipalAdmin();
 				telaPrincipalAdmin.setVisible(true);
 				dispose();

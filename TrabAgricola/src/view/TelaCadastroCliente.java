@@ -100,6 +100,8 @@ public class TelaCadastroCliente extends JFrame {
 				cliente.setEmail(email);
 				cliente.setLogin(login);
 				cliente.setSenha(senha);
+				cliente.setNivelAcesso("comon");
+
 
 				if (clienteController.validarCadastro(login, email) == true) {
 					
