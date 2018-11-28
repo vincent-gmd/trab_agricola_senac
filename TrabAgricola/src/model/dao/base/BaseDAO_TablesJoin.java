@@ -105,7 +105,7 @@ public abstract class BaseDAO_TablesJoin<T,J,L> extends BaseDAO_Tables<T>{
 		return clausulaSet;
 	}
 	
-	public JoinAgregator pesquisarJoinPorId(int idEntidade){
+	public JoinAgregator<T,J,L> pesquisarJoinPorId(int idEntidade){
 		//SQL: SELECT * FROM NOMETABELA WHERE WHERE ID = idEntidade
 		String sql = "SELECT "+ getColunasSelect() +" FROM "+ getJoinString()+" WHERE " + getNomeColunaChavePrimaria() + " = " + idEntidade;
 

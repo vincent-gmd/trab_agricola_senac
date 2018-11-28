@@ -82,8 +82,8 @@ public class ClienteBO {
 		}
 		ArrayList<Colum> colums2 = new ArrayList<Colum>();
 		ArrayList<Object> values2 = new ArrayList<Object>();
-		colums.add(new Colum("String", "email"));
-		values.add(email);
+		colums2.add(new Colum("String", "email"));
+		values2.add(email);
 		listaClientes = listarTodosWhere(colums2, values2);
 		if (listaClientes.isEmpty()) {
 			// ok nao exise cliente com esse email;

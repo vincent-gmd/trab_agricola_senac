@@ -11,7 +11,7 @@ import model.vo.conector.Cultura;
 import model.vo.conector.Cultivo;
 import model.vo.conector.Propriedade;
 
-public class ProriedadeProduzCulturaJoin extends BaseDAO_TablesJoin<Propriedade,Cultivo,Cultura>{
+public class ProriedadeCultivoCulturaJoin extends BaseDAO_TablesJoin<Propriedade,Cultivo,Cultura>{
 
 	@Override
 	protected Propriedade construirObjetoDoResultSet(ResultSet resultado) throws SQLException {

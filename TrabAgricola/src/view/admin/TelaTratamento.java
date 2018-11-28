@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -26,7 +27,12 @@ public class TelaTratamento extends JFrame {
 	private JTable tblTratamentos;
 	private JTextField txtNome;
 	private JTextField txtDescricao;
-
+	private JButton btnEditar;
+	private JButton btnRemover;
+	private JButton btnSalvar;
+	private JButton btnLimpar;
+	private static final int INSERIR = 1;
+	
 	public JPanel getContentJPanel() {
 		return contentPane;
 	}
@@ -61,6 +67,7 @@ public class TelaTratamento extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblFiltro = new JLabel("Filtro Inteligente:");
+		lblFiltro.setForeground(new Color(255, 255, 255));
 		lblFiltro.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblFiltro.setBounds(10, 11, 101, 17);
 		contentPane.add(lblFiltro);
@@ -71,6 +78,7 @@ public class TelaTratamento extends JFrame {
 		contentPane.add(txtFiltro);
 
 		JLabel lblTratamento = new JLabel("Produtos");
+		lblTratamento.setForeground(new Color(255, 255, 255));
 		lblTratamento.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblTratamento.setBounds(10, 50, 61, 14);
 		contentPane.add(lblTratamento);
@@ -90,17 +98,31 @@ public class TelaTratamento extends JFrame {
 				int linha = tblTratamentos.getSelectedRow();
 				String celulaNome = (String) tblTratamentos.getModel().getValueAt(linha, 0);
 				String celulaDescricao = (String) tblTratamentos.getModel().getValueAt(linha, 1);
+				btnEditar.setEnabled(true);
+				btnRemover.setEnabled(true);
 			}
 		});
-		tblTratamentos.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "Descrição" }));
+		tblTratamentos.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Nome", "Descri\u00E7\u00E3o"
+			}
+		));
 		scrollPane.setViewportView(tblTratamentos);
 
 		JButton btnNovoTratamento = new JButton("Novo Tratamento");
+		btnNovoTratamento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				manipularMenu(1);
+			}
+		});
 		btnNovoTratamento.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNovoTratamento.setBounds(10, 291, 141, 30);
+		btnNovoTratamento.setBounds(10, 291, 145, 20);
 		contentPane.add(btnNovoTratamento);
 
-		JButton btnEditar = new JButton("Editar");
+		btnEditar = new JButton("Editar");
+		btnEditar.setEnabled(false);
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txtNome.setText((String) tblTratamentos.getValueAt(0, 0));
@@ -108,40 +130,52 @@ public class TelaTratamento extends JFrame {
 			}
 		});
 		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnEditar.setBounds(228, 291, 100, 30);
+		btnEditar.setBounds(228, 291, 100, 20);
 		contentPane.add(btnEditar);
 
-		JButton btnRemover = new JButton("Remover");
+		btnRemover = new JButton("Remover");
+		btnRemover.setEnabled(false);
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnRemover.setBounds(410, 291, 100, 30);
+		btnRemover.setBounds(410, 291, 100, 20);
 		contentPane.add(btnRemover);
 
 		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setForeground(new Color(255, 255, 255));
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNome.setBounds(10, 351, 52, 14);
 		contentPane.add(lblNome);
 
 		txtNome = new JTextField();
+		txtNome.setEnabled(false);
 		txtNome.setColumns(10);
 		txtNome.setBounds(65, 349, 190, 20);
 		contentPane.add(txtNome);
 
 		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o");
+		lblDescricao.setForeground(new Color(255, 255, 255));
 		lblDescricao.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDescricao.setBounds(10, 390, 67, 17);
+		lblDescricao.setBounds(10, 376, 67, 17);
 		contentPane.add(lblDescricao);
 
 		txtDescricao = new JTextField();
+		txtDescricao.setEnabled(false);
 		txtDescricao.setColumns(10);
-		txtDescricao.setBounds(10, 418, 500, 200);
+		txtDescricao.setBounds(10, 404, 500, 200);
 		contentPane.add(txtDescricao);
 
-		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar = new JButton("Cadastrar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				validarCampos();
+			}
+		});
+		btnSalvar.setEnabled(false);
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnSalvar.setBounds(97, 629, 100, 30);
 		contentPane.add(btnSalvar);
 
-		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar = new JButton("Limpar");
+		btnLimpar.setEnabled(false);
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				LimparTela();
@@ -151,10 +185,31 @@ public class TelaTratamento extends JFrame {
 		btnLimpar.setBounds(335, 629, 100, 30);
 		contentPane.add(btnLimpar);
 	}
+	
+	private boolean validarCampos() {
+		if (txtNome.getText().isEmpty() || txtDescricao.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+			return false;
+		} else {
+			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamente! Cadastro concluído com sucesso.");
+			return true;
+		}
+	}
 
 	private void LimparTela() {
 		txtNome.setText("");
 		txtDescricao.setText("");
 
 	}
+	
+	public void manipularMenu(int modo) {
+		switch (modo) {
+		case INSERIR:
+			txtNome.setEnabled(true);
+			txtDescricao.setEnabled(true);
+			btnSalvar.setEnabled(true);
+			btnLimpar.setEnabled(true);
+			break;
+	} 
+  }
 }

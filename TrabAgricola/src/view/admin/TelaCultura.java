@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -26,6 +27,11 @@ public class TelaCultura extends JFrame {
 	private JTable tblCulturas;
 	private JTextField txtNome;
 	private JTextField txtTipo;
+	private JButton btnLimpar;
+	private JButton btnEditar;
+	private JButton btnRemover;
+	private JButton btnSalvar;
+	private static final int INSERIR = 1;
 
 	public JPanel getContentJPanel() {
 		return contentPane;
@@ -80,6 +86,28 @@ public class TelaCultura extends JFrame {
 		lblCultura.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblCultura.setBounds(204, 11, 75, 14);
 		contentPane.add(lblCultura);
+		
+		btnLimpar = new JButton("Limpar");
+		btnLimpar.setEnabled(false);
+		btnLimpar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LimparTela();
+			}
+		});
+		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnLimpar.setBounds(236, 401, 100, 30);
+		contentPane.add(btnLimpar);
+		
+		btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ValidarCampos();
+			}
+		});
+		btnSalvar.setEnabled(false);
+		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnSalvar.setBounds(111, 401, 100, 30);
+		contentPane.add(btnSalvar);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(20, 79, 433, 200);
@@ -96,23 +124,21 @@ public class TelaCultura extends JFrame {
 				int linha = tblCulturas.getSelectedRow();
 				String celulaNome = (String) tblCulturas.getModel().getValueAt(linha, 0);
 				String celulaTipo = (String) tblCulturas.getModel().getValueAt(linha, 1);
+				btnEditar.setEnabled(true);
+				btnRemover.setEnabled(true);
 			}
 		});
-		tblCulturas.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Nome", "Tipo" }));
+		tblCulturas.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Nome", "Tipo"
+			}
+		));
 		scrollPane.setViewportView(tblCulturas);
 
-		JButton btnNovaCultura = new JButton("Nova Cultura");
-		btnNovaCultura.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				txtNome.setEnabled(true);
-				txtTipo.setEnabled(true);
-			}
-		});
-		btnNovaCultura.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNovaCultura.setBounds(20, 290, 114, 20);
-		contentPane.add(btnNovaCultura);
-
-		JButton btnEditar = new JButton("Editar");
+		btnEditar = new JButton("Editar");
+		btnEditar.setEnabled(false);
 		btnEditar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				txtNome.setText((String) tblCulturas.getValueAt(0, 0));
@@ -123,7 +149,8 @@ public class TelaCultura extends JFrame {
 		btnEditar.setBounds(191, 290, 100, 20);
 		contentPane.add(btnEditar);
 
-		JButton btnRemover = new JButton("Remover");
+		btnRemover = new JButton("Remover");
+		btnRemover.setEnabled(false);
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnRemover.setBounds(353, 290, 100, 20);
 		contentPane.add(btnRemover);
@@ -151,26 +178,44 @@ public class TelaCultura extends JFrame {
 		txtTipo.setBounds(83, 360, 190, 20);
 		txtTipo.setEnabled(false);
 		contentPane.add(txtTipo);
-
-		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnSalvar.setBounds(111, 401, 100, 30);
-		contentPane.add(btnSalvar);
-
-		JButton btnLimpar = new JButton("Limpar");
-		btnLimpar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				LimparTela();
-			}
-		});
-		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnLimpar.setBounds(236, 401, 100, 30);
-		contentPane.add(btnLimpar);
+		
+		JButton btnNovaCultura = new JButton("Nova Cultura");
+		btnNovaCultura.setBounds(30, 290, 113, 20);
+		contentPane.add(btnNovaCultura);
+		btnNovaCultura.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					manipularMenu(1);
+				}
+				});
+		btnNovaCultura.setFont(new Font("Tahoma", Font.PLAIN, 12));
 	}
 
+	private boolean ValidarCampos() {
+		if (txtNome.getText().isEmpty() || txtTipo.getText().isEmpty() ){
+			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+			return false;
+		} else {
+			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamente! Cadastro Concluído com sucesso.");
+			return true;
+		}
+	}
+	
 	private void LimparTela() {
 		txtNome.setText("");
 		txtTipo.setText("");
 
 	}
+	
+	public void manipularMenu(int modo) {
+		switch (modo) {
+		case INSERIR:
+			txtNome.setEnabled(true);
+			txtTipo.setEnabled(true);
+			btnSalvar.setEnabled(true);
+			btnLimpar.setEnabled(true);
+			break;
+	} 
+  }
+	
+	
 }

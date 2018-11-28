@@ -18,6 +18,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import controller.ClienteController;
+import controller.TelaClienteControler;
+import model.vo.conector.Cliente;
 import view.admin.TelaPrincipalAdmin;
 import view.cliente.TelaPrincipalCliente;
 
@@ -100,10 +102,14 @@ public class TelaLogin extends JFrame {
 		btnCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				telaCadastroCliente = new TelaCadastroCliente();
-				JPanel contentPane = telaCadastroCliente.getContentJPanel();
-				setContentPane(contentPane);
-				contentPane.setVisible(true);
-				contentPane.updateUI();
+				//JPanel contentPane = telaCadastroCliente.getContentJPanel();
+				//setContentPane(contentPane);
+				//contentPane.setVisible(true);
+				//contentPane.updateUI();
+				telaCadastroCliente.setVisible(true);
+				dispose();
+
+				
 			}
 		});
 		btnCadastro.setBounds(222, 221, 121, 25);
@@ -120,21 +126,35 @@ public class TelaLogin extends JFrame {
 
 	private void ValidarCampos(String nome, String senha) {
 		ClienteController clienteController = new ClienteController();
-		String validacao = clienteController.validarLogin(nome, senha);
+		
 		if (txtNome.getText().isEmpty() || txtSenha.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
-		} else if (validacao == null) {
+			return;
+		} 
+		Cliente cliente = clienteController.validarLogin(nome, senha);
+		if (cliente == null) {
 			JOptionPane.showMessageDialog(null, "Login e senha incorretos!");
 		} else {
-			JOptionPane.showMessageDialog(null, "Login efetuado com sucesso!");
-			if (validacao.equals("comon")) {
-				TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente();
-				telaPrincipalCliente.setVisible(true);
-				dispose();
-			} else if (validacao.equals("2")) {
+			
+			if (cliente.getNivelAcesso().equals("admin")) {
 				TelaPrincipalAdmin telaPrincipalAdmin = new TelaPrincipalAdmin();
 				telaPrincipalAdmin.setVisible(true);
 				dispose();
+			}else if (cliente.getNivelAcesso().equals("comon")){
+				TelaClienteControler telaClienteControler = new TelaClienteControler();
+				telaClienteControler.setCliente(cliente);
+				TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente(telaClienteControler);
+				telaPrincipalCliente.setVisible(true);
+				dispose();
+			}else 	if (cliente.getNivelAcesso().equals("certified")) {
+				TelaClienteControler telaClienteControler = new TelaClienteControler();
+				telaClienteControler.setCliente(cliente);
+				TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente(telaClienteControler);
+				telaPrincipalCliente.setVisible(true);
+				dispose();
+			}else {
+				JOptionPane.showMessageDialog(null, "errol assesso invalido!");
+
 			}
 		}
 

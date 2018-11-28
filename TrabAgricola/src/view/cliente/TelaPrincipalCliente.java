@@ -17,14 +17,15 @@ import javax.swing.border.EmptyBorder;
 
 import model.vo.conector.Cliente;
 
+import controller.TelaClienteControler;
+
 public class TelaPrincipalCliente extends JFrame {
 
 	private JPanel contentPane;
 	private TelaPropriedadesCliente telaPropriedadesCliente;
 	private TelaDoencaCliente telaDoencaCliente;
 	private TelaCulturasCliente telaCulturasCliente;
-	private Cliente clienteLogado;
-
+	private TelaClienteControler telaControler;
 	public void testarChamadaAoPai() {
 		JOptionPane.showMessageDialog(null, "Teste");
 	}
@@ -36,7 +37,7 @@ public class TelaPrincipalCliente extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaPrincipalCliente frame = new TelaPrincipalCliente();
+					TelaPrincipalCliente frame = new TelaPrincipalCliente(null);
 					frame.setVisible(true);
 					frame.setTitle("TrabGricola");
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -50,7 +51,8 @@ public class TelaPrincipalCliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaPrincipalCliente() {
+	public TelaPrincipalCliente( TelaClienteControler telaControlerin) {
+		this.telaControler=telaControlerin;
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(TelaPrincipalCliente.class.getResource("/icones/icons8-ovelha-2-26.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,10 +70,7 @@ public class TelaPrincipalCliente extends JFrame {
 				.setIcon(new ImageIcon(TelaPrincipalCliente.class.getResource("/icones/icons8-fazenda-24.png")));
 		mntmCadastroDePropriedade.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				telaPropriedadesCliente = new TelaPropriedadesCliente();
-				setContentPane(telaPropriedadesCliente);
-				telaPropriedadesCliente.setVisible(true);
-				telaPropriedadesCliente.updateUI();
+				mostrarTelaPropriedade();
 			}
 		});
 		mnNewMenu.add(mntmCadastroDePropriedade);
@@ -86,7 +85,7 @@ public class TelaPrincipalCliente extends JFrame {
 				new ImageIcon(TelaPrincipalCliente.class.getResource("/icones/icons8-planta-sob-chuva-24.png")));
 		mntmBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				telaDoencaCliente = new TelaDoencaCliente();
+				telaDoencaCliente = new TelaDoencaCliente(telaControler);
 				setContentPane(telaDoencaCliente);
 				telaDoencaCliente.setVisible(true);
 				telaDoencaCliente.updateUI();
@@ -102,7 +101,7 @@ public class TelaPrincipalCliente extends JFrame {
 	}
 
 	public void mostrarTelaCulturas() {
-		telaCulturasCliente = new TelaCulturasCliente();
+		telaCulturasCliente = new TelaCulturasCliente(telaControler);
 		setContentPane(telaCulturasCliente);
 		telaCulturasCliente.setVisible(true);
 		telaCulturasCliente.updateUI();
@@ -110,7 +109,7 @@ public class TelaPrincipalCliente extends JFrame {
 	}
 
 	public void mostrarTelaPropriedade() {
-		telaPropriedadesCliente = new TelaPropriedadesCliente();
+		telaPropriedadesCliente = new TelaPropriedadesCliente(telaControler);
 		setContentPane(telaPropriedadesCliente);
 		telaPropriedadesCliente.setVisible(true);
 		telaPropriedadesCliente.updateUI();
