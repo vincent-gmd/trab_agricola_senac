@@ -48,6 +48,8 @@ public class TelaCadastro extends JPanel {
 				if (clienteController.validarCadastro(login, email) == true) {
 					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
 					clienteController.inserir(cliente);
+				} else {
+					System.out.println("teste");
 				}
 			}
 		});

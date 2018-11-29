@@ -66,7 +66,6 @@ public class ClienteBO {
 	}
 
 	public Boolean validarCadastro(String login, String email) {
-		Boolean validado = true;
 
 		ArrayList<Colum> colums = new ArrayList<Colum>();
 		ArrayList<Object> values = new ArrayList<Object>();
@@ -75,25 +74,23 @@ public class ClienteBO {
 		values.add(login);
 		listaClientes = listarTodosWhere(colums, values);
 		if (listaClientes.isEmpty()) {
-			// ok nao exise cliente com esse login;
+			ArrayList<Colum> colums2 = new ArrayList<Colum>();
+			ArrayList<Object> values2 = new ArrayList<Object>();
+			colums2.add(new Colum("String", "email"));
+			values2.add(email);
+			listaClientes = listarTodosWhere(colums2, values2);
+			if (listaClientes.isEmpty()) {
+				return true;
+			} else {
+				// erro exise cliente com esse email;
+				System.out.println("false 1");
+				return false;
+			}
 		} else {
 			// erro exise cliente com esse login;
+			System.out.println("false 2");
 			return false;
 		}
-		ArrayList<Colum> colums2 = new ArrayList<Colum>();
-		ArrayList<Object> values2 = new ArrayList<Object>();
-		colums2.add(new Colum("String", "email"));
-		values2.add(email);
-		listaClientes = listarTodosWhere(colums2, values2);
-		if (listaClientes.isEmpty()) {
-			// ok nao exise cliente com esse email;
-		} else {
-			// erro exise cliente com esse email;
-			return false;
-		}
-
-		// nemhum erro athe aqui pode cadastrar
-		return true;
 
 	}
 

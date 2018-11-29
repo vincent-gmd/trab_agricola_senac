@@ -15,8 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import model.vo.conector.Cliente;
-
 import controller.TelaClienteControler;
 
 public class TelaPrincipalCliente extends JFrame {
@@ -26,6 +24,7 @@ public class TelaPrincipalCliente extends JFrame {
 	private TelaDoencaCliente telaDoencaCliente;
 	private TelaCulturasCliente telaCulturasCliente;
 	private TelaClienteControler telaControler;
+
 	public void testarChamadaAoPai() {
 		JOptionPane.showMessageDialog(null, "Teste");
 	}
@@ -51,8 +50,8 @@ public class TelaPrincipalCliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaPrincipalCliente( TelaClienteControler telaControlerin) {
-		this.telaControler=telaControlerin;
+	public TelaPrincipalCliente(TelaClienteControler telaControlerin) {
+		this.telaControler = telaControlerin;
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(TelaPrincipalCliente.class.getResource("/icones/icons8-ovelha-2-26.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

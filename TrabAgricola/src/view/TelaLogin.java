@@ -28,7 +28,7 @@ public class TelaLogin extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtNome;
 	private JTextField txtSenha;
-	private TelaCadastroCliente telaCadastroCliente;
+	private TelaCadastro telaCadastro;
 	private static TelaLogin frameLogin = new TelaLogin();
 
 	public JPanel getContentJPanel() {
@@ -101,15 +101,11 @@ public class TelaLogin extends JFrame {
 		btnCadastro.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnCadastro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				telaCadastroCliente = new TelaCadastroCliente();
-				//JPanel contentPane = telaCadastroCliente.getContentJPanel();
-				//setContentPane(contentPane);
-				//contentPane.setVisible(true);
-				//contentPane.updateUI();
-				telaCadastroCliente.setVisible(true);
-				dispose();
+				telaCadastro = new TelaCadastro();
+				setContentPane(telaCadastro);
+				telaCadastro.setVisible(true);
+				telaCadastro.updateUI();
 
-				
 			}
 		});
 		btnCadastro.setBounds(222, 221, 121, 25);
@@ -126,33 +122,33 @@ public class TelaLogin extends JFrame {
 
 	private void ValidarCampos(String nome, String senha) {
 		ClienteController clienteController = new ClienteController();
-		
+
 		if (txtNome.getText().isEmpty() || txtSenha.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
 			return;
-		} 
+		}
 		Cliente cliente = clienteController.validarLogin(nome, senha);
 		if (cliente == null) {
 			JOptionPane.showMessageDialog(null, "Login e senha incorretos!");
 		} else {
-			
+
 			if (cliente.getNivelAcesso().equals("admin")) {
 				TelaPrincipalAdmin telaPrincipalAdmin = new TelaPrincipalAdmin();
 				telaPrincipalAdmin.setVisible(true);
 				dispose();
-			}else if (cliente.getNivelAcesso().equals("comon")){
+			} else if (cliente.getNivelAcesso().equals("comon")) {
 				TelaClienteControler telaClienteControler = new TelaClienteControler();
 				telaClienteControler.setCliente(cliente);
 				TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente(telaClienteControler);
 				telaPrincipalCliente.setVisible(true);
 				dispose();
-			}else 	if (cliente.getNivelAcesso().equals("certified")) {
+			} else if (cliente.getNivelAcesso().equals("certified")) {
 				TelaClienteControler telaClienteControler = new TelaClienteControler();
 				telaClienteControler.setCliente(cliente);
 				TelaPrincipalCliente telaPrincipalCliente = new TelaPrincipalCliente(telaClienteControler);
 				telaPrincipalCliente.setVisible(true);
 				dispose();
-			}else {
+			} else {
 				JOptionPane.showMessageDialog(null, "errol assesso invalido!");
 
 			}

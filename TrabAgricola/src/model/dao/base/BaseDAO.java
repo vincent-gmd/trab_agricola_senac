@@ -12,36 +12,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe abstrata com os métodos mínimos para que qualquer 
- * Data Access Object (DAO).
+ * Classe abstrata com os métodos mínimos para que qualquer Data Access Object
+ * (DAO).
  * 
  * @author Vilmar César Pereira Júnior
  * @param <T> o tipo da entidade (ou VO) que associada ao DAO específico
- *	
+ * 
  */
 public abstract class BaseDAO<T> {
-	protected int i=0;
+	protected int i = 0;
 	private static final int CODIGO_RETORNO_SUCESSO_SQL = 1;
+
 	/**
 	 * 
 	 * @param entidade a entidade do tipo informado a ser persistida
-	 * @return 
+	 * @return
 	 * @throws SQLException
 	 */
-	public int inserir(T entidade){
-		//SQL: 	INSERT INTO NOMETABELA (atributo1, atributo2,... atributoN) 
-		//                  VALUES (?,?,...?)
-		String query = " INSERT INTO " + getNomeTabela() + 
-				" ( " + getNomesColunasInsert() +" ) VALUES ( " 
+	public int inserir(T entidade) {
+		// SQL: INSERT INTO NOMETABELA (atributo1, atributo2,... atributoN)
+		// VALUES (?,?,...?)
+		String query = " INSERT INTO " + getNomeTabela() + " ( " + getNomesColunasInsert() + " ) VALUES ( "
 				+ getInterrogacoesInsert() + " ) ";
 
 		Connection conn = Banco.getConnection();
-		PreparedStatement preparedStmt = Banco.getPreparedStatement(conn, query, 
-				Statement.RETURN_GENERATED_KEYS);
+		PreparedStatement preparedStmt = Banco.getPreparedStatement(conn, query, Statement.RETURN_GENERATED_KEYS);
 		int idEntidadeSalva = -1;
 
 		try {
-			//Este método DEVE ser implementado na classe concreta
+			// Este método DEVE ser implementado na classe concreta
 			this.setValoresAtributosInsert(entidade, preparedStmt);
 
 			preparedStmt.executeUpdate();
@@ -50,34 +49,34 @@ public abstract class BaseDAO<T> {
 				idEntidadeSalva = rs.getInt(1);
 			}
 		} catch (SQLException e) {
-			System.out.println("Erro ao inserir " + entidade.getClass().toString()+ "\n"
-					+ e.getMessage());
+			System.out.println("Erro ao inserir " + entidade.getClass().toString() + "\n" + e.getMessage());
 		} finally {
 			Banco.closeStatement(preparedStmt);
 			Banco.closeConnection(conn);
 		}
 		return idEntidadeSalva;
-	}	
+	}
+
 	public boolean atualizar(T entidade, int idEntidade) {
-		//SQL: 	UPDATE NOMETABELA 
-		//SET atributo1 = valor1, atributo2 = valor 2,... atributoN = valorN) WHERE IDTABELA = idEntidade
-		String sql = "UPDATE "+ getNomeTabela() + 
-				" SET " + getValoresClausulaSetUpdate()
-				+ " WHERE " +  getNomeColunaChavePrimaria() + " = " + idEntidade;
+		// SQL: UPDATE NOMETABELA
+		// SET atributo1 = valor1, atributo2 = valor 2,... atributoN = valorN) WHERE
+		// IDTABELA = idEntidade
+		String sql = "UPDATE " + getNomeTabela() + " SET " + getValoresClausulaSetUpdate() + " WHERE "
+				+ getNomeColunaChavePrimaria() + " = " + idEntidade;
 
 		Connection conn = Banco.getConnection();
 		PreparedStatement stmt = Banco.getPreparedStatement(conn, sql);
 		boolean sucessoUpdate = false;
 
 		try {
-			//Este método DEVE ser implementado na classe concreta
+			// Este método DEVE ser implementado na classe concreta
 			this.setValoresAtributosUpdate(entidade, stmt);
 
 			int retorno = stmt.executeUpdate();
 			sucessoUpdate = (retorno == CODIGO_RETORNO_SUCESSO_SQL);
 		} catch (SQLException e) {
-			System.out.println("Erro ao atualizar o registro com id = " + idEntidade + "da entidade " + entidade.getClass().toString()+ "\n"
-					+ e.getMessage());
+			System.out.println("Erro ao atualizar o registro com id = " + idEntidade + "da entidade "
+					+ entidade.getClass().toString() + "\n" + e.getMessage());
 		} finally {
 			Banco.closeStatement(stmt);
 			Banco.closeConnection(conn);
@@ -86,19 +85,19 @@ public abstract class BaseDAO<T> {
 	}
 
 	public boolean excluir(int idEntidade) {
-		//SQL: 	DELETE FROM NomeTabela WHERE ID = idEntidade
+		// SQL: DELETE FROM NomeTabela WHERE ID = idEntidade
 		String sql = "DELETE FROM " + getNomeTabela() + " WHERE " + getNomeColunaChavePrimaria() + " = " + idEntidade;
 
 		Connection conn = Banco.getConnection();
 		PreparedStatement stmt = Banco.getPreparedStatement(conn, sql);
 		boolean sucessoDelete = false;
 
-		try{
+		try {
 			int resultado = stmt.executeUpdate(sql);
 			sucessoDelete = (resultado == CODIGO_RETORNO_SUCESSO_SQL);
-		} catch (SQLException e){
-			System.out.println("Erro ao atualizar o registro com id = " + idEntidade + "da entidade " + this.getClass().toString() + "\n"
-					+ e.getMessage());
+		} catch (SQLException e) {
+			System.out.println("Erro ao atualizar o registro com id = " + idEntidade + "da entidade "
+					+ this.getClass().toString() + "\n" + e.getMessage());
 		} finally {
 			Banco.closeStatement(stmt);
 			Banco.closeConnection(conn);
@@ -106,23 +105,24 @@ public abstract class BaseDAO<T> {
 		return sucessoDelete;
 	}
 
-	public T pesquisarPorId(int idEntidade){
-		//SQL: SELECT * FROM NOMETABELA WHERE WHERE ID = idEntidade
-		String sql = "SELECT * FROM "+ getNomeTabela()+" WHERE " + getNomeColunaChavePrimaria() + " = " + idEntidade;
+	public T pesquisarPorId(int idEntidade) {
+		// SQL: SELECT * FROM NOMETABELA WHERE WHERE ID = idEntidade
+		String sql = "SELECT * FROM " + getNomeTabela() + " WHERE " + getNomeColunaChavePrimaria() + " = " + idEntidade;
 
 		Connection conn = Banco.getConnection();
 		PreparedStatement stmt = Banco.getPreparedStatement(conn, sql);
 		ResultSet resultado = null;
 		T objetoConsultado = null;
 
-		try{
+		try {
 			resultado = stmt.executeQuery(sql);
-			while(resultado.next()){
-				i=1;
+			while (resultado.next()) {
+				i = 1;
 				objetoConsultado = construirObjetoDoResultSet(resultado);
 			}
-		} catch (SQLException e){
-			System.out.println("Erro ao consultar o registro com id = " + idEntidade + "da entidade " + this.getClass().toString());
+		} catch (SQLException e) {
+			System.out.println("Erro ao consultar o registro com id = " + idEntidade + "da entidade "
+					+ this.getClass().toString());
 		} finally {
 			Banco.closeResultSet(resultado);
 			Banco.closeStatement(stmt);
@@ -139,17 +139,17 @@ public abstract class BaseDAO<T> {
 		ResultSet resultado = null;
 		ArrayList<T> listaEntidades = new ArrayList<T>();
 
-		try{
+		try {
 			resultado = stmt.executeQuery(sql);
-			while(resultado.next()){
-				i=1;
+			while (resultado.next()) {
+				i = 1;
 				T objetoConsultado = construirObjetoDoResultSet(resultado);
 				listaEntidades.add(objetoConsultado);
 			}
-		} catch (SQLException e){
+		} catch (SQLException e) {
 			System.out.println("Erro ao consultar todos os objetos da entidade " + this.getClass().toString());
 			System.out.println(e.getMessage());
-			
+
 		} finally {
 			Banco.closeResultSet(resultado);
 			Banco.closeStatement(stmt);
@@ -157,17 +157,17 @@ public abstract class BaseDAO<T> {
 		}
 		return listaEntidades;
 	}
-	
-
 
 	/**
 	 * Daqui para baixo...
 	 * 
-	 * Métodos abstratos, que obrigatoriamente serão implementados nas classes concretas.
+	 * Métodos abstratos, que obrigatoriamente serão implementados nas classes
+	 * concretas.
 	 * 
-	 * Classe concreta: subclasse da classe abstrata que pode ter objeto construído.
+	 * Classe concreta: subclasse da classe abstrata que pode ter objeto
+	 * construído.
 	 * 
-	 * */
+	 */
 
 	/**
 	 * @return String o nome da tabela criado no BD.
@@ -180,38 +180,42 @@ public abstract class BaseDAO<T> {
 	protected abstract String getNomeColunaChavePrimaria();
 
 	/**
-	 * Constrói uma string formada pelos nomes das colunas (do BD) do INSERT separados por vírgula.
+	 * Constrói uma string formada pelos nomes das colunas (do BD) do INSERT
+	 * separados por vírgula.
 	 * 
 	 * @return String os nomes das colunas separados por vírgula.
 	 */
 	protected abstract String getNomesColunasInsert();
 
 	/**
-	 * Constrói uma string formada por pontos de interrogação separados por vírgula, onde cada 
-	 * interrogação representa um das colunas que constam na cláusula INSERT ver ({@link #getNomesColunasInsert()}
+	 * Constrói uma string formada por pontos de interrogação separados por
+	 * vírgula, onde cada interrogação representa um das colunas que constam na
+	 * cláusula INSERT ver ({@link #getNomesColunasInsert()}
 	 * 
 	 * @return String o texto com as interrogações separadas por vírgula.
-	 */ 
+	 */
 	protected abstract String getInterrogacoesInsert();
 
 	/**
 	 * Preenche os valores das colunas do insert um a um.
 	 * 
-	 * Obs.: A implementação deve levar em conta o tipo exato da coluna e da entidade,
-	 * e também colocar aspas simples caso o valor seja uma String.
+	 * Obs.: A implementação deve levar em conta o tipo exato da coluna e da
+	 * entidade, e também colocar aspas simples caso o valor seja uma String.
 	 * 
 	 * @param preparedStmt o objeto que detém a consulta SQL criada.
-	 * @throws SQLException 
+	 * @throws SQLException
 	 */
 	protected abstract void setValoresAtributosInsert(T entidade, PreparedStatement stmt) throws SQLException;
 
 	/**
-	 * Constrói uma string com os pares chave-valor da clásula SET de um UPDATE, onde:
+	 * Constrói uma string com os pares chave-valor da clásula SET de um UPDATE,
+	 * onde:
 	 * 
-	 * chave = nome da coluna, valor = valor que será atualizado na coluna (vem do objeto em questão)
+	 * chave = nome da coluna, valor = valor que será atualizado na coluna (vem do
+	 * objeto em questão)
 	 *
-	 * Obs.: A implementação deve levar em conta o tipo exato da coluna e da entidade,
-	 * e também colocar aspas simples caso o valor seja uma String.
+	 * Obs.: A implementação deve levar em conta o tipo exato da coluna e da
+	 * entidade, e também colocar aspas simples caso o valor seja uma String.
 	 * 
 	 * @return String a clásula SET preenchida por completo.
 	 */
@@ -223,14 +227,14 @@ public abstract class BaseDAO<T> {
 	 * Converte um resultSet para um objeto do tipo T.
 	 * 
 	 * @param resultado objeto do tipo ResultSet, que armazena as tuplas retornadas
-	 * em uma determinada consulta.
+	 *                  em uma determinada consulta.
 	 * 
-	 * @return T o objeto da classe concreta, com seus atributos preenchidos com valores
-	 * oriundos do resultado.
-	 * @throws SQLException 
+	 * @return T o objeto da classe concreta, com seus atributos preenchidos com
+	 *         valores oriundos do resultado.
+	 * @throws SQLException
 	 */
 	protected abstract T construirObjetoDoResultSet(ResultSet resultado) throws SQLException;
 
-	//TODO e como listar com filtros? Veremos mais à frente ;)
+	// TODO e como listar com filtros? Veremos mais à frente ;)
 
 }
