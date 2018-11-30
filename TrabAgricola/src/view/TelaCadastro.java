@@ -44,6 +44,8 @@ public class TelaCadastro extends JPanel {
 				cliente.setEmail(email);
 				cliente.setLogin(login);
 				cliente.setSenha(senha);
+				cliente.setNivelAcesso("comon");
+
 
 				if (clienteController.validarCadastro(login, email) == true) {
 					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");

@@ -131,6 +131,10 @@ public class TelaLogin extends JFrame {
 		if (cliente == null) {
 			JOptionPane.showMessageDialog(null, "Login e senha incorretos!");
 		} else {
+			if(cliente.getNivelAcesso()==null) {
+				JOptionPane.showMessageDialog(null, "errol assesso invalido!");
+				return;
+			}
 
 			if (cliente.getNivelAcesso().equals("admin")) {
 				TelaPrincipalAdmin telaPrincipalAdmin = new TelaPrincipalAdmin();
