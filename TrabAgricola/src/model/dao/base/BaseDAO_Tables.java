@@ -216,7 +216,7 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 				
 			case "Double":
 			case "double":
-				stmt.setDouble(i,(Double) values.get(i));
+				stmt.setDouble(i+1,(Double) values.get(i));
 				break;
 				
 			case "Float":
@@ -226,7 +226,7 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 			
 			case "Long":
 			case "long":
-				stmt.setLong(i,(Long) values.get(i));
+				stmt.setLong(i+1,(Long) values.get(i));
 				break;
 			
 			case "Null":
