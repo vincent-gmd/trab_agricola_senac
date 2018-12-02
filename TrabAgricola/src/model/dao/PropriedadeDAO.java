@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 
 import model.dao.base.BaseDAO_Tables;
 import model.dao.tables.PropriedadeTable;
@@ -20,8 +21,22 @@ public class PropriedadeDAO extends BaseDAO_Tables<Propriedade> {
 	public void setValoresAtributosInsert(Propriedade entidade, PreparedStatement stmt) throws SQLException {
 		int i = 1;
 		;
-		stmt.setDouble(i++, entidade.getLocalisacaoX());
-		stmt.setDouble(i++, entidade.getLocalisacaoY());
+		if(entidade.getLocalisacaoX()==null) {
+			stmt.setNull(i++, Types.DOUBLE );
+
+		}else {
+			stmt.setDouble(i++, entidade.getLocalisacaoX());
+
+		}
+		if(entidade.getLocalisacaoX()==null) {
+			stmt.setNull(i++, Types.DOUBLE );
+
+		}else {
+			stmt.setDouble(i++, entidade.getLocalisacaoY());
+
+		}
+			
+			
 		stmt.setString(i++, entidade.getDocumento());
 		stmt.setDate(i++, Date.valueOf(entidade.getData_cadastro()));
 		stmt.setString(i++, entidade.getEndereco());
@@ -51,10 +66,11 @@ public class PropriedadeDAO extends BaseDAO_Tables<Propriedade> {
 		Propriedade p = new Propriedade();
 		p.setIdPropriedade(resultado.getInt(i++));
 		byte[] b = resultado.getBytes(i++);
+		if(b!=null) {
 		Coordinate c = PointParser.readCoordinateFromWkbBytes(b);
-		
 		p.setLocalisacaoX(c.getX());
 		p.setLocalisacaoY(c.getY());
+		}
 
 		
 		p.setDocumento(resultado.getString(i++));
