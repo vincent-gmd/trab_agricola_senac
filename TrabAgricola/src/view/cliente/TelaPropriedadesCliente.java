@@ -229,8 +229,12 @@ public class TelaPropriedadesCliente extends JPanel {
 		propriedadeController = new PropriedadeController();
 		LocalDate data = LocalDate.now();
 		propriedade.setData_cadastro(data);
-		propriedade.setDocumento(txtEndereco.getText());
+		propriedade.setDocumento(txtDocumento.getText());
+		try{
 		propriedade.setHectares_total(Integer.parseInt(txtHecatares.getText()));
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		propriedade.setEndereco(txtEndereco.getText());
 		propriedade.setIdcliente(telaControler.getCliente().getIdCliente());
 		propriedadeController.inserir(propriedade);
@@ -271,7 +275,7 @@ public class TelaPropriedadesCliente extends JPanel {
 			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
 			return false;
 		} else {
-			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamente! Cadastro concluído com sucesso.");
+			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamente! Cadastro concluï¿½do com sucesso.");
 			return true;
 		}
 	}
