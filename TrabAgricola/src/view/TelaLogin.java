@@ -129,7 +129,7 @@ public class TelaLogin extends JFrame {
 		}
 		Cliente cliente = clienteController.validarLogin(nome, senha);
 		if (cliente == null) {
-			JOptionPane.showMessageDialog(null, "Login e senha incorretos!");
+			JOptionPane.showMessageDialog(null, "Login ou senha incorretos!");
 		} else {
 			if(cliente.getNivelAcesso()==null) {
 				JOptionPane.showMessageDialog(null, "errol assesso invalido!");
