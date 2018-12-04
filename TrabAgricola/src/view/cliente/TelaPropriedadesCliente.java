@@ -260,7 +260,7 @@ public class TelaPropriedadesCliente extends JPanel {
 		atualizarTabela();
 
 	}
-	
+	/*
 	protected void alterar() {
 		Propriedade propriedade = new Propriedade();
 		propriedadeController = new PropriedadeController();
@@ -277,7 +277,7 @@ public class TelaPropriedadesCliente extends JPanel {
 		//propriedadeController.atualizar(propriedade)
 		atualizarTabela();
 	}
-
+*/
 	protected void remover() {
 
 		Propriedade propriedade = new Propriedade();
