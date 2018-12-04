@@ -18,7 +18,11 @@ import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JDateChooser;
 
+import controller.CulturaController;
+import controller.PropriedadeController;
 import controller.TelaClienteControler;
+import model.vo.conector.Cultura;
+import model.vo.conector.Propriedade;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -122,6 +126,9 @@ public class TelaCulturasCliente extends JPanel {
 		btnRemover.setEnabled(false);
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CulturaController controller = new CulturaController();
+				
+				//controller.excluir(idEntidade);
 			}
 		});
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -188,10 +195,15 @@ public class TelaCulturasCliente extends JPanel {
 		txtHectaresOcupados.setBounds(144, 506, 190, 20);
 		panelFiltro.add(txtHectaresOcupados);
 
-		btnSalvar = new JButton("Cadastrar");
+		btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ValidarCampos();
+				validarCamposAlterar();
+				Propriedade p = new Propriedade();
+				Cultura c = new Cultura();
+				CulturaController controller = new CulturaController();
+				
+				//controller.atualizar(entidade, idEntidade)
 			}
 		});
 		btnSalvar.setEnabled(false);
@@ -200,6 +212,11 @@ public class TelaCulturasCliente extends JPanel {
 		panelFiltro.add(btnSalvar);
 
 		btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		btnCadastrar.setBounds(10, 585, 100, 27);
 		panelFiltro.add(btnCadastrar);
 
@@ -240,15 +257,29 @@ public class TelaCulturasCliente extends JPanel {
 
 	}
 	
-	private boolean ValidarCampos() {
-		if (txtNome.getText().isEmpty() || txtTipo.getText().isEmpty() || txtDescricao.getText().isEmpty()
-				|| txtHectaresOcupados.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+	private Boolean validarCampos() {
+		if (txtNome.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null,"O Campo Nome precisa ser preenchido!");
 			return false;
-		} else {
-			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamente! Cadastro Concluído com sucesso.");
-			return true;
+		}else if(txtTipo.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "O Campo Tipo precisa ser preenchido!");
+			return false;
+		} else if(txtDescricao.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "O Campo Descrição precisa ser preenchido!");
+			return false;
+		}else if(txtHectaresOcupados.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null,"O Campo Hecatares Ocupados precisa ser preenchido!");
+			return false;
+		}else if(dataPlantio.getDate() == null) {
+			JOptionPane.showMessageDialog(null,"Selecione uma Data de Plantio!");
+			return false;
+		}else if(dataColheita.getDate() == null) {
+			JOptionPane.showMessageDialog(null,"Selecione uma Data de Colheita!");
+			return false;
+		}else {
+			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!Cadastro realizado com sucesso");
 		}
+		return true;
 	}
 
 	private void limparTela() {
@@ -271,6 +302,31 @@ public class TelaCulturasCliente extends JPanel {
 			btnLimpar.setEnabled(true);
 			break;
 	} 
+		
   }
+	private Boolean validarCamposAlterar() {
+		if (txtNome.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null,"O Campo Nome precisa ser preenchido!");
+			return false;
+		}else if(txtTipo.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "O Campo Tipo precisa ser preenchido!");
+			return false;
+		} else if(txtDescricao.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "O Campo Descrição precisa ser preenchido!");
+			return false;
+		}else if(txtHectaresOcupados.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null,"O Campo Hecatares Ocupados precisa ser preenchido!");
+			return false;
+		}else if(dataPlantio.getDate() == null) {
+			JOptionPane.showMessageDialog(null,"Selecione uma Data de Plantio!");
+			return false;
+		}else if(dataColheita.getDate() == null) {
+			JOptionPane.showMessageDialog(null,"Selecione uma Data de Colheita!");
+			return false;
+		}else {
+			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!Alteração realizada com sucesso");
+		}
+		return true;
+	}
 	
 }

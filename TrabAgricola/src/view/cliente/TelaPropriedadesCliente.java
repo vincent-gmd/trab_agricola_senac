@@ -260,6 +260,23 @@ public class TelaPropriedadesCliente extends JPanel {
 		atualizarTabela();
 
 	}
+	
+	protected void alterar() {
+		Propriedade propriedade = new Propriedade();
+		propriedadeController = new PropriedadeController();
+		LocalDate data = LocalDate.now();
+		propriedade.setData_cadastro(data);
+		propriedade.setDocumento(txtDocumento.getText());
+		try{
+			propriedade.setHectares_total(Integer.parseInt(txtHecatares.getText()));
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		propriedade.setEndereco(txtEndereco.getText());
+		propriedade.setIdcliente(telaControler.getCliente().getIdCliente());
+		//propriedadeController.atualizar(propriedade)
+		atualizarTabela();
+	}
 
 	protected void remover() {
 
@@ -349,6 +366,25 @@ public class TelaPropriedadesCliente extends JPanel {
 
 
 	}
+	
+	protected void excluir() {
+
+		Propriedade propriedade = new Propriedade();
+		propriedadeController = new PropriedadeController();
+		LocalDate data = LocalDate.now();
+		propriedade.setData_cadastro(data);
+		propriedade.setDocumento(txtDocumento.getText());
+		try{
+		propriedade.setHectares_total(Integer.parseInt(txtHecatares.getText()));
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		propriedade.setEndereco(txtEndereco.getText());
+		propriedade.setIdcliente(telaControler.getCliente().getIdCliente());
+		//propriedadeController.excluir(propriedade);
+		atualizarTabela();
+
+	}
 
 	private void limparTela() {
 		txtDocumento.setText("");
@@ -357,13 +393,19 @@ public class TelaPropriedadesCliente extends JPanel {
 	}
 
 	private Boolean validarCampos() {
-		if (txtDocumento.getText().isEmpty() || txtEndereco.getText().isEmpty() || txtHecatares.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+		if (txtDocumento.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null,"O Campo Documento precisa ser preenchido!");
 			return false;
-		} else {
-			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamente! Cadastro conclu�do com sucesso.");
-			return true;
+		}else if(txtEndereco.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "O Campo Endere�o precisa ser preenchido!");
+			return false;
+		} else if(txtHecatares.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "O Campo Hectares precisa ser preenchido!");
+			return false;
+		}else {
+			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!Cadastro realizado com sucesso");
 		}
+		return true;
 	}
 
 	public void manipularMenu(int modo) {
@@ -421,5 +463,20 @@ public class TelaPropriedadesCliente extends JPanel {
 
 
 		}
+	}
+	private Boolean validarCamposAlterar() {
+		if (txtDocumento.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null,"O Campo Documento precisa ser preenchido!");
+			return false;
+		}else if(txtEndereco.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "O Campo Endere�o precisa ser preenchido!");
+			return false;
+		} else if(txtHecatares.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "O Campo Hectares precisa ser preenchido!");
+			return false;
+		}else {
+			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!Altera��o realizada com sucesso");
+		}
+		return true;
 	}
 }
