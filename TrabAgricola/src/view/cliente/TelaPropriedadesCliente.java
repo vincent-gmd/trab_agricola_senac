@@ -18,6 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -44,10 +46,24 @@ public class TelaPropriedadesCliente extends JPanel {
 	private JButton btnLimpar;
 	private JButton btnCadastrar;
 	private static final int INSERIR = 1;
+	private static final int ALTERAR = 2;
+	private static final int REMOVER = 3;
+	private Boolean selectEnabled=false;
+	private JButton btnConfirmar;
+	private JButton btnSalvar;
+	private Integer selected=null;
+	private List<Propriedade> propriedades;
+
+
 	private PropriedadeController propriedadeController;
 
 	private String[] colunasTabela = new String[] { "Documento", "Endere\u00E7o", "Hecatres", "Hectares Ocupados", };
+	private Propriedade propridedadeSelecionada;
 
+	private void setSelected(Integer i){
+		selected=i;
+		propridedadeSelecionada =propriedades.get(i);
+	}
 	/**
 	 * Create the panel.
 	 */
@@ -94,10 +110,11 @@ public class TelaPropriedadesCliente extends JPanel {
 		table.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				btnAlterar.setEnabled(true);
-				btnRemover.setEnabled(true);
+				
+
 			}
 		});
+
 		table.setModel(new DefaultTableModel(new Object[][] {},
 
 				colunasTabela));
@@ -108,7 +125,7 @@ public class TelaPropriedadesCliente extends JPanel {
 		panelFiltro.add(btnNovaPropriedade);
 		btnNovaPropriedade.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				manipularMenu(1);
+				manipularMenu(INSERIR);
 
 			}
 		});
@@ -118,7 +135,7 @@ public class TelaPropriedadesCliente extends JPanel {
 		btnAlterar.setEnabled(false);
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				manipularMenu(ALTERAR);
 			}
 		});
 		btnAlterar.setBounds(214, 290, 100, 30);
@@ -130,6 +147,8 @@ public class TelaPropriedadesCliente extends JPanel {
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limparTela();
+				manipularMenu(REMOVER);
+
 			}
 		});
 
@@ -176,8 +195,9 @@ public class TelaPropriedadesCliente extends JPanel {
 
 		btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.setEnabled(false);
+		btnCadastrar.setVisible(false);
 
-		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (validarCampos()) {
@@ -187,40 +207,84 @@ public class TelaPropriedadesCliente extends JPanel {
 			}
 		});
 		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnCadastrar.setBounds(10, 613, 100, 30);
+		btnCadastrar.setBounds(10, 529, 100, 30);
 		panelFiltro.add(btnCadastrar);
 
-		JButton btnSalvar = new JButton("Salvar");
+		 btnSalvar = new JButton("Salvar \r\nAlteraçao");
+		btnSalvar.setVisible(false);
+		btnSalvar.setEnabled(false);
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				alterar();
+			}
+		});
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnSalvar.setBounds(10, 613, 100, 30);
+		btnSalvar.setBounds(10, 529, 174, 31);
 		panelFiltro.add(btnSalvar);
 
 		JLabel lblHectares = new JLabel("Hectares:");
 		lblHectares.setForeground(new Color(255, 255, 255));
 		lblHectares.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblHectares.setBounds(10, 548, 62, 17);
+		lblHectares.setBounds(10, 464, 62, 17);
 		panelFiltro.add(lblHectares);
 
 		txtHecatares = new JTextField();
 		txtHecatares.setEnabled(false);
 		txtHecatares.setColumns(10);
-		txtHecatares.setBounds(95, 547, 190, 20);
+		txtHecatares.setBounds(95, 463, 190, 20);
 		panelFiltro.add(txtHecatares);
 
 		btnLimpar = new JButton("Limpar");
 		btnLimpar.setEnabled(false);
 
-		JButton btnLimpar = new JButton("Limpar");
+		btnLimpar = new JButton("Limpar");
 		btnLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limparTela();
 			}
 		});
-		btnLimpar.setBounds(173, 613, 96, 30);
+		btnLimpar.setBounds(231, 530, 96, 30);
 		panelFiltro.add(btnLimpar);
+		
+		 btnConfirmar = new JButton("Cofirmar Remover");
+		btnConfirmar.setVisible(false);
+		btnConfirmar.setEnabled(false);
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remover();
+			}
+		});
+		btnConfirmar.setBounds(323, 399, 138, 30);
+		panelFiltro.add(btnConfirmar);
 
 		atualizarTabela();
 
+	}
+
+	protected void remover() {
+
+		Propriedade propriedade = new Propriedade();
+		propriedadeController = new PropriedadeController();
+		propriedadeController.excluir(propriedades.get(selected).getIdPropriedade());
+
+	}
+
+	protected void alterar() {
+		Propriedade propriedade = new Propriedade();
+		propriedadeController = new PropriedadeController();
+		LocalDate data = LocalDate.now();
+		propriedade.setData_cadastro(data);
+		propriedade.setDocumento(txtDocumento.getText());
+		try{
+		propriedade.setHectares_total(Integer.parseInt(txtHecatares.getText()));
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		propriedade.setEndereco(txtEndereco.getText());
+		propriedade.setIdcliente(telaControler.getCliente().getIdCliente());
+		propriedade.setIdPropriedade( propriedades.get(selected).getIdPropriedade());
+		propriedadeController.atualizar(propriedade, propriedades.get(selected).getIdPropriedade());
+		atualizarTabela();
 	}
 
 	protected void cadastrar() {
@@ -244,7 +308,7 @@ public class TelaPropriedadesCliente extends JPanel {
 
 	private void atualizarTabela() {
 
-		List<Propriedade> propriedades = new PropriedadeController()
+		propriedades = new PropriedadeController()
 				.listarPorClientId(telaControler.getCliente().getIdCliente());
 
 		Object[][] valores = new Object[propriedades.size()][colunasTabela.length];
@@ -261,6 +325,28 @@ public class TelaPropriedadesCliente extends JPanel {
 			model.setValueAt(propriedade.getHectares_total(), i, count++);
 
 		}
+		if(propriedades.size()>0) {
+			btnAlterar.setEnabled(true);
+			btnRemover.setEnabled(true);
+			
+			table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+		        public void valueChanged(ListSelectionEvent event) {
+		            // do some actions here, for example
+		            // print first column value from selected row
+		        	if(selectEnabled) {
+		        		setSelected(table.getSelectedRow());
+		        		txtDocumento.setText(propridedadeSelecionada.getDocumento());
+		        		txtEndereco.setText(propridedadeSelecionada.getEndereco());
+		        		txtHecatares.setText(propridedadeSelecionada.getHectares_total().toString());
+
+		        	}else {
+		        		setSelected(null);
+		        	}
+		        }
+		    });
+		}
+		
+
 
 	}
 
@@ -287,8 +373,53 @@ public class TelaPropriedadesCliente extends JPanel {
 			txtEndereco.setEnabled(true);
 			txtHecatares.setEnabled(true);
 			btnLimpar.setEnabled(true);
+			btnLimpar.setVisible(true);
 			btnCadastrar.setEnabled(true);
+			btnCadastrar.setVisible(true);
+			btnConfirmar.setVisible(false);
+			btnConfirmar.setEnabled(false);
+			btnSalvar.setVisible(false);
+			btnSalvar.setEnabled(false);
+
+			selectEnabled=false;
+
+			limparTela() ;
 			break;
+		case ALTERAR:
+			txtDocumento.setEnabled(true);
+			txtEndereco.setEnabled(true);
+			txtHecatares.setEnabled(true);
+			btnLimpar.setEnabled(false);
+			btnLimpar.setVisible(false);
+			btnCadastrar.setVisible(false);
+			btnCadastrar.setEnabled(false);
+			btnConfirmar.setVisible(false);
+			btnConfirmar.setEnabled(false);
+			btnSalvar.setVisible(true);
+			btnSalvar.setEnabled(true);
+
+
+			selectEnabled=true;
+			break;
+		case REMOVER:
+			txtDocumento.setEnabled(false);
+			txtEndereco.setEnabled(false);
+			txtHecatares.setEnabled(false);
+			btnLimpar.setEnabled(false);
+			btnLimpar.setVisible(false);
+			btnCadastrar.setEnabled(false);
+			btnCadastrar.setVisible(false);
+			btnConfirmar.setVisible(true);
+			btnConfirmar.setEnabled(true);
+			btnSalvar.setVisible(false);
+			btnSalvar.setEnabled(false);
+
+
+			selectEnabled=true;
+
+			break;
+
+
 		}
 	}
 }

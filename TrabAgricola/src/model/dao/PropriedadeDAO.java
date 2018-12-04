@@ -50,8 +50,20 @@ public class PropriedadeDAO extends BaseDAO_Tables<Propriedade> {
 		int i = 1;
 		stmt.setInt(i++, entidade.getIdPropriedade());
 		
-		stmt.setDouble(i++, entidade.getLocalisacaoX());
-		stmt.setDouble(i++, entidade.getLocalisacaoY());
+		if(entidade.getLocalisacaoX()==null) {
+			stmt.setNull(i++, Types.DOUBLE );
+
+		}else {
+			stmt.setDouble(i++, entidade.getLocalisacaoX());
+
+		}
+		if(entidade.getLocalisacaoX()==null) {
+			stmt.setNull(i++, Types.DOUBLE );
+
+		}else {
+			stmt.setDouble(i++, entidade.getLocalisacaoY());
+
+		}
 		stmt.setString(i++, entidade.getDocumento());
 		stmt.setDate(i++, Date.valueOf(entidade.getData_cadastro()));
 		stmt.setString(i++, entidade.getEndereco());
