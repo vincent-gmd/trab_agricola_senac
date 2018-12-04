@@ -403,7 +403,7 @@ public class TelaPropriedadesCliente extends JPanel {
 			JOptionPane.showMessageDialog(null, "O Campo Hectares precisa ser preenchido!");
 			return false;
 		}else {
-			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!Cadastro realizado com sucesso");
+			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!");
 		}
 		return true;
 	}
@@ -475,7 +475,7 @@ public class TelaPropriedadesCliente extends JPanel {
 			JOptionPane.showMessageDialog(null, "O Campo Hectares precisa ser preenchido!");
 			return false;
 		}else {
-			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!Altera��o realizada com sucesso");
+			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!");
 		}
 		return true;
 	}
