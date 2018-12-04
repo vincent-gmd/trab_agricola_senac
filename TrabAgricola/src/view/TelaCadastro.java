@@ -18,13 +18,14 @@ import javax.swing.SwingUtilities;
 
 import controller.ClienteController;
 import model.vo.conector.Cliente;
+import javax.swing.JPasswordField;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class TelaCadastro extends JPanel {
-
-	private JTextField txtSenha;
 	private JTextField txtEmail;
 	private JTextField txtLogin;
 	private TelaCadastro panelCadastro;
+	private JPasswordField passSenha;
 
 	/**
 	 * Create the panel.
@@ -39,7 +40,7 @@ public class TelaCadastro extends JPanel {
 				ClienteController clienteController = new ClienteController();
 				Cliente cliente = new Cliente();
 				String login = txtLogin.getText();
-				String senha = txtSenha.getText();
+				String senha = passSenha.getText();
 				String email = txtEmail.getText();
 				cliente.setEmail(email);
 				cliente.setLogin(login);
@@ -86,61 +87,71 @@ public class TelaCadastro extends JPanel {
 		label_3.setForeground(Color.WHITE);
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 
-		txtSenha = new JTextField();
-		txtSenha.setColumns(10);
-
 		txtEmail = new JTextField();
 		txtEmail.setColumns(10);
 
 		txtLogin = new JTextField();
 		txtLogin.setColumns(10);
+		
+		passSenha = new JPasswordField();
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(groupLayout
-				.createSequentialGroup().addGap(103)
-				.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup().addGap(17).addComponent(label,
-								GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup().addGap(5)
-								.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-								.addGap(4)
-								.addComponent(txtLogin, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE))
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(103)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(17)
+							.addComponent(label, GroupLayout.PREFERRED_SIZE, 212, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(5)
+							.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+							.addGap(4)
+							.addComponent(txtLogin, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(26)
+							.addComponent(brnRealizarCadastro, GroupLayout.PREFERRED_SIZE, 123, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+							.addGroup(groupLayout.createSequentialGroup()
 								.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-								.addGap(4)
-								.addComponent(txtSenha, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup().addGap(7)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(passSenha))
+							.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+								.addGap(7)
 								.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
 								.addGap(4)
-								.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup().addGap(26)
-								.addComponent(brnRealizarCadastro, GroupLayout.PREFERRED_SIZE, 123,
-										GroupLayout.PREFERRED_SIZE)
-								.addGap(18)
-								.addComponent(btnVoltar, GroupLayout.PREFERRED_SIZE, 65, GroupLayout.PREFERRED_SIZE)))
-				.addContainerGap(115, Short.MAX_VALUE)));
-		groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING).addGroup(Alignment.TRAILING,
-				groupLayout.createSequentialGroup().addContainerGap(37, Short.MAX_VALUE)
-						.addComponent(label, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE).addGap(46)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup().addGap(2).addComponent(label_3,
-										GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
-								.addComponent(txtLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addGap(6)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup().addGap(2).addComponent(label_1,
-										GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
-								.addComponent(txtSenha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addGap(6)
-						.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup().addGap(2).addComponent(label_2,
-										GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
-								.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-										GroupLayout.PREFERRED_SIZE))
-						.addGap(11).addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(brnRealizarCadastro).addComponent(btnVoltar))
-						.addContainerGap()));
+								.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(115, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.TRAILING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap(37, Short.MAX_VALUE)
+					.addComponent(label, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+					.addGap(46)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(2)
+							.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(8)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE)
+						.addComponent(passSenha, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(9)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(2)
+							.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 15, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(11)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(brnRealizarCadastro)
+						.addComponent(btnVoltar))
+					.addContainerGap())
+		);
 		setLayout(groupLayout);
 
 	}

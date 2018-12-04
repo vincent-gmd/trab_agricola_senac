@@ -187,24 +187,31 @@ public class TelaPropriedadesCliente extends JPanel {
 			}
 		});
 		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnCadastrar.setBounds(10, 613, 100, 30);
+		btnCadastrar.setBounds(10, 520, 100, 30);
 		panelFiltro.add(btnCadastrar);
 
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(validarCamposAlterar()) {
+					alterar();
+				}
+			}
+		});
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnSalvar.setBounds(10, 613, 100, 30);
+		btnSalvar.setBounds(11, 520, 100, 30);
 		panelFiltro.add(btnSalvar);
 
 		JLabel lblHectares = new JLabel("Hectares:");
 		lblHectares.setForeground(new Color(255, 255, 255));
 		lblHectares.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblHectares.setBounds(10, 548, 62, 17);
+		lblHectares.setBounds(10, 461, 62, 17);
 		panelFiltro.add(lblHectares);
 
 		txtHecatares = new JTextField();
 		txtHecatares.setEnabled(false);
 		txtHecatares.setColumns(10);
-		txtHecatares.setBounds(95, 547, 190, 20);
+		txtHecatares.setBounds(95, 463, 190, 20);
 		panelFiltro.add(txtHecatares);
 
 		btnLimpar = new JButton("Limpar");
@@ -216,11 +223,28 @@ public class TelaPropriedadesCliente extends JPanel {
 				limparTela();
 			}
 		});
-		btnLimpar.setBounds(173, 613, 96, 30);
+		btnLimpar.setBounds(175, 521, 96, 30);
 		panelFiltro.add(btnLimpar);
 
 		atualizarTabela();
 
+	}
+	
+	protected void alterar() {
+		Propriedade propriedade = new Propriedade();
+		propriedadeController = new PropriedadeController();
+		LocalDate data = LocalDate.now();
+		propriedade.setData_cadastro(data);
+		propriedade.setDocumento(txtDocumento.getText());
+		try{
+			propriedade.setHectares_total(Integer.parseInt(txtHecatares.getText()));
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		propriedade.setEndereco(txtEndereco.getText());
+		propriedade.setIdcliente(telaControler.getCliente().getIdCliente());
+		//propriedadeController.atualizar(propriedade)
+		atualizarTabela();
 	}
 
 	protected void cadastrar() {
@@ -271,13 +295,19 @@ public class TelaPropriedadesCliente extends JPanel {
 	}
 
 	private Boolean validarCampos() {
-		if (txtDocumento.getText().isEmpty() || txtEndereco.getText().isEmpty() || txtHecatares.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+		if (txtDocumento.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null,"O Campo Documento precisa ser preenchido!");
 			return false;
-		} else {
-			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamente! Cadastro concluï¿½do com sucesso.");
-			return true;
+		}else if(txtEndereco.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "O Campo Endereço precisa ser preenchido!");
+			return false;
+		} else if(txtHecatares.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "O Campo Hectares precisa ser preenchido!");
+			return false;
+		}else {
+			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!Cadastro realizado com sucesso");
 		}
+		return true;
 	}
 
 	public void manipularMenu(int modo) {
@@ -290,5 +320,20 @@ public class TelaPropriedadesCliente extends JPanel {
 			btnCadastrar.setEnabled(true);
 			break;
 		}
+	}
+	private Boolean validarCamposAlterar() {
+		if (txtDocumento.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null,"O Campo Documento precisa ser preenchido!");
+			return false;
+		}else if(txtEndereco.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "O Campo Endereço precisa ser preenchido!");
+			return false;
+		} else if(txtHecatares.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "O Campo Hectares precisa ser preenchido!");
+			return false;
+		}else {
+			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!Alteração realizada com sucesso");
+		}
+		return true;
 	}
 }

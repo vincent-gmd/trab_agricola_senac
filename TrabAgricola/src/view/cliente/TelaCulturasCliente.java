@@ -188,10 +188,10 @@ public class TelaCulturasCliente extends JPanel {
 		txtHectaresOcupados.setBounds(144, 506, 190, 20);
 		panelFiltro.add(txtHectaresOcupados);
 
-		btnSalvar = new JButton("Cadastrar");
+		btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ValidarCampos();
+				validarCamposAlterar();
 			}
 		});
 		btnSalvar.setEnabled(false);
@@ -240,15 +240,29 @@ public class TelaCulturasCliente extends JPanel {
 
 	}
 	
-	private boolean ValidarCampos() {
-		if (txtNome.getText().isEmpty() || txtTipo.getText().isEmpty() || txtDescricao.getText().isEmpty()
-				|| txtHectaresOcupados.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+	private Boolean validarCampos() {
+		if (txtNome.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null,"O Campo Nome precisa ser preenchido!");
 			return false;
-		} else {
-			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamente! Cadastro Concluído com sucesso.");
-			return true;
+		}else if(txtTipo.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "O Campo Tipo precisa ser preenchido!");
+			return false;
+		} else if(txtDescricao.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "O Campo Descrição precisa ser preenchido!");
+			return false;
+		}else if(txtHectaresOcupados.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null,"O Campo Hecatares Ocupados precisa ser preenchido!");
+			return false;
+		}else if(dataPlantio.getDate() == null) {
+			JOptionPane.showMessageDialog(null,"Selecione uma Data de Plantio!");
+			return false;
+		}else if(dataColheita.getDate() == null) {
+			JOptionPane.showMessageDialog(null,"Selecione uma Data de Colheita!");
+			return false;
+		}else {
+			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!Cadastro realizado com sucesso");
 		}
+		return true;
 	}
 
 	private void limparTela() {
@@ -271,6 +285,31 @@ public class TelaCulturasCliente extends JPanel {
 			btnLimpar.setEnabled(true);
 			break;
 	} 
+		
   }
+	private Boolean validarCamposAlterar() {
+		if (txtNome.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null,"O Campo Nome precisa ser preenchido!");
+			return false;
+		}else if(txtTipo.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "O Campo Tipo precisa ser preenchido!");
+			return false;
+		} else if(txtDescricao.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "O Campo Descrição precisa ser preenchido!");
+			return false;
+		}else if(txtHectaresOcupados.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null,"O Campo Hecatares Ocupados precisa ser preenchido!");
+			return false;
+		}else if(dataPlantio.getDate() == null) {
+			JOptionPane.showMessageDialog(null,"Selecione uma Data de Plantio!");
+			return false;
+		}else if(dataColheita.getDate() == null) {
+			JOptionPane.showMessageDialog(null,"Selecione uma Data de Colheita!");
+			return false;
+		}else {
+			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!Alteração realizada com sucesso");
+		}
+		return true;
+	}
 	
 }

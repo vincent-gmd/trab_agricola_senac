@@ -22,14 +22,15 @@ import controller.TelaClienteControler;
 import model.vo.conector.Cliente;
 import view.admin.TelaPrincipalAdmin;
 import view.cliente.TelaPrincipalCliente;
+import javax.swing.JPasswordField;
 
 public class TelaLogin extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNome;
-	private JTextField txtSenha;
 	private TelaCadastro telaCadastro;
 	private static TelaLogin frameLogin = new TelaLogin();
+	private JPasswordField passSenha;
 
 	public JPanel getContentJPanel() {
 		return contentPane;
@@ -82,15 +83,10 @@ public class TelaLogin extends JFrame {
 		lblSenha.setBounds(94, 191, 59, 14);
 		contentPane.add(lblSenha);
 
-		txtSenha = new JTextField();
-		txtSenha.setBounds(153, 191, 190, 20);
-		contentPane.add(txtSenha);
-		txtSenha.setColumns(10);
-
 		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ValidarCampos(txtNome.getText(), txtSenha.getText());
+				//ValidarCampos(txtNome.getText(),passSenha.getPassword());
 			}
 		});
 		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -118,12 +114,16 @@ public class TelaLogin extends JFrame {
 		label.setFont(new Font("Ink Free", Font.BOLD, 18));
 		label.setBounds(136, 32, 207, 100);
 		contentPane.add(label);
+		
+		passSenha = new JPasswordField();
+		passSenha.setBounds(153, 190, 190, 20);
+		contentPane.add(passSenha);
 	}
 
 	private void ValidarCampos(String nome, String senha) {
 		ClienteController clienteController = new ClienteController();
 
-		if (txtNome.getText().isEmpty() || txtSenha.getText().isEmpty()) {
+		if (txtNome.getText().isEmpty() )/*|| passSenha.getPassword().isEmpty)*/ {
 			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
 			return;
 		}

@@ -187,10 +187,13 @@ public class TelaTratamento extends JFrame {
 	}
 	
 	private boolean validarCampos() {
-		if (txtNome.getText().isEmpty() || txtDescricao.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+		if (txtNome.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Preencha o Campo Nome!!");
 			return false;
-		} else {
+		} else if(txtDescricao.getText().isEmpty()){
+			JOptionPane.showMessageDialog(null,"Preencha o Campo Descrição!");
+			return false;
+		}else {
 			JOptionPane.showMessageDialog(null, "Campos preenchidos corretamente! Cadastro concluído com sucesso.");
 			return true;
 		}
