@@ -129,6 +129,8 @@ public class TelaPropriedadesCliente extends JPanel {
 		btnRemover.setEnabled(false);
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(validarCampos())
+				excluir();
 				limparTela();
 			}
 		});
@@ -184,6 +186,7 @@ public class TelaPropriedadesCliente extends JPanel {
 					cadastrar();
 
 				}
+				limparTela();
 			}
 		});
 		btnCadastrar.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -196,6 +199,7 @@ public class TelaPropriedadesCliente extends JPanel {
 				if(validarCamposAlterar()) {
 					alterar();
 				}
+				limparTela();
 			}
 		});
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -285,6 +289,25 @@ public class TelaPropriedadesCliente extends JPanel {
 			model.setValueAt(propriedade.getHectares_total(), i, count++);
 
 		}
+
+	}
+	
+	protected void excluir() {
+
+		Propriedade propriedade = new Propriedade();
+		propriedadeController = new PropriedadeController();
+		LocalDate data = LocalDate.now();
+		propriedade.setData_cadastro(data);
+		propriedade.setDocumento(txtDocumento.getText());
+		try{
+		propriedade.setHectares_total(Integer.parseInt(txtHecatares.getText()));
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		propriedade.setEndereco(txtEndereco.getText());
+		propriedade.setIdcliente(telaControler.getCliente().getIdCliente());
+		//propriedadeController.excluir(propriedade);
+		atualizarTabela();
 
 	}
 

@@ -18,7 +18,11 @@ import javax.swing.table.DefaultTableModel;
 
 import com.toedter.calendar.JDateChooser;
 
+import controller.CulturaController;
+import controller.PropriedadeController;
 import controller.TelaClienteControler;
+import model.vo.conector.Cultura;
+import model.vo.conector.Propriedade;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -122,6 +126,9 @@ public class TelaCulturasCliente extends JPanel {
 		btnRemover.setEnabled(false);
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CulturaController controller = new CulturaController();
+				
+				//controller.excluir(idEntidade);
 			}
 		});
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -192,6 +199,11 @@ public class TelaCulturasCliente extends JPanel {
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				validarCamposAlterar();
+				Propriedade p = new Propriedade();
+				Cultura c = new Cultura();
+				CulturaController controller = new CulturaController();
+				
+				//controller.atualizar(entidade, idEntidade)
 			}
 		});
 		btnSalvar.setEnabled(false);
@@ -200,6 +212,11 @@ public class TelaCulturasCliente extends JPanel {
 		panelFiltro.add(btnSalvar);
 
 		btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		btnCadastrar.setBounds(10, 585, 100, 27);
 		panelFiltro.add(btnCadastrar);
 
