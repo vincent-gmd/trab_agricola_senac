@@ -8,8 +8,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
-import java.util.List;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -253,28 +251,10 @@ public class TelaPropriedadesCliente extends JPanel {
 		atualizarTabela();
 
 	}
-	/*
-	protected void alterar() {
-		Propriedade propriedade = new Propriedade();
-		propriedadeController = new PropriedadeController();
-		LocalDate data = LocalDate.now();
-		propriedade.setData_cadastro(data);
-		propriedade.setDocumento(txtDocumento.getText());
-		try{
-			propriedade.setHectares_total(Integer.parseInt(txtHecatares.getText()));
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
-		propriedade.setEndereco(txtEndereco.getText());
-		propriedade.setIdcliente(telaControler.getCliente().getIdCliente());
-		//propriedadeController.atualizar(propriedade)
-		atualizarTabela();
-	}
-*/
+
+
 	protected void excluir() {
-
 		telaControler.excluirPropridedadeSelecionada();
-
 	}
 
 	protected void alterar() {
@@ -296,7 +276,6 @@ public class TelaPropriedadesCliente extends JPanel {
 	}
 
 	protected void cadastrar() {
-
 		Propriedade propriedade = new Propriedade();
 		propriedadeController = new PropriedadeController();
 		LocalDate data = LocalDate.now();
@@ -311,7 +290,6 @@ public class TelaPropriedadesCliente extends JPanel {
 		propriedade.setIdcliente(telaControler.getCliente().getIdCliente());
 		propriedadeController.inserir(propriedade);
 		atualizarTabela();
-
 	}
 
 	private void atualizarTabela() {
@@ -447,20 +425,5 @@ public class TelaPropriedadesCliente extends JPanel {
 
 
 		}
-	}
-	private Boolean validarCamposAlterar() {
-		if (txtDocumento.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null,"O Campo Documento precisa ser preenchido!");
-			return false;
-		}else if(txtEndereco.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "O Campo Endere�o precisa ser preenchido!");
-			return false;
-		} else if(txtHecatares.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "O Campo Hectares precisa ser preenchido!");
-			return false;
-		}else {
-			//JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!");
-		}
-		return true;
 	}
 }
