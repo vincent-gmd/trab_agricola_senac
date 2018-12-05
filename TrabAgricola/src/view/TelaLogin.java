@@ -86,7 +86,7 @@ public class TelaLogin extends JFrame {
 		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//ValidarCampos(txtNome.getText(),passSenha.getPassword());
+				ValidarCampos(txtNome.getText(),new String(passSenha.getPassword()));
 			}
 		});
 		btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 14));

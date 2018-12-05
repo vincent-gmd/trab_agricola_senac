@@ -40,7 +40,7 @@ public class TelaCadastro extends JPanel {
 				ClienteController clienteController = new ClienteController();
 				Cliente cliente = new Cliente();
 				String login = txtLogin.getText();
-				String senha = passSenha.getText();
+				String senha = new String(passSenha.getPassword());
 				String email = txtEmail.getText();
 				cliente.setEmail(email);
 				cliente.setLogin(login);

@@ -62,7 +62,11 @@ public class TelaPropriedadesCliente extends JPanel {
 
 	private void setSelected(Integer i){
 		selected=i;
-		propridedadeSelecionada =propriedades.get(i);
+		if(i!=null) {
+			propridedadeSelecionada =propriedades.get(i);
+		}else {
+			propridedadeSelecionada=null;
+		}
 	}
 	/**
 	 * Create the panel.
@@ -251,7 +255,7 @@ public class TelaPropriedadesCliente extends JPanel {
 		btnConfirmar.setEnabled(false);
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				remover();
+				excluir();
 			}
 		});
 		btnConfirmar.setBounds(323, 399, 138, 30);
@@ -278,7 +282,7 @@ public class TelaPropriedadesCliente extends JPanel {
 		atualizarTabela();
 	}
 */
-	protected void remover() {
+	protected void excluir() {
 
 		Propriedade propriedade = new Propriedade();
 		propriedadeController = new PropriedadeController();
@@ -367,24 +371,7 @@ public class TelaPropriedadesCliente extends JPanel {
 
 	}
 	
-	protected void excluir() {
 
-		Propriedade propriedade = new Propriedade();
-		propriedadeController = new PropriedadeController();
-		LocalDate data = LocalDate.now();
-		propriedade.setData_cadastro(data);
-		propriedade.setDocumento(txtDocumento.getText());
-		try{
-		propriedade.setHectares_total(Integer.parseInt(txtHecatares.getText()));
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		propriedade.setEndereco(txtEndereco.getText());
-		propriedade.setIdcliente(telaControler.getCliente().getIdCliente());
-		//propriedadeController.excluir(propriedade);
-		atualizarTabela();
-
-	}
 
 	private void limparTela() {
 		txtDocumento.setText("");
@@ -403,7 +390,7 @@ public class TelaPropriedadesCliente extends JPanel {
 			JOptionPane.showMessageDialog(null, "O Campo Hectares precisa ser preenchido!");
 			return false;
 		}else {
-			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!");
+			//JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!");
 		}
 		return true;
 	}
@@ -475,7 +462,7 @@ public class TelaPropriedadesCliente extends JPanel {
 			JOptionPane.showMessageDialog(null, "O Campo Hectares precisa ser preenchido!");
 			return false;
 		}else {
-			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!");
+			//JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!");
 		}
 		return true;
 	}
