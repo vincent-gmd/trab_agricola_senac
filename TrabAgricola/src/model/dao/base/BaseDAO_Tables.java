@@ -117,7 +117,7 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 		String clausulaSet = " WHERE ";
 		for(int i=0;i<Filtros.size();i++) {
 			
-			clausulaSet += Filtros.get(i).getCol().getName()+Filtros.get(i).getComparador() +"  ? ";
+			clausulaSet += Filtros.get(i).getCol().getName()+Filtros.get(i).getComparador().op +"  ? ";
 					if((i+1)<Filtros.size()) {
 						clausulaSet+=" AND ";
 					}
