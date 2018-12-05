@@ -286,7 +286,7 @@ public class TelaPropriedadesCliente extends JPanel {
 
 		Propriedade propriedade = new Propriedade();
 		propriedadeController = new PropriedadeController();
-		propriedadeController.excluir(propriedades.get(selected).getIdPropriedade());
+		propriedadeController.excluir(propridedadeSelecionada.getIdPropriedade());
 
 	}
 
@@ -304,7 +304,7 @@ public class TelaPropriedadesCliente extends JPanel {
 		propriedade.setEndereco(txtEndereco.getText());
 		propriedade.setIdcliente(telaControler.getCliente().getIdCliente());
 		propriedade.setIdPropriedade( propriedades.get(selected).getIdPropriedade());
-		propriedadeController.atualizar(propriedade, propriedades.get(selected).getIdPropriedade());
+		propriedadeController.atualizar(propriedade, propridedadeSelecionada.getIdPropriedade());
 		atualizarTabela();
 	}
 
@@ -349,28 +349,32 @@ public class TelaPropriedadesCliente extends JPanel {
 		if(propriedades.size()>0) {
 			btnAlterar.setEnabled(true);
 			btnRemover.setEnabled(true);
-			
-			table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-		        public void valueChanged(ListSelectionEvent event) {
-		            // do some actions here, for example
-		            // print first column value from selected row
-		        	if(selectEnabled) {
-		        		setSelected(table.getSelectedRow());
-		        		txtDocumento.setText(propridedadeSelecionada.getDocumento());
-		        		txtEndereco.setText(propridedadeSelecionada.getEndereco());
-		        		txtHecatares.setText(propridedadeSelecionada.getHectares_total().toString());
 
-		        	}else {
-		        		setSelected(null);
-		        	}
-		        }
-		    });
+			table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+				public void valueChanged(ListSelectionEvent event) {
+					// do some actions here, for example
+					// print first column value from selected row
+					if(table.getSelectedRow()<0) {
+						return;
+					}else {
+						setSelected(table.getSelectedRow());
+						if(selectEnabled) {
+							txtDocumento.setText(propridedadeSelecionada.getDocumento());
+							txtEndereco.setText(propridedadeSelecionada.getEndereco());
+							txtHecatares.setText(propridedadeSelecionada.getHectares_total().toString());
+
+						}else {
+							//setSelected(null);
+						}
+					}
+				}
+			});
 		}
-		
+
 
 
 	}
-	
+
 
 
 	private void limparTela() {
@@ -426,7 +430,11 @@ public class TelaPropriedadesCliente extends JPanel {
 			btnConfirmar.setEnabled(false);
 			btnSalvar.setVisible(true);
 			btnSalvar.setEnabled(true);
-
+			if(propridedadeSelecionada!=null) {
+				txtDocumento.setText(propridedadeSelecionada.getDocumento());
+	    		txtEndereco.setText(propridedadeSelecionada.getEndereco());
+	    		txtHecatares.setText(propridedadeSelecionada.getHectares_total().toString());
+			}
 
 			selectEnabled=true;
 			break;
@@ -442,7 +450,11 @@ public class TelaPropriedadesCliente extends JPanel {
 			btnConfirmar.setEnabled(true);
 			btnSalvar.setVisible(false);
 			btnSalvar.setEnabled(false);
-
+			if(propridedadeSelecionada!=null) {
+				txtDocumento.setText(propridedadeSelecionada.getDocumento());
+	    		txtEndereco.setText(propridedadeSelecionada.getEndereco());
+	    		txtHecatares.setText(propridedadeSelecionada.getHectares_total().toString());
+			}
 
 			selectEnabled=true;
 
