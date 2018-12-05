@@ -42,7 +42,6 @@ public class TelaPropriedadesCliente extends JPanel {
 	private JButton btnAlterar;
 	private JButton btnMinhasCulturas;
 	private JButton btnRemover;
-	private TelaClienteControler telaControler;
 	private JButton btnLimpar;
 	private JButton btnCadastrar;
 	private static final int INSERIR = 1;
@@ -51,23 +50,13 @@ public class TelaPropriedadesCliente extends JPanel {
 	private Boolean selectEnabled=false;
 	private JButton btnConfirmar;
 	private JButton btnSalvar;
-	private Integer selected=null;
-	private List<Propriedade> propriedades;
 
-
+	private TelaClienteControler telaControler;
 	private PropriedadeController propriedadeController;
 
 	private String[] colunasTabela = new String[] { "Documento", "Endere\u00E7o", "Hecatres", "Hectares Ocupados", };
-	private Propriedade propridedadeSelecionada;
 
-	private void setSelected(Integer i){
-		selected=i;
-		if(i!=null) {
-			propridedadeSelecionada =propriedades.get(i);
-		}else {
-			propridedadeSelecionada=null;
-		}
-	}
+	
 	/**
 	 * Create the panel.
 	 */
@@ -284,9 +273,7 @@ public class TelaPropriedadesCliente extends JPanel {
 */
 	protected void excluir() {
 
-		Propriedade propriedade = new Propriedade();
-		propriedadeController = new PropriedadeController();
-		propriedadeController.excluir(propridedadeSelecionada.getIdPropriedade());
+		telaControler.excluirPropridedadeSelecionada();
 
 	}
 
@@ -303,8 +290,8 @@ public class TelaPropriedadesCliente extends JPanel {
 		}
 		propriedade.setEndereco(txtEndereco.getText());
 		propriedade.setIdcliente(telaControler.getCliente().getIdCliente());
-		propriedade.setIdPropriedade( propriedades.get(selected).getIdPropriedade());
-		propriedadeController.atualizar(propriedade, propridedadeSelecionada.getIdPropriedade());
+		propriedade.setIdPropriedade( telaControler.getPropridedadeSelecionada().getIdPropriedade());
+		propriedadeController.atualizar(propriedade, telaControler.getPropridedadeSelecionada().getIdPropriedade());
 		atualizarTabela();
 	}
 
@@ -328,17 +315,15 @@ public class TelaPropriedadesCliente extends JPanel {
 	}
 
 	private void atualizarTabela() {
+		int size=telaControler.atualizarListaPropriedades();
 
-		propriedades = new PropriedadeController()
-				.listarPorClientId(telaControler.getCliente().getIdCliente());
-
-		Object[][] valores = new Object[propriedades.size()][colunasTabela.length];
+		Object[][] valores = new Object[size][colunasTabela.length];
 		Propriedade propriedade;
 		table.setModel(new DefaultTableModel(valores, colunasTabela));
 		TableModel model = table.getModel();
 		int count;
-		for (int i = 0; i < propriedades.size(); i++) {
-			propriedade = propriedades.get(i);
+		for (int i = 0; i < size; i++) {
+			propriedade = telaControler.getPropriedades().get(i);
 			count = 0;
 
 			model.setValueAt(propriedade.getDocumento(), i, count++);
@@ -346,7 +331,7 @@ public class TelaPropriedadesCliente extends JPanel {
 			model.setValueAt(propriedade.getHectares_total(), i, count++);
 
 		}
-		if(propriedades.size()>0) {
+		if(size>0) {
 			btnAlterar.setEnabled(true);
 			btnRemover.setEnabled(true);
 
@@ -357,11 +342,11 @@ public class TelaPropriedadesCliente extends JPanel {
 					if(table.getSelectedRow()<0) {
 						return;
 					}else {
-						setSelected(table.getSelectedRow());
+						telaControler.setPropriedadeIndex(table.getSelectedRow());
 						if(selectEnabled) {
-							txtDocumento.setText(propridedadeSelecionada.getDocumento());
-							txtEndereco.setText(propridedadeSelecionada.getEndereco());
-							txtHecatares.setText(propridedadeSelecionada.getHectares_total().toString());
+							txtDocumento.setText(telaControler.getPropridedadeSelecionada().getDocumento());
+							txtEndereco.setText(telaControler.getPropridedadeSelecionada().getEndereco());
+							txtHecatares.setText(telaControler.getPropridedadeSelecionada().getHectares_total().toString());
 
 						}else {
 							//setSelected(null);
@@ -430,10 +415,10 @@ public class TelaPropriedadesCliente extends JPanel {
 			btnConfirmar.setEnabled(false);
 			btnSalvar.setVisible(true);
 			btnSalvar.setEnabled(true);
-			if(propridedadeSelecionada!=null) {
-				txtDocumento.setText(propridedadeSelecionada.getDocumento());
-	    		txtEndereco.setText(propridedadeSelecionada.getEndereco());
-	    		txtHecatares.setText(propridedadeSelecionada.getHectares_total().toString());
+			if(telaControler.getPropridedadeSelecionada()!=null) {
+				txtDocumento.setText(telaControler.getPropridedadeSelecionada().getDocumento());
+	    		txtEndereco.setText(telaControler.getPropridedadeSelecionada().getEndereco());
+	    		txtHecatares.setText(telaControler.getPropridedadeSelecionada().getHectares_total().toString());
 			}
 
 			selectEnabled=true;
@@ -450,10 +435,10 @@ public class TelaPropriedadesCliente extends JPanel {
 			btnConfirmar.setEnabled(true);
 			btnSalvar.setVisible(false);
 			btnSalvar.setEnabled(false);
-			if(propridedadeSelecionada!=null) {
-				txtDocumento.setText(propridedadeSelecionada.getDocumento());
-	    		txtEndereco.setText(propridedadeSelecionada.getEndereco());
-	    		txtHecatares.setText(propridedadeSelecionada.getHectares_total().toString());
+			if(telaControler.getPropridedadeSelecionada()!=null) {
+				txtDocumento.setText(telaControler.getPropridedadeSelecionada().getDocumento());
+	    		txtEndereco.setText(telaControler.getPropridedadeSelecionada().getEndereco());
+	    		txtHecatares.setText(telaControler.getPropridedadeSelecionada().getHectares_total().toString());
 			}
 
 			selectEnabled=true;
