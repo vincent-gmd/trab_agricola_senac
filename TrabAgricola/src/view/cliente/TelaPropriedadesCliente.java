@@ -155,7 +155,7 @@ public class TelaPropriedadesCliente extends JPanel {
 		panelFiltro.add(btnRemover);
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
-		btnMinhasCulturas = new JButton("Culturas da Propriedade");
+		btnMinhasCulturas = new JButton("Cultivos da Propriedade");
 		btnMinhasCulturas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				mostrarTelaCulturas();
@@ -470,6 +470,9 @@ public class TelaPropriedadesCliente extends JPanel {
 	public void manipularMenu(int modo) {
 		switch (modo) {
 		case INSERIR:
+			txtDocumento.setEditable(true);
+			txtEndereco.setEditable(true);
+			txtHecatares.setEditable(true);
 			txtDocumento.setEnabled(true);
 			txtEndereco.setEnabled(true);
 			txtHecatares.setEnabled(true);
@@ -487,6 +490,9 @@ public class TelaPropriedadesCliente extends JPanel {
 			limparTela() ;
 			break;
 		case ALTERAR:
+			txtDocumento.setEditable(true);
+			txtEndereco.setEditable(true);
+			txtHecatares.setEditable(true);
 			txtDocumento.setEnabled(true);
 			txtEndereco.setEnabled(true);
 			txtHecatares.setEnabled(true);
@@ -531,7 +537,9 @@ public class TelaPropriedadesCliente extends JPanel {
 
 			break;
 		case CULTURAS:
-
+			txtDocumento.setEditable(true);
+			txtEndereco.setEditable(true);
+			txtHecatares.setEditable(true);
 			txtDocumento.setEnabled(true);
 			txtEndereco.setEnabled(true);
 			txtHecatares.setEnabled(true);

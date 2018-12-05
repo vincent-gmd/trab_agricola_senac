@@ -6,6 +6,7 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -14,39 +15,67 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import com.toedter.calendar.JDateChooser;
 
+import controller.CultivoController;
 import controller.CulturaController;
 import controller.PropriedadeController;
 import controller.TelaClienteControler;
+import model.dao.base.Colum;
+import model.dao.base.Comparador;
+import model.dao.base.Filtro;
+import model.vo.conector.Cultivo;
 import model.vo.conector.Cultura;
 import model.vo.conector.Propriedade;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.swing.JComboBox;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class TelaCulturasCliente extends JPanel {
 
 	private TelaCulturasCliente panelCulturasClientes;
 	private TelaPropriedadesCliente telaPropriedadesClientes;
-	private JTextField txtFiltro;
 	private JTable tblCulturas;
-	private JTextField txtNome;
-	private JTextField txtTipo;
-	private JTextField txtDescricao;
 	private JTextField txtHectaresOcupados;
 	private JDateChooser dataPlantio;
 	private JDateChooser dataColheita;
 	private JButton btnAlterar;
 	private JButton btnRemover;
 	private JButton btnSalvar;
-	private JButton btnLimpar;
 	private JButton btnCadastrar;
 	private JButton btnVoltar;
 	private static final int INSERIR = 1;
+	private static final int ALTERAR = 2;
+	private static final int REMOVER = 3;
+
+	private  int modo = 1;
+	private CulturaController culturaController=new CulturaController();
+	private CultivoController cultivoController=new CultivoController();
+
 	private TelaClienteControler telaControler;
+	private JComboBox comboBox;
+	private List<Cultura> listaCulturas;
+	private JTextField textFieldFiltroCultura;
+	private String[] colunasTabela=new String[] {
+			"Cultura", "data Plantio","data Colheita",  "Hectares utilizados"
+		};
+	protected boolean selectEnabled;
+	private JButton btnConfirmar;
 
 	/**
 	 * Create the panel.
@@ -58,18 +87,7 @@ public class TelaCulturasCliente extends JPanel {
 		this.setBounds(0, 0, 538, 688);
 		this.setLayout(null);
 
-		JLabel lblFiltro = new JLabel("Pesquisar:");
-		lblFiltro.setForeground(new Color(255, 255, 255));
-		lblFiltro.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblFiltro.setBounds(10, 50, 76, 17);
-		add(lblFiltro);
-
-		txtFiltro = new JTextField();
-		txtFiltro.setColumns(10);
-		txtFiltro.setBounds(78, 50, 190, 20);
-		this.add(txtFiltro);
-
-		JLabel lblCulturas = new JLabel("Culturas");
+		JLabel lblCulturas = new JLabel("Cultivos");
 		lblCulturas.setForeground(new Color(255, 255, 255));
 		lblCulturas.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblCulturas.setBounds(233, 11, 59, 17);
@@ -89,28 +107,26 @@ public class TelaCulturasCliente extends JPanel {
 		});
 		tblCulturas.setModel(new DefaultTableModel(
 			new Object[][] {
-			},
-			new String[] {
-				"Nome", "Tipo", "Descri\u00E7\u00E3o", "Hectares utilizados"
-			}
+			},colunasTabela
+			
 		));
 		scrollPane.setViewportView(tblCulturas);
 
-		JButton btnNovaCultura = new JButton("Nova Cultura");
-		btnNovaCultura.addActionListener(new ActionListener() {
+		JButton btnNovoCultivo = new JButton("Novo Cultivo");
+		btnNovoCultivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				manipularMenu(1);
 			}
 		});
-		btnNovaCultura.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnNovaCultura.setBounds(10, 289, 114, 30);
-		this.add(btnNovaCultura);
+		btnNovoCultivo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnNovoCultivo.setBounds(10, 289, 114, 30);
+		this.add(btnNovoCultivo);
 
 		btnAlterar = new JButton("Alterar");
 		btnAlterar.setEnabled(false);
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				manipularMenu(ALTERAR);
 			}
 		});
 		btnAlterar.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -121,32 +137,18 @@ public class TelaCulturasCliente extends JPanel {
 		btnRemover.setEnabled(false);
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CulturaController controller = new CulturaController();
-				
-				//controller.excluir(idEntidade);
+				manipularMenu(REMOVER);
 			}
 		});
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnRemover.setBounds(409, 289, 101, 30);
 		this.add(btnRemover);
 
-		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setForeground(new Color(255, 255, 255));
-		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblNome.setBounds(10, 346, 46, 14);
-		this.add(lblNome);
-
-		JLabel lblTipo = new JLabel("Tipo:");
-		lblTipo.setForeground(new Color(255, 255, 255));
-		lblTipo.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblTipo.setBounds(10, 371, 46, 22);
-		this.add(lblTipo);
-
-		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
-		lblDescricao.setForeground(new Color(255, 255, 255));
-		lblDescricao.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblDescricao.setBounds(10, 405, 76, 22);
-		this.add(lblDescricao);
+		JLabel lblCultura = new JLabel("Cultura:");
+		lblCultura.setForeground(new Color(255, 255, 255));
+		lblCultura.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblCultura.setBounds(10, 380, 46, 14);
+		this.add(lblCultura);
 
 		JLabel lblDataInicio = new JLabel("Data de In\u00EDcio:");
 		lblDataInicio.setForeground(new Color(255, 255, 255));
@@ -166,24 +168,6 @@ public class TelaCulturasCliente extends JPanel {
 		lblHectaresOcupados.setBounds(10, 504, 124, 22);
 		this.add(lblHectaresOcupados);
 
-		txtNome = new JTextField();
-		txtNome.setEnabled(false);
-		txtNome.setColumns(10);
-		txtNome.setBounds(144, 344, 190, 20);
-		this.add(txtNome);
-
-		txtTipo = new JTextField();
-		txtTipo.setEnabled(false);
-		txtTipo.setColumns(10);
-		txtTipo.setBounds(144, 373, 190, 20);
-		this.add(txtTipo);
-
-		txtDescricao = new JTextField();
-		txtDescricao.setEnabled(false);
-		txtDescricao.setColumns(10);
-		txtDescricao.setBounds(144, 407, 190, 20);
-		this.add(txtDescricao);
-
 		txtHectaresOcupados = new JTextField();
 		txtHectaresOcupados.setEnabled(false);
 		txtHectaresOcupados.setColumns(10);
@@ -193,10 +177,12 @@ public class TelaCulturasCliente extends JPanel {
 		btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				validarCamposAlterar();
-				Propriedade p = new Propriedade();
-				Cultura c = new Cultura();
-				CulturaController controller = new CulturaController();
+				if(validarCampos()) {
+					cadastrar();
+				}
+				//Propriedade p = new Propriedade();
+				//Cultura c = new Cultura();
+				//CulturaController controller = new CulturaController();
 				
 				//controller.atualizar(entidade, idEntidade)
 			}
@@ -209,22 +195,14 @@ public class TelaCulturasCliente extends JPanel {
 		btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				if(validarCampos()) {
+					cadastrar();
+				}
 				
 			}
 		});
 		btnCadastrar.setBounds(10, 585, 100, 27);
 		this.add(btnCadastrar);
-
-		btnLimpar = new JButton("Limpar");
-		btnLimpar.setEnabled(false);
-		btnLimpar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				limparTela();
-			}
-		});
-		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnLimpar.setBounds(196, 583, 91, 30);
-		this.add(btnLimpar);
 
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
@@ -249,18 +227,150 @@ public class TelaCulturasCliente extends JPanel {
 		dataColheita.setBounds(144, 471, 190, 20);
 		this.add(dataColheita);
 		
+		comboBox = new JComboBox<Cultura>();
+		comboBox.setBounds(144, 376, 190, 20);
+		listaCulturas =culturaController.listarTodos();
+		comboBox.setModel(new DefaultComboBoxModel<Cultura>( listaCulturas.toArray(new Cultura[listaCulturas.size()])));
 
+		add(comboBox);
+		
+		JLabel lblFiltroCultura = new JLabel("Filtro Cultura");
+		lblFiltroCultura.setForeground(Color.WHITE);
+		lblFiltroCultura.setBounds(10, 355, 100, 14);
+		add(lblFiltroCultura);
+		
+		textFieldFiltroCultura = new JTextField();
+		textFieldFiltroCultura.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				 atualizarCulturas();
+
+			}
+		});
+		textFieldFiltroCultura.setBounds(144, 352, 190, 20);
+		add(textFieldFiltroCultura);
+		textFieldFiltroCultura.setColumns(10);
+		
+		btnConfirmar = new JButton("Confirmar Remoçao");
+		btnConfirmar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remover();
+			}
+		});
+		btnConfirmar.setBounds(344, 330, 166, 30);
+		add(btnConfirmar);
+		
+
+		manipularMenu(modo);
+		atualizarTabela() ;
+	}
+	
+	protected void remover() {
+		cultivoController.excluir(telaControler.getCultivoSelecionado().getIdcultivo())	;	
+		atualizarTabela();
+	}
+
+	protected void cadastrar() {
+		Cultivo cultivo = new Cultivo();
+		
+		cultivo.setDataInicio(dataPlantio.getDate().toInstant());
+		cultivo.setDataFim(dataColheita.getDate().toInstant());
+		try{
+			cultivo.setHectares_ocupa(Integer.parseInt(txtHectaresOcupados.getText()));
+		}catch (java.lang.NumberFormatException e) {
+			e.printStackTrace();
+		}
+		cultivo.setIdPropriedade(telaControler.getPropridedadeSelecionada().getIdPropriedade());
+		cultivo.setIdCultura(((Cultura)comboBox.getSelectedItem()).getIdCultura());
+		cultivoController.inserir(cultivo);
+		atualizarTabela();
+		
+	}
+	
+	protected void alterar() {
+		Cultivo cultivo = new Cultivo();
+		cultivo.setIdcultivo(telaControler.getCultivoSelecionado().getIdcultivo());
+		cultivo.setDataInicio(dataPlantio.getDate().toInstant());
+		cultivo.setDataFim(dataColheita.getDate().toInstant());
+		try{
+			cultivo.setHectares_ocupa(Integer.parseInt(txtHectaresOcupados.getText()));
+		}catch (java.lang.NumberFormatException e) {
+			e.printStackTrace();
+		}
+		cultivo.setIdPropriedade(telaControler.getPropridedadeSelecionada().getIdPropriedade());
+		cultivo.setIdCultura(((Cultura)comboBox.getSelectedItem()).getIdCultura());
+		cultivoController.atualizar(cultivo, cultivo.getIdcultivo());
+		atualizarTabela();
+		
+	}
+
+
+	private void atualizarTabela() {
+		int size=telaControler.atualizarListaCultivos();
+
+		Object[][] valores = new Object[size][colunasTabela.length];
+		Cultivo cultivo;
+		tblCulturas.setModel(new DefaultTableModel(valores, colunasTabela));
+		TableModel model = tblCulturas.getModel();
+		int count;
+		for (int i = 0; i < size; i++) {
+			cultivo = telaControler.getCultivos().get(i);
+			count = 0;
+			Cultura cultura =culturaController.pesquisarPorId( cultivo.getIdCultura());
+			model.setValueAt(cultura.getNome(), i, count++);
+			model.setValueAt(LocalDateTime.ofInstant(cultivo.getDataInicio(), ZoneOffset.UTC), i, count++);
+			model.setValueAt(LocalDateTime.ofInstant(cultivo.getDataFim(), ZoneOffset.UTC), i, count++);
+			model.setValueAt(cultivo.getHectares_ocupa(), i, count++);
+		}
+		if(size>0) {
+			btnAlterar.setEnabled(true);
+			btnRemover.setEnabled(true);
+
+			tblCulturas.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+				public void valueChanged(ListSelectionEvent event) {
+					// do some actions here, for example
+					// print first column value from selected row
+					if(tblCulturas.getSelectedRow()<0) {
+						return;
+					}else {
+						telaControler.setCulturaIndex(tblCulturas.getSelectedRow());
+						if(selectEnabled) {
+							
+							
+							dataPlantio.setDate(Date.from(telaControler.getCultivoSelecionado().getDataInicio()));
+							dataColheita.setDate(Date.from(telaControler.getCultivoSelecionado().getDataFim()));
+							Cultura cultura =culturaController.pesquisarPorId( telaControler.getCultivoSelecionado().getIdCultura());
+							comboBox.setSelectedItem(cultura);
+
+						}else {
+							//setSelected(null);
+						}
+					}
+				}
+			});
+		}
+		
+	}
+
+	void atualizarCulturas(){
+		if(textFieldFiltroCultura.getText().isEmpty()) {
+			listaCulturas =culturaController.listarTodos();
+			comboBox.setModel(new DefaultComboBoxModel<Cultura>( listaCulturas.toArray(new Cultura[listaCulturas.size()])));
+		}else {
+			ArrayList<Filtro> Filtros =new ArrayList<Filtro>();
+			String value=textFieldFiltroCultura.getText()+"%";
+			System.out.println(value);
+			Filtro filtro=new Filtro(new Colum("String","nome"), Comparador.LIKE, value);
+			Filtros.add(filtro);
+			listaCulturas =culturaController.listarTodosWhere(Filtros);
+			comboBox.setModel(new DefaultComboBoxModel<Cultura>( listaCulturas.toArray(new Cultura[listaCulturas.size()])));
+
+		}
 	}
 	
 	private Boolean validarCampos() {
-		if (txtNome.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null,"O Campo Nome precisa ser preenchido!");
-			return false;
-		}else if(txtTipo.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "O Campo Tipo precisa ser preenchido!");
-			return false;
-		} else if(txtDescricao.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "O Campo Descri��o precisa ser preenchido!");
+		if (comboBox.getSelectedItem()==null) {
+			JOptionPane.showMessageDialog(null,"O Campo cultivo precisa ser selecionado!");
 			return false;
 		}else if(txtHectaresOcupados.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null,"O Campo Hecatares Ocupados precisa ser preenchido!");
@@ -272,56 +382,37 @@ public class TelaCulturasCliente extends JPanel {
 			JOptionPane.showMessageDialog(null,"Selecione uma Data de Colheita!");
 			return false;
 		}else {
-			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!Cadastro realizado com sucesso");
+			try{
+				Integer.parseInt(txtHectaresOcupados.getText());
+			}catch (java.lang.NumberFormatException e) {
+				JOptionPane.showMessageDialog(null,"HectaresOcupados precisa ser um inteiro valido!");
+			}
 		}
 		return true;
 	}
-
-	private void limparTela() {
-		txtNome.setText("");
-		txtTipo.setText("");
-		txtDescricao.setText("");
-		txtHectaresOcupados.setText("");
-	}
 	
 	public void manipularMenu(int modo) {
+		this.modo=modo;
 		switch (modo) {
 		case INSERIR:
-			txtNome.setEnabled(true);
-			txtTipo.setEnabled(true);
-			txtDescricao.setEnabled(true);
+		case ALTERAR:
+
 			dataPlantio.setEnabled(true);
 			dataColheita.setEnabled(true);
 			txtHectaresOcupados.setEnabled(true);
 			btnSalvar.setEnabled(true);
-			btnLimpar.setEnabled(true);
+			
 			break;
+
+		case REMOVER:
+			dataPlantio.setEnabled(true);
+			dataColheita.setEnabled(true);
+			txtHectaresOcupados.setEnabled(true);
+			btnSalvar.setEnabled(true);
+			break;
+
+			
 	} 
 		
   }
-	private Boolean validarCamposAlterar() {
-		if (txtNome.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null,"O Campo Nome precisa ser preenchido!");
-			return false;
-		}else if(txtTipo.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "O Campo Tipo precisa ser preenchido!");
-			return false;
-		} else if(txtDescricao.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "O Campo Descri��o precisa ser preenchido!");
-			return false;
-		}else if(txtHectaresOcupados.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null,"O Campo Hecatares Ocupados precisa ser preenchido!");
-			return false;
-		}else if(dataPlantio.getDate() == null) {
-			JOptionPane.showMessageDialog(null,"Selecione uma Data de Plantio!");
-			return false;
-		}else if(dataColheita.getDate() == null) {
-			JOptionPane.showMessageDialog(null,"Selecione uma Data de Colheita!");
-			return false;
-		}else {
-			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!Altera��o realizada com sucesso");
-		}
-		return true;
-	}
-	
 }

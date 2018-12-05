@@ -3,19 +3,19 @@ package controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.bo.CulturaBO;
+import model.bo.CultivoBO;
 import model.dao.base.Filtro;
-import model.vo.conector.Cultura;
+import model.vo.conector.Cultivo;
 
-public class CulturaController {
+public class CultivoController {
 
-	private CulturaBO bo = new CulturaBO();
+	private CultivoBO bo = new CultivoBO();
 
-	public int inserir(Cultura entidade) {
+	public int inserir(Cultivo entidade) {
 		return bo.inserir(entidade);
 	}
 
-	public boolean atualizar(Cultura entidade, int idEntidade) {
+	public boolean atualizar(Cultivo entidade, int idEntidade) {
 		return bo.atualizar(entidade, idEntidade);
 	}
 
@@ -23,16 +23,17 @@ public class CulturaController {
 		return bo.excluir(idEntidade);
 	}
 
-	public Cultura pesquisarPorId(int idEntidade) {
+	public Cultivo pesquisarPorId(int idEntidade) {
 		return bo.pesquisarPorId(idEntidade);
 	}
 
-	public List<Cultura> listarTodos() {
+	public List<Cultivo> listarTodos() {
 		return bo.listarTodos();
 	}
-	public List<Cultura> listarTodosWhere( ArrayList<Filtro> Filtros) {
+	public List<Cultivo> listarTodosWhere( ArrayList<Filtro> Filtros) {
 		return bo.listarTodosWhere(Filtros);
 	}
 
 		
+
 }

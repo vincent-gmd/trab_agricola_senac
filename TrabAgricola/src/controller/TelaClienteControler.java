@@ -1,5 +1,6 @@
 package controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import model.dao.base.Colum;
 import model.dao.base.Comparador;
 import model.dao.base.Filtro;
 import model.vo.conector.Cliente;
+import model.vo.conector.Cultivo;
 import model.vo.conector.Propriedade;
 
 public class TelaClienteControler {
@@ -15,7 +17,14 @@ public class TelaClienteControler {
 	private List<Propriedade> propriedades=null;
 	private Propriedade propridedadeSelecionada=null;
 	private PropriedadeController propriedadeController= new PropriedadeController();
+	private CultivoController cultivoController= new CultivoController();
+
 	private ArrayList<Filtro> propriedadeFiltros=null;
+	private ArrayList<Filtro> cultivoFiltros=null;
+	private List<Cultivo> cultivos=null;
+	private Integer cultivoIndex=null;
+	private Integer culturaIndex;
+	private Cultivo cultivoSelecionado;
 	public static final int LISTA_IS_NULL = -1;
 	//public static final int LISTA_VAZIA = 0;
 	//public static final int LISTA_NAO_VAZIA = 1;
@@ -29,6 +38,9 @@ public class TelaClienteControler {
 	public void setFiltroPropriedade(Filtro filtro) {
 		this.propriedadeFiltros = new ArrayList<Filtro>();
 		propriedadeFiltros.add(filtro);
+	}
+	public Cultivo getCultivoSelecionado() {
+		return cultivoSelecionado;
 	}
 	public void setFiltroPropriedade(Colum col,Comparador comparador,Object value) {
 		Filtro filtro=new Filtro(col, comparador, value);
@@ -91,6 +103,40 @@ public class TelaClienteControler {
 	public void setPropriedades(List<Propriedade> propriedades) {
 		this.propriedades = propriedades;
 		propriedadeIndex=null;
+	}
+	
+	
+	
+	
+	
+	
+	
+	//////////////////////////////////////////////////////////////////////////////////
+	public int atualizarListaCultivos() {
+		cultivos=cultivoController.listarTodosWhere(cultivoFiltros);
+		cultivoIndex=null;
+		if(cultivos==null) {
+			return LISTA_IS_NULL;
+		}
+		return cultivos.size();
+	}
+	public void setCulturaIndex(Integer i) {
+		culturaIndex=i;
+		if(i!=null && cultivos!=null) {
+			if(i>=0 && i<cultivos.size()) {
+				setCultivoSelecionado(cultivos.get(i));
+			}
+		}else {
+			setCultivoSelecionado(null);
+		}
+		
+	}
+	private void setCultivoSelecionado(Cultivo cultivo) {
+		this.cultivoSelecionado=	cultivo;
+	}
+	public List<Cultivo> getCultivos() {
+		// TODO Auto-generated method stub
+		return cultivos;
 	}
 	
 

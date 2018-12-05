@@ -4,21 +4,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.dao.CulturaDAO;
-import model.dao.base.Colum;
-import model.dao.base.Comparador;
+import model.dao.CultivoDAO;
 import model.dao.base.Filtro;
-import model.vo.conector.Cultura;
-import model.vo.conector.Propriedade;
+import model.vo.conector.Cultivo;
 
-public class CulturaBO {
-	private CulturaDAO dao = new CulturaDAO();
+public class CultivoBO {
+	private CultivoDAO dao = new CultivoDAO();
 
-	public int inserir(Cultura entidade) {
+	public int inserir(Cultivo entidade) {
 		return dao.inserir(entidade);
 	}
 
-	public boolean atualizar(Cultura entidade, int idEntidade) {
+	public boolean atualizar(Cultivo entidade, int idEntidade) {
 		return dao.atualizar(entidade, idEntidade);
 	}
 
@@ -26,14 +23,14 @@ public class CulturaBO {
 		return dao.excluir(idEntidade);
 	}
 
-	public Cultura pesquisarPorId(int idEntidade) {
+	public Cultivo pesquisarPorId(int idEntidade) {
 		return dao.pesquisarPorId(idEntidade);
 	}
 
-	public List<Cultura> listarTodos() {
+	public List<Cultivo> listarTodos() {
 		return dao.listarTodos();
 	}
-	public List<Cultura> listarTodosWhere( ArrayList<Filtro> Filtros) {
+	public List<Cultivo> listarTodosWhere( ArrayList<Filtro> Filtros) {
 		if(Filtros==null) {
 			Filtros = new ArrayList<Filtro>();
 		}
