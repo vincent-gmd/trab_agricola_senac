@@ -1,6 +1,6 @@
 package model.dao.base;
 
-public enum Comparador {IGUAL(" == "),MAIOR(" > "),MENOR(" < "),LIKE(" LIKE ");
+public enum Comparador {IGUAL(" = "),MAIOR(" > "),MENOR(" < "),LIKE(" LIKE "),MAIOR_IGUAL(" >= "),MENOR_IGUAL(" <= "),DIFERENTE(" <> ");
 	String op;
 	Comparador(String op){
 		this.op=op;

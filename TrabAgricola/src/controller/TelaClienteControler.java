@@ -7,7 +7,7 @@ import model.vo.conector.Propriedade;
 
 public class TelaClienteControler {
 	private Cliente cliente =null;
-	private Integer setSelectedIndexPropriedade=null;
+	private Integer propriedadeIndex=null;
 	private List<Propriedade> propriedades=null;
 	private Propriedade propridedadeSelecionada=null;
 	private PropriedadeController propriedadeController= new PropriedadeController();
@@ -22,9 +22,12 @@ public class TelaClienteControler {
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
+	public Integer getPropriedadeIndex( ){
+		return propriedadeIndex;
+	}
+
 	public void setPropriedadeIndex(Integer i){
-		setSelectedIndexPropriedade=i;
+		propriedadeIndex=i;
 		if(i!=null && propriedades!=null) {
 			if(i>=0 && i<propriedades.size()) {
 				setPropridedadeSelecionada(propriedades.get(i));
@@ -46,6 +49,7 @@ public class TelaClienteControler {
 	}
 	public int atualizarListaPropriedades() {
 		propriedades=propriedadeController.listarPorClientId(getCliente().getIdCliente());
+		propriedadeIndex=null;
 		if(propriedades==null) {
 			return LISTA_IS_NULL;
 		}
@@ -58,6 +62,7 @@ public class TelaClienteControler {
 
 	public void setPropriedades(List<Propriedade> propriedades) {
 		this.propriedades = propriedades;
+		propriedadeIndex=null;
 	}
 	
 

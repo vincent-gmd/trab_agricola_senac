@@ -47,6 +47,8 @@ public class TelaPropriedadesCliente extends JPanel {
 	private static final int INSERIR = 1;
 	private static final int ALTERAR = 2;
 	private static final int REMOVER = 3;
+	private static final int CULTURAS = 4;
+
 	private Boolean selectEnabled=false;
 	private JButton btnConfirmar;
 	private JButton btnSalvar;
@@ -149,16 +151,14 @@ public class TelaPropriedadesCliente extends JPanel {
 		panelFiltro.add(btnRemover);
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
-		btnMinhasCulturas = new JButton("Minhas Culturas");
+		btnMinhasCulturas = new JButton("Culturas da Propriedade");
 		btnMinhasCulturas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
-				TelaPrincipalCliente pai = (TelaPrincipalCliente) SwingUtilities
-						.windowForComponent(panelPropriedadesClientes);
-				pai.mostrarTelaCulturas();
+				mostrarTelaCulturas();
 			}
 		});
 		btnMinhasCulturas.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		btnMinhasCulturas.setBounds(10, 336, 134, 30);
+		btnMinhasCulturas.setBounds(10, 336, 190, 30);
 		panelFiltro.add(btnMinhasCulturas);
 
 		JLabel lblDocumento = new JLabel("Documento:");
@@ -258,6 +258,15 @@ public class TelaPropriedadesCliente extends JPanel {
 
 		atualizarTabela();
 
+	}
+	void mostrarTelaCulturas(){
+		if(telaControler.getPropriedadeIndex()==null) {
+			JOptionPane.showMessageDialog(null, "Selecione uma propriedade");
+			return ;
+		}
+		TelaPrincipalCliente pai = (TelaPrincipalCliente) SwingUtilities
+				.windowForComponent(panelPropriedadesClientes);
+		pai.mostrarTelaCulturas();
 	}
 
 
@@ -372,7 +381,7 @@ public class TelaPropriedadesCliente extends JPanel {
 			try{
 				Integer.parseInt(txtHecatares.getText());
 			}catch (java.lang.NumberFormatException e) {
-				JOptionPane.showMessageDialog(null, "Digite numero valido e use ponto\".\" inves de virgula\",\"");
+				JOptionPane.showMessageDialog(null, "Digite numero inteiro valido");
 				return false;
 			}
 			//JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!");
@@ -443,7 +452,30 @@ public class TelaPropriedadesCliente extends JPanel {
 			selectEnabled=true;
 
 			break;
+		case CULTURAS:
 
+			txtDocumento.setEnabled(true);
+			txtEndereco.setEnabled(true);
+			txtHecatares.setEnabled(true);
+			if(telaControler.getPropridedadeSelecionada()!=null) {
+				txtDocumento.setText(telaControler.getPropridedadeSelecionada().getDocumento());
+	    		txtEndereco.setText(telaControler.getPropridedadeSelecionada().getEndereco());
+	    		txtHecatares.setText(telaControler.getPropridedadeSelecionada().getHectares_total().toString());
+			}
+			txtDocumento.setEditable(false);
+			txtEndereco.setEditable(false);
+			txtHecatares.setEditable(false);
+			btnLimpar_1.setEnabled(false);
+			btnLimpar_1.setVisible(false);
+			btnCadastrar_1.setEnabled(false);
+			btnCadastrar_1.setVisible(false);
+			btnConfirmar.setVisible(false);
+			btnConfirmar.setEnabled(false);
+			btnSalvar.setVisible(false);
+			btnSalvar.setEnabled(false);
+		
+			selectEnabled=true;
+			break;
 
 		}
 	}

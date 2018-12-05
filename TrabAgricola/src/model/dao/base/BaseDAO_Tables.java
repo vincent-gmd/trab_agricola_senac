@@ -108,49 +108,24 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 		}	
 		return clausulaSet;
 	}
-	private String getValoresClausulaWhereLike(ArrayList<Colum> colums) {
+
+	private String getValoresClausulaWhereFlitros(ArrayList<Filtro> Filtros) {
 		// TODO Auto-generated method stub
-                if(!(colums.size()>0)){
+                if(!(Filtros.size()>0)){
                     return "";
                 }
 		String clausulaSet = " WHERE ";
-		for(int i=0;i<colums.size();i++) {
+		for(int i=0;i<Filtros.size();i++) {
 			
-			clausulaSet += colums.get(i).getName()+" like  ? ";
-					if((i+1)<colums.size()) {
+			clausulaSet += Filtros.get(i).getCol().getName()+Filtros.get(i).getComparador() +"  ? ";
+					if((i+1)<Filtros.size()) {
 						clausulaSet+=" AND ";
 					}
 		}	
 		return clausulaSet;
 	}
+
 	
-	public List<T> listarTodosWhereStringsLike(ArrayList<Colum> colums ,ArrayList<String> values) {
-		String sql = "SELECT * FROM " + getNomeTabela()+" 	"+getValoresClausulaWhereLike(colums)+";";
-		System.out.println(sql);
-
-		Connection conn = Banco.getConnection();
-		PreparedStatement stmt = Banco.getPreparedStatement(conn, sql);
-		ResultSet resultado = null;
-		ArrayList<T> listaEntidades = new ArrayList<T>();
-		
-		try{
-			this.setValoresAtributosWhereStrings(colums, values, stmt);
-			resultado = stmt.executeQuery(sql);
-			while(resultado.next()){
-				i=1;
-
-				T objetoConsultado = construirObjetoDoResultSet(resultado);
-				listaEntidades.add(objetoConsultado);
-			}
-		} catch (SQLException e){
-			System.out.println("Erro ao consultar todos os objetos da entidade " + this.getClass().toString());
-		} finally {
-			Banco.closeResultSet(resultado);
-			Banco.closeStatement(stmt);
-			Banco.closeConnection(conn);
-		}
-		return listaEntidades;
-	}
 	
 	public List<T> listarTodosWhere(ArrayList<Colum> colums ,ArrayList<Object> values) throws SQLException{
 		String sql = "SELECT * FROM " + getNomeTabela()+getValoresClausulaWhere(colums)+";";
@@ -181,11 +156,36 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 		}
 		return listaEntidades;
 	}
-	private void setValoresAtributosWhereStrings(ArrayList<Colum> colums ,ArrayList<String> values,PreparedStatement stmt) throws SQLException{
-		for(int i =0;i<values.size();i++) {
-			stmt.setString(i+1, values.get(i).toString());
+	public List<T> listarTodosWhereFiltros(ArrayList<Filtro> Filtros) throws SQLException{
+		String sql = "SELECT * FROM " + getNomeTabela()+getValoresClausulaWhereFlitros(Filtros)+";";
+		System.out.println(sql);
+
+
+		Connection conn = Banco.getConnection();
+		PreparedStatement stmt = Banco.getPreparedStatement(conn, sql);
+		ResultSet resultado = null;
+		ArrayList<T> listaEntidades = new ArrayList<T>();
+		
+		try{
+			this.setValoresAtributosWhereFiltros( Filtros, stmt);
+			resultado = stmt.executeQuery();
+			while(resultado.next()){
+				i=1;
+				T objetoConsultado = construirObjetoDoResultSet(resultado);
+				listaEntidades.add(objetoConsultado);
+			}
+		} catch (SQLException e){
+
+			e.printStackTrace();
+
+		} finally {
+			Banco.closeResultSet(resultado);
+			Banco.closeStatement(stmt);
+			Banco.closeConnection(conn);
 		}
+		return listaEntidades;
 	}
+
 	private void setValoresAtributosWhere(ArrayList<Colum> columns ,ArrayList<Object> values,PreparedStatement stmt) throws SQLException{
 		for(int i =0;i<values.size();i++) {
 			
@@ -255,6 +255,82 @@ public abstract class BaseDAO_Tables<T> extends BaseDAO<T>{
 				
 			default:
 				System.out.println("Erro ao identificar tipo :"+columns.get(i).getType()+" de:"+ columns.get(i).getName()+" valor:"+values.get(i).toString());
+				break;
+			}
+			
+		}
+				
+
+	}
+	private void setValoresAtributosWhereFiltros(ArrayList<Filtro> Filtros,PreparedStatement stmt) throws SQLException{
+		for(int i =0;i<Filtros.size();i++) {
+			
+			switch (Filtros.get(i).getCol().getType()) {
+			case "String":
+			case "string":
+				stmt.setString(i+1, Filtros.get(i).getValue().toString());
+				break;
+			case "int":
+			case "Int":
+			case "Integer":
+			case "integer":
+				stmt.setInt(i+1,(Integer) Filtros.get(i).getValue());
+				break;
+			
+			case "BigDecimal":
+				stmt.setBigDecimal(i+1,(BigDecimal) Filtros.get(i).getValue());
+				break;
+				
+			case "Boolean":
+			case "boolean":
+				stmt.setBoolean(i+1,(Boolean) Filtros.get(i).getValue());
+				break;
+				
+			case "Date":
+				stmt.setDate(i+1,(Date) Filtros.get(i).getValue());
+				break;
+				
+			case "Double":
+			case "double":
+				stmt.setDouble(i+1,(Double) Filtros.get(i).getValue());
+				break;
+				
+			case "Float":
+			case "float":
+				stmt.setFloat(i+1,(Float) Filtros.get(i).getValue());
+				break;
+			
+			case "Long":
+			case "long":
+				stmt.setLong(i+1,(Long) Filtros.get(i).getValue());
+				break;
+			
+			case "Null":
+			case "null":
+				stmt.setNull(i+1,(Integer) Filtros.get(i).getValue());
+				break;
+				
+			case "Short":
+			case "short":
+				stmt.setShort(i+1,(Short) Filtros.get(i).getValue());
+				break;
+				
+			case "Time":
+				stmt.setTime(i+1,(Time) Filtros.get(i).getValue());
+				break;
+				
+			case "Timestamp":
+				stmt.setTimestamp(i+1,(Timestamp) Filtros.get(i).getValue());
+				break;
+				
+			case "URL":
+				stmt.setURL(i+1,(URL) Filtros.get(i).getValue());
+				break;
+			
+				
+				
+			default:
+				System.out.println("Erro ao identificar tipo :"+Filtros.get(i).getCol().getType()+" de:"+ Filtros.get(i).getCol().getName()+" valor:"+Filtros.get(i).getValue().toString());
 				break;
 			}
 			

@@ -39,7 +39,7 @@ public class TelaPrincipalCliente extends JFrame {
 					TelaPrincipalCliente frame = new TelaPrincipalCliente(null);
 					frame.setVisible(true);
 					frame.setTitle("TrabGricola");
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+					//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,12 +52,12 @@ public class TelaPrincipalCliente extends JFrame {
 	 */
 	public TelaPrincipalCliente(TelaClienteControler telaControlerin) {
 		this.telaControler = telaControlerin;
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		//setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(TelaPrincipalCliente.class.getResource("/icones/icons8-ovelha-2-26.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 642, 573);
+		setBounds(100, 100, 800, 900);
 
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);

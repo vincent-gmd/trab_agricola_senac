@@ -54,35 +54,30 @@ public class TelaCulturasCliente extends JPanel {
 	public TelaCulturasCliente(TelaClienteControler telaControlerin) {
 		telaControler=telaControlerin;
 		panelCulturasClientes = this;
-		setBackground(new Color(85, 107, 47));
-		setLayout(null);
-
-		JPanel panelFiltro = new JPanel();
-		panelFiltro.setBackground(new Color(85, 107, 47));
-		panelFiltro.setBounds(0, 0, 528, 678);
-		add(panelFiltro);
-		panelFiltro.setLayout(null);
+		this.setBackground(new Color(85, 107, 47));
+		this.setBounds(0, 0, 538, 688);
+		this.setLayout(null);
 
 		JLabel lblFiltro = new JLabel("Pesquisar:");
 		lblFiltro.setForeground(new Color(255, 255, 255));
 		lblFiltro.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblFiltro.setBounds(10, 50, 76, 17);
-		panelFiltro.add(lblFiltro);
+		add(lblFiltro);
 
 		txtFiltro = new JTextField();
 		txtFiltro.setColumns(10);
 		txtFiltro.setBounds(78, 50, 190, 20);
-		panelFiltro.add(txtFiltro);
+		this.add(txtFiltro);
 
 		JLabel lblCulturas = new JLabel("Culturas");
 		lblCulturas.setForeground(new Color(255, 255, 255));
 		lblCulturas.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblCulturas.setBounds(233, 11, 59, 17);
-		panelFiltro.add(lblCulturas);
+		this.add(lblCulturas);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 78, 500, 200);
-		panelFiltro.add(scrollPane);
+		this.add(scrollPane);
 
 		tblCulturas = new JTable();
 		tblCulturas.addMouseListener(new MouseAdapter() {
@@ -109,7 +104,7 @@ public class TelaCulturasCliente extends JPanel {
 		});
 		btnNovaCultura.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnNovaCultura.setBounds(10, 289, 114, 30);
-		panelFiltro.add(btnNovaCultura);
+		this.add(btnNovaCultura);
 
 		btnAlterar = new JButton("Alterar");
 		btnAlterar.setEnabled(false);
@@ -120,7 +115,7 @@ public class TelaCulturasCliente extends JPanel {
 		});
 		btnAlterar.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnAlterar.setBounds(208, 289, 101, 30);
-		panelFiltro.add(btnAlterar);
+		this.add(btnAlterar);
 
 		btnRemover = new JButton("Remover");
 		btnRemover.setEnabled(false);
@@ -133,67 +128,67 @@ public class TelaCulturasCliente extends JPanel {
 		});
 		btnRemover.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnRemover.setBounds(409, 289, 101, 30);
-		panelFiltro.add(btnRemover);
+		this.add(btnRemover);
 
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setForeground(new Color(255, 255, 255));
 		lblNome.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblNome.setBounds(10, 346, 46, 14);
-		panelFiltro.add(lblNome);
+		this.add(lblNome);
 
 		JLabel lblTipo = new JLabel("Tipo:");
 		lblTipo.setForeground(new Color(255, 255, 255));
 		lblTipo.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblTipo.setBounds(10, 371, 46, 22);
-		panelFiltro.add(lblTipo);
+		this.add(lblTipo);
 
 		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
 		lblDescricao.setForeground(new Color(255, 255, 255));
 		lblDescricao.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblDescricao.setBounds(10, 405, 76, 22);
-		panelFiltro.add(lblDescricao);
+		this.add(lblDescricao);
 
 		JLabel lblDataInicio = new JLabel("Data de In\u00EDcio:");
 		lblDataInicio.setForeground(new Color(255, 255, 255));
 		lblDataInicio.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblDataInicio.setBounds(10, 438, 100, 22);
-		panelFiltro.add(lblDataInicio);
+		this.add(lblDataInicio);
 
 		JLabel lblDataColheita = new JLabel("Data de Colheita:");
 		lblDataColheita.setForeground(new Color(255, 255, 255));
 		lblDataColheita.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblDataColheita.setBounds(10, 471, 100, 22);
-		panelFiltro.add(lblDataColheita);
+		this.add(lblDataColheita);
 
 		JLabel lblHectaresOcupados = new JLabel("Hectares Ocupados:");
 		lblHectaresOcupados.setForeground(new Color(255, 255, 255));
 		lblHectaresOcupados.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblHectaresOcupados.setBounds(10, 504, 124, 22);
-		panelFiltro.add(lblHectaresOcupados);
+		this.add(lblHectaresOcupados);
 
 		txtNome = new JTextField();
 		txtNome.setEnabled(false);
 		txtNome.setColumns(10);
 		txtNome.setBounds(144, 344, 190, 20);
-		panelFiltro.add(txtNome);
+		this.add(txtNome);
 
 		txtTipo = new JTextField();
 		txtTipo.setEnabled(false);
 		txtTipo.setColumns(10);
 		txtTipo.setBounds(144, 373, 190, 20);
-		panelFiltro.add(txtTipo);
+		this.add(txtTipo);
 
 		txtDescricao = new JTextField();
 		txtDescricao.setEnabled(false);
 		txtDescricao.setColumns(10);
 		txtDescricao.setBounds(144, 407, 190, 20);
-		panelFiltro.add(txtDescricao);
+		this.add(txtDescricao);
 
 		txtHectaresOcupados = new JTextField();
 		txtHectaresOcupados.setEnabled(false);
 		txtHectaresOcupados.setColumns(10);
 		txtHectaresOcupados.setBounds(144, 506, 190, 20);
-		panelFiltro.add(txtHectaresOcupados);
+		this.add(txtHectaresOcupados);
 
 		btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
@@ -209,7 +204,7 @@ public class TelaCulturasCliente extends JPanel {
 		btnSalvar.setEnabled(false);
 		btnSalvar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnSalvar.setBounds(10, 583, 101, 30);
-		panelFiltro.add(btnSalvar);
+		this.add(btnSalvar);
 
 		btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
@@ -218,7 +213,7 @@ public class TelaCulturasCliente extends JPanel {
 			}
 		});
 		btnCadastrar.setBounds(10, 585, 100, 27);
-		panelFiltro.add(btnCadastrar);
+		this.add(btnCadastrar);
 
 		btnLimpar = new JButton("Limpar");
 		btnLimpar.setEnabled(false);
@@ -229,7 +224,7 @@ public class TelaCulturasCliente extends JPanel {
 		});
 		btnLimpar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnLimpar.setBounds(196, 583, 91, 30);
-		panelFiltro.add(btnLimpar);
+		this.add(btnLimpar);
 
 		btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
@@ -242,17 +237,17 @@ public class TelaCulturasCliente extends JPanel {
 		});
 		btnVoltar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnVoltar.setBounds(362, 583, 101, 30);
-		panelFiltro.add(btnVoltar);
+		this.add(btnVoltar);
 
 		dataPlantio = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
 		dataPlantio.setEnabled(false);
 		dataPlantio.setBounds(144, 440, 190, 20);
-		panelFiltro.add(dataPlantio);
+		this.add(dataPlantio);
 
 		dataColheita = new JDateChooser("dd/MM/yyyy", "##/##/####", '_');
 		dataColheita.setEnabled(false);
 		dataColheita.setBounds(144, 471, 190, 20);
-		panelFiltro.add(dataColheita);
+		this.add(dataColheita);
 		
 
 	}
@@ -265,7 +260,7 @@ public class TelaCulturasCliente extends JPanel {
 			JOptionPane.showMessageDialog(null, "O Campo Tipo precisa ser preenchido!");
 			return false;
 		} else if(txtDescricao.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "O Campo Descrição precisa ser preenchido!");
+			JOptionPane.showMessageDialog(null, "O Campo Descriï¿½ï¿½o precisa ser preenchido!");
 			return false;
 		}else if(txtHectaresOcupados.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null,"O Campo Hecatares Ocupados precisa ser preenchido!");
@@ -312,7 +307,7 @@ public class TelaCulturasCliente extends JPanel {
 			JOptionPane.showMessageDialog(null, "O Campo Tipo precisa ser preenchido!");
 			return false;
 		} else if(txtDescricao.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "O Campo Descrição precisa ser preenchido!");
+			JOptionPane.showMessageDialog(null, "O Campo Descriï¿½ï¿½o precisa ser preenchido!");
 			return false;
 		}else if(txtHectaresOcupados.getText().isEmpty()) {
 			JOptionPane.showMessageDialog(null,"O Campo Hecatares Ocupados precisa ser preenchido!");
@@ -324,7 +319,7 @@ public class TelaCulturasCliente extends JPanel {
 			JOptionPane.showMessageDialog(null,"Selecione uma Data de Colheita!");
 			return false;
 		}else {
-			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!Alteração realizada com sucesso");
+			JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!Alteraï¿½ï¿½o realizada com sucesso");
 		}
 		return true;
 	}
