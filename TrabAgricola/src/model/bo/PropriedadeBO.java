@@ -6,6 +6,8 @@ import java.util.List;
 
 import model.dao.PropriedadeDAO;
 import model.dao.base.Colum;
+import model.dao.base.Comparador;
+import model.dao.base.Filtro;
 import model.dao.base.Colum;
 import model.dao.base.JoinAgregator;
 import model.dao.join.ProriedadeCultivoCulturaJoin;
@@ -65,13 +67,14 @@ public class PropriedadeBO {
 		}
 
 	}
-	public List<Propriedade> listarPorClientId(Integer clienteId ) {
-		ArrayList<Colum> colums = new ArrayList<Colum>();
-		ArrayList<Object> values = new ArrayList<Object>();
-		colums.add(new Colum("int","idcliente"));
-		values.add(clienteId);
+	public List<Propriedade> listarPorClientId(Integer clienteId, ArrayList<Filtro> Filtros) {
+		if(Filtros==null) {
+			Filtros = new ArrayList<Filtro>();
+		}
+		Colum colum =(new Colum("int","idcliente"));
+		Filtros.add(new Filtro(colum, Comparador.IGUAL, clienteId));
 		try {
-			return  dao.listarTodosWhere(colums, values);
+			return  dao.listarTodosWhereFiltros(Filtros);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

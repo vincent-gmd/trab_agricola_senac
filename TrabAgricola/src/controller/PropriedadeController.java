@@ -6,6 +6,7 @@ import java.util.List;
 
 import model.bo.PropriedadeBO;
 import model.dao.base.Colum;
+import model.dao.base.Filtro;
 import model.dao.base.JoinAgregator;
 import model.vo.conector.Cultivo;
 import model.vo.conector.Cultura;
@@ -46,8 +47,8 @@ public class PropriedadeController {
 	public JoinAgregator<Propriedade,Cultivo,Cultura> pesquisarJoinPorId(int idEntidade) {
 		return bo.pesquisarJoinPorId(idEntidade);
 	}
-	public List<Propriedade> listarPorClientId(Integer clienteId ) {
-		return bo.listarPorClientId(clienteId);
+	public List<Propriedade> listarPorClientId(Integer clienteId, ArrayList<Filtro> Filtros ) {
+		return bo.listarPorClientId(clienteId,Filtros);
 	}
 
 }

@@ -66,7 +66,7 @@ public class TelaDoencaCliente extends JPanel {
 		final JComboBox cboxPropriedades = new JComboBox();
 		cboxPropriedades.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {				
-				for(Propriedade p : controller.listarPorClientId(telaControler.getCliente().getIdCliente())) {
+				for(Propriedade p : controller.listarPorClientId(telaControler.getCliente().getIdCliente(),null)) {
 					cboxPropriedades.addItem(p);
 				}
 				enableCultura();

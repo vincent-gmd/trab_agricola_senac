@@ -5,14 +5,14 @@ public class Filtro {
 	private Colum col;
 	private Object value;
 	private Filtro alt;
-	public Filtro(Comparador comparador, Colum col, Object value, Filtro alt) {
+	public Filtro( Colum col,Comparador comparador, Object value, Filtro alt) {
 		super();
 		this.comparador = comparador;
 		this.col = col;
 		this.value = value;
 		this.alt = alt;
 	}
-	public Filtro(Comparador comparador, Colum col, Object value) {
+	public Filtro( Colum col,Comparador comparador, Object value) {
 		super();
 		this.comparador = comparador;
 		this.col = col;

@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.time.LocalDate;
+
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,7 +25,10 @@ import javax.swing.table.TableModel;
 
 import controller.PropriedadeController;
 import controller.TelaClienteControler;
+import model.dao.base.Comparador;
+import model.dao.base.Filtro;
 import model.vo.conector.Propriedade;
+import javax.swing.JComboBox;
 
 public class TelaPropriedadesCliente extends JPanel {
 	/**
@@ -52,11 +57,16 @@ public class TelaPropriedadesCliente extends JPanel {
 	private Boolean selectEnabled=false;
 	private JButton btnConfirmar;
 	private JButton btnSalvar;
+	
 
 	private TelaClienteControler telaControler;
 	private PropriedadeController propriedadeController;
 
 	private String[] colunasTabela = new String[] { "Documento", "Endere\u00E7o", "Hecatres", "Hectares Ocupados", };
+	private JButton btnFiltrar;
+	private JComboBox<Comparador> comboBoxCompare;
+	JComboBox<CampoPropriedade> comboBoxColuna;
+
 
 	
 	/**
@@ -76,14 +86,8 @@ public class TelaPropriedadesCliente extends JPanel {
 		panelFiltro.setLayout(null);
 		setVisible(false);
 
-		JLabel lblFiltroInteligente = new JLabel("Filtro Inteligente:");
-		lblFiltroInteligente.setForeground(new Color(255, 255, 255));
-		lblFiltroInteligente.setBounds(10, 11, 101, 17);
-		panelFiltro.add(lblFiltroInteligente);
-		lblFiltroInteligente.setFont(new Font("Tahoma", Font.PLAIN, 12));
-
 		txtFiltro = new JTextField();
-		txtFiltro.setBounds(121, 10, 190, 20);
+		txtFiltro.setBounds(248, 26, 190, 20);
 		panelFiltro.add(txtFiltro);
 		txtFiltro.setColumns(10);
 
@@ -255,9 +259,83 @@ public class TelaPropriedadesCliente extends JPanel {
 		});
 		btnConfirmar.setBounds(323, 399, 138, 30);
 		panelFiltro.add(btnConfirmar);
+		
+		comboBoxCompare = new JComboBox<Comparador>();
+		comboBoxCompare.setModel(new DefaultComboBoxModel<Comparador>(Comparador.values()));
+		comboBoxCompare.setBounds(100, 26, 138, 20);
+		panelFiltro.add(comboBoxCompare);
+		
+		comboBoxColuna = new JComboBox<CampoPropriedade>();
+		comboBoxColuna.setModel(new DefaultComboBoxModel<CampoPropriedade>(CampoPropriedade.values()));
+		comboBoxColuna.setBounds(10, 26, 80, 20);
+		panelFiltro.add(comboBoxColuna);
+		
+		btnFiltrar = new JButton("Filtrar");
+		btnFiltrar.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				if(validarFiltro()) {
+					setFiltroPropriedade();
+				}
+				atualizarTabela();
+				
+			}
+		});
+		btnFiltrar.setBounds(448, 25, 89, 23);
+		panelFiltro.add(btnFiltrar);
 
 		atualizarTabela();
 
+	}
+	protected void setFiltroPropriedade() {
+		if(((CampoPropriedade)comboBoxColuna.getSelectedItem()).col.getType().equalsIgnoreCase("int")) {
+			try{
+				telaControler.setFiltroPropriedade(((CampoPropriedade)comboBoxColuna.getSelectedItem()).col, (Comparador)comboBoxCompare.getSelectedItem(), (Object)Integer.parseInt(txtFiltro.getText()));
+			}catch (java.lang.NumberFormatException e) {
+				e.printStackTrace();
+				return ;
+			}
+		}else {
+			telaControler.setFiltroPropriedade(((CampoPropriedade)comboBoxColuna.getSelectedItem()).col, (Comparador)comboBoxCompare.getSelectedItem(), (Object)txtFiltro.getText());
+		}
+	}
+	protected boolean validarFiltro() {
+		
+		if(comboBoxColuna.getSelectedItem()==null) {
+			JOptionPane.showMessageDialog(null, "Selecione uma coluna");
+			return false;
+		}
+		if(comboBoxCompare.getSelectedItem()==null) {
+			JOptionPane.showMessageDialog(null, "Selecione um comparador");
+			return false;
+		}
+		if(txtFiltro.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "Digite um valor a ser filtrado");
+			return false;
+		}
+		if(((CampoPropriedade)comboBoxColuna.getSelectedItem()).col.getType().equalsIgnoreCase("int")) {
+			try{
+				Integer.parseInt(txtFiltro.getText());
+			}catch (java.lang.NumberFormatException e) {
+				JOptionPane.showMessageDialog(null, "Digite numero inteiro valido");
+				return false;
+			}
+			if(((Comparador)comboBoxCompare.getSelectedItem())==Comparador.LIKE) {
+				JOptionPane.showMessageDialog(null, "LIKE so pode ser usado com campos texto");
+				return false;
+			}
+			if(((Comparador)comboBoxCompare.getSelectedItem())==Comparador.LIKE) {
+				JOptionPane.showMessageDialog(null, "NOT_LIKE so pode ser usado com campos texto");
+				return false;
+			}
+		}
+		
+		
+		
+		
+		
+		return true;
+		
 	}
 	void mostrarTelaCulturas(){
 		if(telaControler.getPropriedadeIndex()==null) {
