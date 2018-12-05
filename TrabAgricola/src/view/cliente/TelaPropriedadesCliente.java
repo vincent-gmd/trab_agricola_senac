@@ -282,8 +282,8 @@ public class TelaPropriedadesCliente extends JPanel {
 		propriedade.setData_cadastro(data);
 		propriedade.setDocumento(txtDocumento.getText());
 		try{
-		propriedade.setHectares_total(Integer.parseInt(txtHecatares.getText()));
-		}catch (Exception e) {
+			propriedade.setHectares_total(Integer.parseInt(txtHecatares.getText()));
+		}catch (java.lang.NumberFormatException e) {
 			e.printStackTrace();
 		}
 		propriedade.setEndereco(txtEndereco.getText());
@@ -357,6 +357,12 @@ public class TelaPropriedadesCliente extends JPanel {
 			JOptionPane.showMessageDialog(null, "O Campo Hectares precisa ser preenchido!");
 			return false;
 		}else {
+			try{
+				Integer.parseInt(txtHecatares.getText());
+			}catch (java.lang.NumberFormatException e) {
+				JOptionPane.showMessageDialog(null, "Digite numero valido e use ponto\".\" inves de virgula\",\"");
+				return false;
+			}
 			//JOptionPane.showMessageDialog(null,"Campos preenchidos corretamente!");
 		}
 		return true;
