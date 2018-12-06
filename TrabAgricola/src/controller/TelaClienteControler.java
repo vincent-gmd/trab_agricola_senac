@@ -37,7 +37,9 @@ public class TelaClienteControler {
 
 	public void setFiltroPropriedade(Filtro filtro) {
 		this.propriedadeFiltros = new ArrayList<Filtro>();
-		propriedadeFiltros.add(filtro);
+		if(filtro!=null) {
+			propriedadeFiltros.add(filtro);
+		}
 	}
 	public Cultivo getCultivoSelecionado() {
 		return cultivoSelecionado;
@@ -113,7 +115,12 @@ public class TelaClienteControler {
 	
 	//////////////////////////////////////////////////////////////////////////////////
 	public int atualizarListaCultivos() {
+			Filtro filtro=new Filtro(new Colum("int","idpropriedade"), Comparador.IGUAL, getPropridedadeSelecionada().getIdPropriedade());
+			cultivoFiltros= new ArrayList<Filtro>();
+			cultivoFiltros.add(filtro);
+		
 		cultivos=cultivoController.listarTodosWhere(cultivoFiltros);
+		
 		cultivoIndex=null;
 		if(cultivos==null) {
 			return LISTA_IS_NULL;

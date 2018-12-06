@@ -68,11 +68,18 @@ public class PropriedadeBO {
 
 	}
 	public List<Propriedade> listarPorClientId(Integer clienteId, ArrayList<Filtro> Filtros) {
+		ArrayList<Filtro> Filtros2 = new ArrayList<Filtro>();
+
 		if(Filtros==null) {
+			
 			Filtros = new ArrayList<Filtro>();
 		}
 		Colum colum =(new Colum("int","idcliente"));
-		Filtros.add(new Filtro(colum, Comparador.IGUAL, clienteId));
+		Filtros2.add(new Filtro(colum, Comparador.IGUAL, clienteId));
+		for(int i=0;i<Filtros.size() ;i++) {
+			Filtros2.add(Filtros.get(i));
+		}
+		
 		try {
 			return  dao.listarTodosWhereFiltros(Filtros);
 		} catch (SQLException e) {
@@ -85,5 +92,11 @@ public class PropriedadeBO {
 	
 	public JoinAgregator<Propriedade,Cultivo,Cultura> pesquisarJoinPorId(int idEntidade) {
 		return join.pesquisarJoinPorId(idEntidade);
+	}
+
+	public void gerarRelatorio(String caminhoEscolhido) {
+	 List<Propriedade> propriedades = dao.listarTodos();
+	 GeradorPlanilha geradorPlanilha=new GeradorPlanilha();
+	 geradorPlanilha.gerarPlanilhaPropriedades(propriedades, caminhoEscolhido);
 	}
 }

@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -15,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controller.PropriedadeController;
 import controller.TelaClienteControler;
 
 public class TelaPrincipalCliente extends JFrame {
@@ -52,7 +54,7 @@ public class TelaPrincipalCliente extends JFrame {
 	 */
 	public TelaPrincipalCliente(TelaClienteControler telaControlerin) {
 		this.telaControler = telaControlerin;
-		//setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(TelaPrincipalCliente.class.getResource("/icones/icons8-ovelha-2-26.png")));
@@ -94,6 +96,27 @@ public class TelaPrincipalCliente extends JFrame {
 			}
 		});
 		mnDoenas.add(mntmBuscar);
+		
+		JMenu mnRelatorio = new JMenu("Relatorio");
+		menuBar.add(mnRelatorio);
+		
+		JMenuItem mntmPropriedades = new JMenuItem("Propriedades");
+		mntmPropriedades.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser jfc = new JFileChooser();
+				jfc.setDialogTitle("Salvar relatório como...");
+
+				int resultado = jfc.showSaveDialog(null);
+				if(resultado == JFileChooser.APPROVE_OPTION){
+					String caminhoEscolhido = jfc.getSelectedFile().getAbsolutePath();
+
+					PropriedadeController produtoController = new PropriedadeController();
+					produtoController.gerarRelatorio(caminhoEscolhido);
+				};
+				
+			}
+		});
+		mnRelatorio.add(mntmPropriedades);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(85, 107, 47));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -74,7 +74,7 @@ public class TelaCulturasCliente extends JPanel {
 	private String[] colunasTabela=new String[] {
 			"Cultura", "data Plantio","data Colheita",  "Hectares utilizados"
 		};
-	protected boolean selectEnabled;
+	protected boolean selectEnabled=true;
 	private JButton btnConfirmar;
 
 	/**
@@ -196,7 +196,13 @@ public class TelaCulturasCliente extends JPanel {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(validarCampos()) {
-					cadastrar();
+					if(modo==ALTERAR) {
+						alterar();
+					}
+					if(modo==INSERIR) {
+						cadastrar();
+					}
+
 				}
 				
 			}
@@ -395,16 +401,26 @@ public class TelaCulturasCliente extends JPanel {
 		this.modo=modo;
 		switch (modo) {
 		case INSERIR:
+			selectEnabled =false;
+					dataPlantio.setEnabled(true);
+					dataColheita.setEnabled(true);
+					txtHectaresOcupados.setEnabled(true);
+					btnSalvar.setEnabled(true);
+					break;
+
 		case ALTERAR:
 
+			selectEnabled =true;
 			dataPlantio.setEnabled(true);
 			dataColheita.setEnabled(true);
 			txtHectaresOcupados.setEnabled(true);
 			btnSalvar.setEnabled(true);
-			
 			break;
 
+
 		case REMOVER:
+			selectEnabled =true;
+
 			dataPlantio.setEnabled(true);
 			dataColheita.setEnabled(true);
 			txtHectaresOcupados.setEnabled(true);

@@ -91,8 +91,9 @@ public class CultivoDAO extends BaseDAO_Tables<Cultivo>{
         	i++;
         }
         
-        p.setIdCultura( resultado.getInt(i++));
         p.setIdPropriedade( resultado.getInt(i++));
+        p.setIdCultura( resultado.getInt(i++));
+
 
         return p;
     }

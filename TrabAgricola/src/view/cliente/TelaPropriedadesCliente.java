@@ -276,6 +276,8 @@ public class TelaPropriedadesCliente extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if(validarFiltro()) {
 					setFiltroPropriedade();
+				}else {
+					telaControler.setFiltroPropriedade(null);
 				}
 				atualizarTabela();
 				

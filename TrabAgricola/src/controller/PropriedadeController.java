@@ -51,4 +51,9 @@ public class PropriedadeController {
 		return bo.listarPorClientId(clienteId,Filtros);
 	}
 
+	public void gerarRelatorio(String caminhoEscolhido) {
+		bo.gerarRelatorio(caminhoEscolhido);
+		
+	}
+
 }
